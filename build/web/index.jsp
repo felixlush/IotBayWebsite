@@ -18,7 +18,7 @@
         <% User user = (User)session.getAttribute("user"); %>
         <div class="main-container">
             <div class="header">
-                <h2>Welcome to IOT Bay</h2>
+                <h2>Welcome to IOT Bay!</h2>
                 <img src="https://i.pinimg.com/736x/33/4e/06/334e063ae9f247704b37549b4b0f47d1.jpg" width="500" alt="IoTLogo"/>               
             </div>
             <% if (user == null || user.loggedin == false ) { %>
