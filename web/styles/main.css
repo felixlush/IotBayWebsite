@@ -6,135 +6,119 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Created on : 26 Mar 2024, 10:06:54 am
     Author     : thebigmoney
 */
-body, html{
-    height: 100%;
+body {
+    font-family: 'Arial', sans-serif;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(to bottom, #1e90ff, #87cefa, #ffffff);
+    padding: 0;
+    background: #f4f4f4;
+    color: #333;
 }
 
-h2, h3{
-    font-family: 'Roboto', sans-serif;
-}
-
-.main-container{
+header {
+    background-color: #023e8a;
+    color: white;
+    padding: 20px 10%;
     text-align: center;
+}
+
+nav {
+    background: #005792;
+    padding: 10px 10%;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 16px;
+}
+
+.main {
+    padding: 20px 10%;
     background: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border-radius: 20px;
-    padding: 20px
+    margin-top: 20px;
 }
 
-.option-card{
-    border: black;
-    border-radius: 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;  
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
-.option{
-    margin-right: 40px;
+.product {
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
-.option p{
-    font-size: 12px;
+.product img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
-.form-card {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    max-width: 600px; /* Adjust based on your design */
-    margin: auto;
-    padding: 50px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Optional: adds shadow for better appearance */
+.footer {
+    background-color: #023e8a;
+    color: white;
+    text-align: center;
+    padding: 20px 10%;
+    margin-top: 20px;
 }
 
-.form-card h2{
-    text-align: left;
-}
-
-.form-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.input-group label, .input-group input {
-    display: block; /* Makes label and input take up the full width of their container */
-    text-align: left; /* Ensures text is left-aligned */
-}
-
+/* User Table Styling */
 .user-table {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    width: 100%; 
-    background-color: #f3f3f3; /* Adds a light background color */
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse; /* Ensures borders are nice and tight */
+    background-color: #f9f9f9; /* Light background for the table */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
 }
 
-.user-table thead th {
-    background-color: #3498db; 
-    color: #ffffff; 
-    text-align: left; 
-    padding: 12px 15px; 
+.user-table th, .user-table td {
+    text-align: left; /* Aligns text to the left */
+    padding: 12px 20px; /* Adds padding around text */
+    border-bottom: 1px solid #ddd; /* Adds a light border between rows */
 }
 
-.user-table tbody td {
-    padding: 12px 15px; 
-    border-bottom: 1px solid #dddddd; 
+.user-table th {
+    background-color: #023e8a; /* Dark background for headers */
+    color: white; /* White text for contrast */
+    font-size: 16px; /* Slightly larger font size for headers */
 }
 
-.user-table tbody tr:last-of-type {
-    border-bottom: 2px solid #3498db; 
+.user-table tr:hover {
+    background-color: #f1f1f1; /* Light grey background on row hover for better readability */
 }
 
-.custom-button {
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    background-color: #3498db; 
-    color: white; 
-    font-size: 16px; 
-    border: none; 
-    border-radius: 5px; 
-    text-decoration: none; 
-    transition: background-color 0.3s, color 0.3s; 
-    display: inline-block; 
-    cursor: pointer; 
+.user-table td {
+    color: #333; /* Dark grey text color for content */
+    font-size: 14px; /* Standard font size for content */
 }
 
-.custom-button:hover, .custom-button:focus {
-    background-color: #2980b9; 
-    color: #ffffff; 
+/* Enhancing the first column to appear more prominent */
+.user-table td:first-child, .user-table th:first-child {
+    font-weight: bold; /* Makes text bold in the first column */
 }
 
-.custom-logout-button {
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    background-color: #df2037;
-    color: white; 
-    font-size: 16px; 
-    border: none; 
-    border-radius: 5px; 
-    text-decoration: none; 
-    transition: background-color 0.3s, color 0.3s; 
-    display: inline-block; 
-    cursor: pointer; 
+.user-table-container {
+    position: relative;
+    margin-top: 20px;
 }
 
-.custom-logout-button:hover, .custom-logout-button:focus {
-    background-color: #d32032;
-    color: #ffffff; 
+.edit-button {
+    position: absolute;
+    top: -50px;  
+    right: 0;
+    padding: 8px 16px;
+    background-color: #005792;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.edit-button:hover {
+    background-color: #023e8a;
 }

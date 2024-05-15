@@ -1,51 +1,66 @@
-<%-- 
-    Document   : index
-    Created on : 26 Mar 2024, 10:23:34â€¯am
-    Author     : thebigmoney
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="iot.isd.model.User"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>HomePage</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles/main.css">
-    </head>
-    <body>
-        <% User user = (User)session.getAttribute("user"); %>
-        <div class="main-container">
-            <div class="header">
-                <h2>Welcome to IOT Bay!</h2>
-                <img src="https://i.pinimg.com/736x/33/4e/06/334e063ae9f247704b37549b4b0f47d1.jpg" width="500" alt="IoTLogo"/>               
-            </div>
-            <% if (user == null || user.loggedin == false ) { %>
-                <div class="option-card">
-                    <div class="option">
-                        <a href="login.jsp" class="custom-button">Login</a>
-                        <p>Already have an account?<p>
-                    </div>
-                    <div class="option">
-                        <a href="register.jsp" class="custom-button">Register</a>
-                        <p>New to IoT Bay?<p>
-                    </div>
-                </div>
-            <% } else { %>
-                <p>You are currently logged in as ${user.email}</p>
-                <div class="option-card">
-                    <div class="option">
-                        <a href="main.jsp" class="custom-button">Account Details</a>
-                    </div>
-                    <div class="option">
-                        <a href="logout.jsp" class="custom-logout-button">Logout</a>
-                    </div>
-                </div>
-            <% } %>
-            <a href="/WebApplication1/ConnServlet">Initialize DB Connection</a>
-        </div>
-        <jsp:include page="/ConnServlet" flush="true" />
-    </body>
-</html>
+<%@page import="iot.isd.model.User"%>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOT Bay Products</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <% User user = (User)session.getAttribute("user"); %>
+    <header>
+        <h1>Welcome to IOT Bay!</h1>
+        <p>Explore our latest products!</p>
+    </header>
 
+    <nav>
+        <a href="#">Home</a>
+        <a href="products.html">Products</a> <!-- Ensure this is the correct link -->
+        <a href="orders.html">My Orders</a>
+        <% 
+            if (user == null) {
+        %>
+            <a href="login.jsp">User Login</a>
+        <% 
+            } else {
+        %>
+            <a href="userAccount.jsp">My Account</a>    
+            <a href="logout.jsp">Logout</a>
+        <% 
+            }
+        %>
+        <a href="admin/login.html">Staff Portal</a>
+    </nav>
+    
+
+    <div class="main">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product">
+                <img src="https://example.com/product1.jpg" alt="Product 1">
+                <h3>Smart Home Sensor</h3>
+                <p>$49.99</p>
+                <a href="#" class="buy-btn">Buy Now</a>
+            </div>
+            <div class="product">
+                <img src="https://example.com/product2.jpg" alt="Product 2">
+                <h3>Energy Efficient LED Bulb</h3>
+                <p>$19.99</p>
+                <a href="#" class="buy-btn">Buy Now</a>
+            </div>
+            <div class="product">
+                <img src="https://example.com/product3.jpg" alt="Product 3">
+                <h3>Wireless Doorbell Camera</h3>
+                <p>$99.99</p>
+                <a href="#" class="buy-btn">Buy Now</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 IOT Bay. All rights reserved.</p>
+    </footer>
+    <jsp:include page="/ConnServlet" flush="true" />
+</body>
+</html>

@@ -4,10 +4,13 @@
  */
 package iot.isd.model.dao;
 
+import iot.isd.model.LogEntry;
 import iot.isd.model.User;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /* 
 * DBManager is the primary DAO class to interact with the database. 
@@ -84,31 +87,43 @@ public void deleteUser(String email) throws SQLException{
    st.executeUpdate(cmd);
 }
 
-//public void logLogin(String email, LocalDate date, LocalTime time, String type) throws SQLException{
-//    System.out.println("Adding to log");
-//    String sql = "INSERT INTO USER_LOGS (USER_EMAIL, DATE, TIME, TYPE) VALUES (?, ?, ?, ?)";
-//    try (PreparedStatement pst = conn.prepareStatement(sql)) {
-//        pst.setString(1, email);
-//        pst.setDate(2, java.sql.Date.valueOf(date));
-//        pst.setTime(3, java.sql.Time.valueOf(time));
-//        pst.setString(4, type);
-//        int affectedRows = pst.executeUpdate();
-//        if (affectedRows == 0) {
-//            throw new SQLException("Creating log failed, no rows affected.");
-//        }
-//    }
-//    System.out.println("Log added");
-//}
-
-public void logLogin(String email, LocalDate date, LocalTime time, String type) throws SQLException{
-    Date dateFormatted = java.sql.Date.valueOf(date);
-    Time timeFormatted = java.sql.Time.valueOf(time);
-    String cmd = "INSERT INTO USER_LOGS (USER_EMAIL, DATE, TIME, TYPE) VALUES ('"
+public void logLogin(LogEntry logEntry) throws SQLException{
+    String email = logEntry.getEmail();
+    String accessDate = logEntry.getDate();
+    String loginTime = logEntry.getLoginTime();
+    String logoutTime = logEntry.getLogoutTime();
+    String cmd = "INSERT INTO USER_LOGS (USER_EMAIL, ACCESS_DATE, LOGIN_TIME, LOGOUT_TIME) VALUES ('"
                   + email + "', '"  
-                  + dateFormatted + "', '" 
-                  + timeFormatted + "', '" 
-                  + type + "')";
+                  + accessDate + "', '" 
+                  + loginTime + "', '" 
+                  + logoutTime + "')";
     st.executeUpdate(cmd);
+}
+
+public List<LogEntry> getUserLogs(String email) throws SQLException {
+    List<LogEntry> logs = new ArrayList<>();
+    String query = "SELECT * FROM USER_LOGS WHERE USER_EMAIL = ?";
+    PreparedStatement st = null;
+    ResultSet rs = null;
+
+    try {
+        st = conn.prepareStatement(query);
+        st.setString(1, email);
+        rs = st.executeQuery();
+
+        while (rs.next()) {
+            String log_email = rs.getString("USER_EMAIL");
+            String logDate = rs.getString("ACCESS_DATE");
+            String loginTime = rs.getString("LOGIN_TIME");
+            String logoutTime = rs.getString("LOGOUT_TIME");
+            logs.add(new LogEntry(email, logDate, loginTime, logoutTime));
+        }
+    } catch (SQLException e) {
+        // Handle exceptions appropriately
+        e.printStackTrace();
+    }
+
+    return logs;
 }
 
 

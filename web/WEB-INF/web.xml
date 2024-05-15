@@ -32,6 +32,10 @@
         <servlet-name>CancelServlet</servlet-name>
         <servlet-class>iot.isd.controller.CancelServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserLogServlet</servlet-name>
+        <servlet-class>iot.isd.controller.UserLogServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
