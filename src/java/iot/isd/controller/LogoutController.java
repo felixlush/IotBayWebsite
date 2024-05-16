@@ -17,7 +17,7 @@ public class LogoutController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false); // Get session if exists, no creation
+        HttpSession session = request.getSession(false); 
         Time timeNow = new Time(System.currentTimeMillis());
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         String timeString = timeFormat.format(timeNow);        

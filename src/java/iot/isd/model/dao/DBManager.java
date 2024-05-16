@@ -30,7 +30,7 @@ public DBManager(Connection conn) throws SQLException {
 
 //Find user by email and password in the database   
 public User findUser(String email, String password) throws SQLException {   
-    System.out.println("Finding User");
+//    System.out.println("Finding User");
     String sql = "SELECT * FROM USERS WHERE email = ? AND password = ?";
 
     // Create a PreparedStatement
@@ -149,25 +149,100 @@ public List<LogEntry> getUserLogs(String email) throws SQLException {
     return logs;
 }
 
-public List<Product> getFeaturedProducts() throws SQLException{
+public List<Product> getFeaturedProducts(String searchString) throws SQLException{
     ArrayList<Product> featuredProducts = new ArrayList<>();
-    String sql = "SELECT * FROM Products WHERE PRODUCT_CATEGORY = 'featured'";
-    ResultSet rs = st.executeQuery(sql);
-//    pstmt = conn.prepareStatement(sql);
-//    pstmt.setString(1, "featured");
+    
+    if (searchString.equals("featured")){
+        String sql = "SELECT * FROM Products WHERE PRODUCT_CATEGORY = 'featured'";
+        ResultSet rs = st.executeQuery(sql);
+    //    pstmt = conn.prepareStatement(sql);
+    //    pstmt.setString(1, "featured");
 
-    while (rs.next()) {
-        Product product = new Product(
-            rs.getInt("PRODUCT_ID"),
-            rs.getString("PRODUCT_NAME"),
-            rs.getDouble("PRODUCT_PRICE"),
-            rs.getString("PRODUCT_IMAGE"),
-            rs.getString("PRODUCT_CATEGORY")
-        );
-        featuredProducts.add(product);
+        while (rs.next()) {
+            Product product = new Product(
+                rs.getInt("PRODUCT_ID"),
+                rs.getString("PRODUCT_NAME"),
+                rs.getDouble("PRODUCT_PRICE"),
+                rs.getInt("PRODUCT_UNITS"),
+                rs.getString("PRODUCT_IMAGE"),
+                rs.getString("PRODUCT_CATEGORY")
+            );
+            featuredProducts.add(product);
+        }
     }
-    System.out.println(featuredProducts.size());
+    
+    if (searchString.equals("")){
+        String sql = "SELECT * FROM Products";
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            Product product = new Product(
+                rs.getInt("PRODUCT_ID"),
+                rs.getString("PRODUCT_NAME"),
+                rs.getDouble("PRODUCT_PRICE"),
+                rs.getInt("PRODUCT_UNITS"),    
+                rs.getString("PRODUCT_IMAGE"),
+                rs.getString("PRODUCT_CATEGORY")
+            );
+            featuredProducts.add(product);
+        }
+        System.out.println(featuredProducts.size());
+    }
+    
+    
     return featuredProducts;
+}
+
+public Product getProduct(String ID) throws SQLException{
+    
+    String sql = "SELECT * FROM PRODUCTS WHERE PRODUCT_ID = ?";
+
+    // Create a PreparedStatement
+    PreparedStatement pst = conn.prepareStatement(sql);
+
+    // Set the parameters for the PreparedStatement
+    pst.setString(1, ID);
+
+    // Execute this query using the PreparedStatement
+    ResultSet rs = pst.executeQuery();
+    
+    if (rs.next()){
+        System.out.println("Found Product");
+        int id = rs.getInt("PRODUCT_ID");
+        String name = rs.getString("PRODUCT_NAME");
+        double price = rs.getDouble("PRODUCT_PRICE");
+        int units = rs.getInt("PRODUCT_UNITS");
+        String category = rs.getString("PRODUCT_CATEGORY");
+        String image = rs.getString("PRODUCT_IMAGE");
+        return new Product(id, name, price, units, image, category);
+    } 
+    return null;
+    
+}
+
+public void deleteProduct(String ID) throws SQLException{
+    String sql = "DELETE FROM PRODUCTS WHERE PRODUCT_ID = ?";
+    PreparedStatement pst = conn.prepareStatement(sql);
+    pst.setString(1, ID);
+    pst.executeUpdate();
+}
+
+public void addOrder(String email, String address, int productId, int quantity, double totalPrice, String date) throws SQLException {
+
+    
+    // SQL INSERT statement
+    String sql = "INSERT INTO ORDERS (email, order_date, address, product_id, quantity, total_price) VALUES (?, ?, ?, ?, ?, ?)";
+
+    // Using PreparedStatement to avoid SQL Injection
+    PreparedStatement pst = conn.prepareStatement(sql);
+    pst.setString(1, email);
+    pst.setString(2, date);
+    pst.setString(3, address);
+    pst.setInt(4, productId);
+    pst.setInt(5, quantity);
+    pst.setDouble(6, totalPrice);
+
+    // Execute the update
+    pst.executeUpdate();
 }
 
  

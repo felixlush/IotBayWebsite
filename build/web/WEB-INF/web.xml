@@ -44,6 +44,30 @@
         <servlet-name>FeaturedProductsServlet</servlet-name>
         <servlet-class>iot.isd.controller.FeaturedProductsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>purchaseProductServlet</servlet-name>
+        <servlet-class>iot.isd.controller.purchaseProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>purchaseProductPageServlet</servlet-name>
+        <servlet-class>iot.isd.controller.purchaseProductPageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>orderServlet</servlet-name>
+        <servlet-class>iot.isd.controller.orderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToOrderServlet</servlet-name>
+        <servlet-class>iot.isd.controller.AddToOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateOrdersServlet</servlet-name>
+        <servlet-class>iot.isd.controller.UpdateOrdersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>confirmOrderServlet</servlet-name>
+        <servlet-class>iot.isd.controller.confirmOrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -84,13 +108,36 @@
         <servlet-name>FeaturedProductsServlet</servlet-name>
         <url-pattern>/FeaturedProductsServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>purchaseProductServlet</servlet-name>
+        <url-pattern>/purchaseProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>purchaseProductPageServlet</servlet-name>
+        <url-pattern>/purchaseProductPageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>orderServlet</servlet-name>
+        <url-pattern>/orderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToOrderServlet</servlet-name>
+        <url-pattern>/AddToOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateOrdersServlet</servlet-name>
+        <url-pattern>/UpdateOrdersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>confirmOrderServlet</servlet-name>
+        <url-pattern>/confirmOrderServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
-<!--    <welcome-file-list>
+    <!--    <welcome-file-list>
         <welcome-file>FeaturedProductsServlet</welcome-file>
     </welcome-file-list>-->
 </web-app>

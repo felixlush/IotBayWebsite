@@ -16,11 +16,11 @@
         <body>
             <header>
                 <h1>Welcome to IOT Bay!</h1>
-<!--                <img src="/Resources/iotLogo.png" alt="alt"/>-->
+
                 <nav>
                     <a href="index.jsp">Home</a>
-                    <a href="products.html">Products</a>
-                    <a href="orders.html">My Orders</a>
+                    <a href="product.jsp">Products</a>
+                    <a href="order.jsp">My Orders</a>
                     <% if (user != null) { %>
                         <a href="LogoutController">Logout</a>
                         <a href="userAccount.jsp">My Account</a>
@@ -28,7 +28,6 @@
                         <a href="login.jsp">User Login</a>
                         <a href="register.jsp">Register</a>
                     <% } %>
-                    <a href="admin/login.html">Staff Portal</a>
                 </nav>
             </header>
         </body>

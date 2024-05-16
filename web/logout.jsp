@@ -17,8 +17,8 @@
         <div class="main-container">
             <h1>You have been logged out</h1>
             <%
-              User user = (User)session.getAttribute("user");
-              user.loggedin = false;
+//              User user = (User)session.getAttribute("user");
+//              user.loggedin = false;
               session.invalidate();
             %>
             <a href="index.jsp" class="custom-button" style="margin-top: 60px;">Home</a>

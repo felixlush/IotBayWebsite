@@ -29,15 +29,19 @@ public class FeaturedProductsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        String searchString = request.getParameter("searchString");
         DBManager manager = (DBManager) session.getAttribute("manager");
         
+        if (searchString == null){
+            searchString = "";
+        }
+        
         try {
-            List<Product> featuredProducts = manager.getFeaturedProducts();
-            session.setAttribute("featuredProducts", featuredProducts);
+            List<Product> products = manager.getFeaturedProducts(searchString);
+            session.setAttribute("products", products);
         } catch (SQLException ex) {
             Logger.getLogger(FeaturedProductsServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
 

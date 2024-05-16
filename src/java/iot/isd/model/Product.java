@@ -12,16 +12,19 @@ public class Product {
     private int productId;
     private String name;
     private double price;
+    private int quantity;
     private String imageUrl;
-    private String description;
+    private String category;
+
 
     // Constructor, getters, and setters
-    public Product(int productId, String name, double price, String imageUrl, String description) {
+    public Product(int productId, String name, double price, int quantity, String imageUrl, String category) {
         this.productId = productId;
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
         this.imageUrl = imageUrl;
-        this.description = description;
+        
     }
 
     // Getters and setters
@@ -40,6 +43,10 @@ public class Product {
     public double getPrice() {
         return price;
     }
+    
+    public int getID(){
+        return productId;
+    }
     public void setPrice(double price) {
         this.price = price;
     }
@@ -49,11 +56,11 @@ public class Product {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-    public String getDescription() {
-        return description;
+    public String getCategory() {
+        return category;
     }
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCategory(String description) {
+        this.category = description;
     }
 }
 
