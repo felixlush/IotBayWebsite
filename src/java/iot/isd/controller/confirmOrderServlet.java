@@ -6,6 +6,7 @@ package iot.isd.controller;
 
 import iot.isd.model.Order;
 import iot.isd.model.User;
+import iot.isd.model.dao.DBManager;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,36 +19,26 @@ public class confirmOrderServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        List<Order> orders = (List<Order>) session.getAttribute("currentOrder");
+        DBManager manager = (DBManager)session.getAttribute("manager"); 
 
-        // Update user details
         String email = request.getParameter("email");
         String address = request.getParameter("address");
-        if (user != null) {
-            user.setEmail(email);
-            user.setAddress(address);
-        }
-
-        // Update orders based on the provided quantities
-        if (orders != null) {
-            int numItems = Integer.parseInt(request.getParameter("numItems"));
+        String orderDate = request.getParameter("orderDate");
+        int numItems = Integer.parseInt(request.getParameter("numItems"));
+        
+        try {
             for (int i = 0; i < numItems; i++) {
                 int productId = Integer.parseInt(request.getParameter("productId" + i));
                 int quantity = Integer.parseInt(request.getParameter("quantity" + i));
+                double totalPrice = Double.parseDouble(request.getParameter("totalPrice" + i));
 
-                for (Order order : orders) {
-                    if (order.getProductId() == productId) {
-                        order.setQuantity(quantity);
-                        break;
-                    }
-                }
+                manager.addOrder(email, address, productId, quantity, totalPrice, orderDate);
+                request.removeAttribute("currentOrder");
             }
-            session.setAttribute("currentOrder", orders); // Update the session with new order details
+            response.sendRedirect("orderConfirmation.jsp"); // Redirect to confirmation page
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("orderError.jsp"); // Redirect to error page
         }
-
-        // Redirect back to the confirmation page for review or to another servlet that finalizes the order
-        response.sendRedirect("confirmOrder.jsp");
     }
 }
-

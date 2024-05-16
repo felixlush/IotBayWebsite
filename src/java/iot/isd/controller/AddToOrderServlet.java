@@ -35,11 +35,18 @@ public class AddToOrderServlet extends HttpServlet {
         // Assuming using GET or change to doPost if using POST form method
         HttpSession session = request.getSession();
         int productId = Integer.parseInt(request.getParameter("productId"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
         String productName = request.getParameter("productName");
-    //    int quantity = Integer.parseInt(request.getParameter("productQuantity"));
-        int quantity = 4;
         double productPrice = Double.parseDouble(request.getParameter("productPrice"));
-
+        
+        
+        if (productName.equals("") || productName == null) {
+            // This means productName was not sent correctly from the form
+            System.out.println("Error: Product name is null");
+        } else {
+            System.out.println("Product Name");
+        }
+        
         User user = (User)session.getAttribute("user");
         String userEmail = "";
         String userAddress = "";
@@ -60,7 +67,9 @@ public class AddToOrderServlet extends HttpServlet {
         String currentDate = dateFormat.format(dateNow);
 
         DBManager manager = (DBManager) session.getAttribute("manager");
-
+        
+        
+//        addOrder(String email, String address, int productId, String productName, int quantity, double totalPrice, String date)
         Order newOrder = new Order(userEmail, currentDate, userAddress, productId, productName, totalPrice, quantity);
         
         if (currentOrder == null){

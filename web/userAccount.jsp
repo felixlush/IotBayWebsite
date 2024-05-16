@@ -90,6 +90,9 @@
                     </tbody>                    
                 </table>
             </div>
+            <a href="deleteUserServlet">
+                    <button style="">Delete Account</button>
+            </a>
         </div>
         <%@include file="footer.jsp" %>
     </body>

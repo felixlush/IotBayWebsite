@@ -11,19 +11,18 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <%User user = (User) session.getAttribute("user"); %>
+    <% User user = (User) session.getAttribute("user"); %>
     <%@ include file="header.jsp" %>
     <div class="main">
         <h1>Edit and Confirm Your Order</h1>
         <div class="order-details">
             <form action="confirmOrderServlet" method="post">
                 <% 
-                    
                     List<Order> orders = (List<Order>) session.getAttribute("currentOrder");
                     double total = 0;
                     int totalQuantity = 0;
 
-                    if (orders != null) {
+                    if (orders != null && !orders.isEmpty()) {
                 %>
                 <p>Email: <input type="text" name="email" value="<%= user.getEmail() %>" /></p>
                 <p>Address: <input type="text" name="address" value="<%= user.getAddress() %>" /></p>
@@ -39,27 +38,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% int i = 0; %>
-                        <% for (Order order : orders) { %>
+                        <% for (int i = 0; i < orders.size(); i++) {
+                            Order order = orders.get(i);
+                        %>
                         <tr>
                             <td><%= order.getProductId() %></td>
                             <td><%= order.getProductName() %></td>
-                            <td><%= order.getQuantity() %></td>
-                            <td>$<%= order.getPrice() %></td>
+                            <td>
+                                <input type="hidden" name="productId<%= i %>" value="<%= order.getProductId() %>" />
+                                <input type="hidden" name="quantity<%= i %>" value="<%= order.getQuantity() %>" />
+                                <%= order.getQuantity() %>
+                            </td>
+                            <td>$<%= order.getPrice() * order.getQuantity() %>
+                                <input type="hidden" name="totalPrice<%= i %>" value="<%= order.getPrice() * order.getQuantity() %>" />
+                            </td>
                         </tr>
-                        <% total += order.getPrice() * order.getQuantity(); %>
-                        <% totalQuantity += order.getQuantity(); %>
-                        <% i++; %>
+                        <% total += order.getPrice() * order.getQuantity();
+                           totalQuantity += order.getQuantity();
+                        %>
                         <% } %>
                     </tbody>
                 </table>
-                <input type="hidden" name="numItems" value="<%= i %>" />
+                <input type="hidden" name="numItems" value="<%= orders.size() %>" />
                 <p>Total Quantity: <%= totalQuantity %></p>
                 <p>Total Price: $<%= total %></p>
                 <% } else { %>
                 <p>No orders found.</p>
                 <% } %>
-                <button type="submit" class="confirm-button">Update and Confirm Order</button>
+                <button type="submit" class="confirm-button">Confirm Order</button>
             </form>
         </div>
     </div>

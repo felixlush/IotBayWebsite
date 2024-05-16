@@ -24,6 +24,7 @@
             }
         %>
         <%@ include file="header.jsp" %>
+        <jsp:include page="/orderServlet" flush="true" />
         <div class="main">
             <h2>Current Order</h2>
             <div class="user-table-container">
@@ -75,7 +76,7 @@
             <h2>Past Orders</h2>
             <div class="user-table-container">
                 <div class="search-container">
-                    <form action="SearchUserLogsServlet" method="get">
+                    <form action="orderServlet" method="get">
                         <input type="date" name="searchDate" placeholder="Select a date">
                         <button type="submit">Search</button>
                     </form>

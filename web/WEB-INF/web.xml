@@ -68,6 +68,10 @@
         <servlet-name>confirmOrderServlet</servlet-name>
         <servlet-class>iot.isd.controller.confirmOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteUserServlet</servlet-name>
+        <servlet-class>iot.isd.controller.deleteUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -131,6 +135,10 @@
     <servlet-mapping>
         <servlet-name>confirmOrderServlet</servlet-name>
         <url-pattern>/confirmOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteUserServlet</servlet-name>
+        <url-pattern>/deleteUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

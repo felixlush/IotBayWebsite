@@ -33,7 +33,7 @@ public class UpdateUserServlet extends HttpServlet {
             String name = request.getParameter("name");
             String address = request.getParameter("address");
             DBManager manager = (DBManager) session.getAttribute("manager");
-            User user = (User)session.getAttribute("user");
+            User user = (User)session.getAttribute("user"); 
 
             try {
                 if (user != null){
