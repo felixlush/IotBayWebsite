@@ -23,7 +23,7 @@ public class Payment {
     private String orderId;
     
     
-    public Payment(String paymetId, String cardName, String cardNumber, String paymentMethod, double amount, String paymentDate, String orderId, String email){
+    public Payment(String paymentId, String cardName, String cardNumber, String paymentMethod, double amount, String paymentDate, String orderId, String email){
         this.paymentId = paymentId;
         this.cardName = cardName;
         this.paymentMethod = paymentMethod;

@@ -122,7 +122,7 @@ public void addPayment(String paymentId, String cardName, String cardNumber, Str
 
 
 public void updatePayment(String cardName, String cardNumber, String paymentMethod) throws SQLException {
-            String query = "UPDATE USERS SET cardName = ?, cardNumber = ?";
+            String query = "UPDATE ISDUSER.PAYMENTS SET cardName = ?, cardNumber = ?";
         try (PreparedStatement pst = conn.prepareStatement(query)) {
             // Set parameter values for the columns to update
             pst.setString(2, cardName);
@@ -155,10 +155,34 @@ public ArrayList<Payment> getPaymentList (String email) throws SQLException{
     }
     return paymentList;
 }
-    
+
+
+
+public void deletePayment(String cardNumber) throws SQLException{       
+   String cmd = "DELETE FROM ISDUSER.PAYMENTS WHERE CARDNUMBER='" + cardNumber + "'";
+   st.executeUpdate(cmd);
+}
     
 
-       
+    public Payment findPayment(String cardNumber, String cardName) throws SQLException {       
+   String fetch = "select * from ISDUSER.PAYMENTS where CARDNUMBER = '" + cardNumber + "' and CARDNAME='" + cardName + "'";
+   ResultSet rs = st.executeQuery(fetch);
+   
+   while (rs.next()) {
+       String cardNum = rs.getString(3);
+       String cardNam = rs.getString(2);
+       if(cardNumber.equals(cardNumber) && cardName.equals(cardName)) {
+           String paymentId = rs.getString(1);
+           String paymentMethod = rs.getString(4);
+           Double amount = rs.getDouble(5);
+           String paymentDate = rs.getString(6);
+           String orderId = rs.getString(7);
+           String email = rs.getString(8);
+           return new Payment(paymentId,cardNum,cardNam,paymentMethod,amount,paymentDate,orderId,email);
+       }
+   }
+   return null;   
+}   
 
  
 

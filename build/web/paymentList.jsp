@@ -14,17 +14,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Payment List</title>
+        <link rel="stylesheet" href="styles/main.css">
     </head>
     <body>
-        <h1>Payments List</h1>
-        
-        <%
-//            HttpSession session = request.getSession();
-//            User user = (User)session.getAttribute("user");
-//            DBManager manager = (DBManager) session.getAttribute("manager");
-//            ArrayList<Payment> paymentList = manager.getPaymentList(email);
-        %>
         <h1>Payment List</h1>
     <table border="1">
         <tr>
@@ -35,7 +28,7 @@
             <th>Amount</th>
             <th>Date</th>
             <th>Order ID</th>
-            <th>Email</th>
+            <th>User</th>
         </tr>
         <%
             User user = (User)session.getAttribute("user");
@@ -47,12 +40,11 @@
                DBManager manager = (DBManager) session.getAttribute("manager");
                 paymentList = manager.getPaymentList(email);
             } catch (SQLException e) {
-                // Handle exceptions
                 e.printStackTrace();
             }
             
-            // Iterate over the paymentList and display each payment
             for (Payment payment : paymentList) {
+                if (payment.getDate() != null) {
         %>
             <tr>
                 <td><%= payment.getPaymentId() %></td>
@@ -66,13 +58,8 @@
             </tr>
         <%
             }
+        }
         %>
     </table>
 </body>
-</html>
-        
-        
-        
-        
-    </body>
 </html>

@@ -13,9 +13,12 @@
         <title>JSP Page</title>
     </head>
             <%
-            User user = (User) session.getAttribute("user");
+            //User user = (User) session.getAttribute("user");
             Payment payment = (Payment) session.getAttribute("payment");
-            User updated = (User) session.getAttribute("updated");
+            //String cardName = request.getParameter("cardName");
+            //String cardNumber = request.getParameter("cardNumber");
+            //String paymentMethod = request.getParameter("paymentMethod");
+            Payment updated = (Payment) session.getAttribute("updated");
             %>
     <body>
         <h1>Update your payment details</h1>
@@ -29,8 +32,8 @@
                 </select>
                 <br/><br/>
                 
-                <tr><td>Cardholder Name:</td><td><input type="text" name="name value=${payment.cardNumber}" required="true"></td></tr>
-                <tr><td>Card Number:</td><td><input type="text" name="name value=${payment.cardDetails}" required="true"></td></tr>
+                <tr><td>Cardholder Name:</td><td><input type="text" name="name" value="${payment.getCardName()}" required="true"></td></tr>
+                <tr><td>Card Number:</td><td><input type="text" name="name" value="${payment.getCardNumber()}" required="true"></td></tr>
                 
             </table>
                 

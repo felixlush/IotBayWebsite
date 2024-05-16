@@ -33,9 +33,29 @@
         <servlet-name>CancelServlet</servlet-name>
         <servlet-class>iot.isd.controller.CancelServlet</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>PaymentServlet</servlet-name>
         <servlet-class>iot.isd.controller.PaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddPaymentServlet</servlet-name>
+        <servlet-class>iot.isd.controller.AddPaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updatePaymentServlet</servlet-name>
+        <servlet-class>iot.isd.controller.updatePaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditPaymentServlet</servlet-name>
+        <servlet-class>iot.isd.controller.EditPaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletePayment</servlet-name>
+        <servlet-class>iot.isd.controller.DeletePayment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaymentList</servlet-name>
+        <servlet-class>iot.isd.controller.PaymentList</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
@@ -72,6 +92,26 @@
     <servlet-mapping>
         <servlet-name>PaymentServlet</servlet-name>
         <url-pattern>/PaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPaymentServlet</servlet-name>
+        <url-pattern>/AddPaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updatePaymentServlet</servlet-name>
+        <url-pattern>/updatePaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditPaymentServlet</servlet-name>
+        <url-pattern>/EditPaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePayment</servlet-name>
+        <url-pattern>/DeletePayment</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>PaymentList</servlet-name>
+        <url-pattern>/PaymentList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
