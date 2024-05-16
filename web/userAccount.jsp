@@ -17,26 +17,14 @@
             }
         %>
         
-        <header>
-            <h1>Welcome to IOT Bay!</h1>
-            <nav>
-                <a href="index.jsp">Home</a>
-                <a href="products.html">Products</a>
-                <a href="orders.html">My Orders</a>
-                <% if (user != null) { %>
-                    <a href="LogoutController">Logout</a>
-                    <a href="userAccount.jsp">My Account</a>
-                <% } else { %>
-                    <a href="login.jsp">User Login</a>
-                <% } %>
-                <a href="admin/login.html">Staff Portal</a>
-            </nav>
-        </header>
+        <%@ include file="header.jsp" %>
         
         <div class="main">
             <h2>User Profile</h2>
             <div class="user-table-container">
-                <button class="edit-button">Edit Profile</button>
+                <a href="editUser.jsp">
+                    <button class="edit-button">Edit Profile</button>
+                </a>
                 <table class="user-table">
                     <thead>
                         <tr>
@@ -59,6 +47,12 @@
             
             <h2>User Logs</h2>
             <div class="user-table-container">
+                <div class="search-container">
+                    <form action="SearchUserLogsServlet" method="get">
+                        <input type="date" name="searchDate" placeholder="Select a date">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
                 <table class="user-table">
                     <thead>
                         <tr>
@@ -70,8 +64,11 @@
                     </thead>
                     <tbody>
                         <%
-                            List<LogEntry> logs = (List<LogEntry>) session.getAttribute("logs");
-                            if (logs != null) {
+                            List<LogEntry> logs = (List<LogEntry>) request.getAttribute("logs");
+                            if (logs == null) {
+                                logs = (List<LogEntry>) session.getAttribute("logs");
+                            }
+                            if (logs != null){
                                 for (LogEntry log : logs) {
                         %>
                         <tr>
@@ -94,9 +91,6 @@
                 </table>
             </div>
         </div>
-        
-        <footer class="footer">
-            <p>© 2024 IOT Bay. All rights reserved.</p>
-        </footer>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

@@ -19,12 +19,16 @@ header {
     color: white;
     padding: 20px 10%;
     text-align: center;
+    border-radius: 8px;
+    width: 70%; 
+    margin: 0 auto;
 }
 
 nav {
     background: #005792;
     padding: 10px 10%;
     text-align: center;
+    border-radius: 8px;
 }
 
 nav a {
@@ -32,12 +36,18 @@ nav a {
     text-decoration: none;
     margin: 0 20px;
     font-size: 16px;
+    border-radius: 8px;
+}
+
+nav a:hover{
+    color: activecaption
 }
 
 .main {
     padding: 20px 10%;
-    background: white;
+/*    background: white;*/
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .product-grid {
@@ -62,9 +72,11 @@ nav a {
 .footer {
     background-color: #023e8a;
     color: white;
-    text-align: center;
     padding: 20px 10%;
-    margin-top: 20px;
+    text-align: center;
+    border-radius: 8px;
+    width: 70%; 
+    margin: 0 auto;
 }
 
 /* User Table Styling */
@@ -122,3 +134,129 @@ nav a {
 .edit-button:hover {
     background-color: #023e8a;
 }
+
+/* Styling for input fields */
+.user-table input[type="text"], input[type="password"] {
+    width: 100%; /* Full width */
+    padding: 12px 20px; /* Ample padding for easier interaction */
+    margin: 8px 0; /* Space between inputs */
+    display: inline-block; /* Ensures proper spacing */
+    border: 1px solid #ccc; /* Subtle border */
+    border-radius: 4px; /* Rounded borders for a modern look */
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+    transition: border 0.3s, box-shadow 0.3s; /* Smooth transition for interactions */
+}
+
+/* Enhance focus state to make it clear which element is active */
+.user-table input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #005792; /* Highlight with a stronger border color */
+    box-shadow: 0 0 8px rgba(0,89,146,0.6); /* Adding a glow effect on focus */
+}
+
+/* Styling for submit button */
+.user-table input[type="submit"] {
+    width: 100%; /* Full width */
+    background-color: #023e8a; /* Uniform color with the header */
+    color: white; /* Text color */
+    padding: 14px 20px; /* Padding to increase touch area */
+    margin: 8px 0; /* Margin for spacing */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Cursor to pointer to indicate it's clickable */
+    transition: background-color 0.3s; /* Smooth transition for hover effects */
+}
+
+/* Hover effect for submit button */
+.user-table input[type="submit"]:hover {
+    background-color: #005792; /* A slightly lighter blue on hover */
+}
+
+/* Style adjustments for the form itself */
+.user-table form {
+    background: #ffffff; /* White background for clarity */
+    padding: 20px; /* Padding around the form */
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    border-radius: 8px; /* Rounded corners for the form */
+}
+
+/* Styling for the Login form container */
+.login-form-container {
+    width: 400px; /* Fixed width for the form */
+    margin: 2rem auto; /* Centering the form on the page vertically and horizontally */
+    padding: 20px;
+    background: #fff; /* White background for the form area */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Shadow for some depth */
+    border-radius: 8px; /* Rounded corners for modern look */
+}
+
+/* Table within the form to layout the fields */
+#form_table {
+    width: 100%; /* Full width of the form container */
+    border-collapse: collapse; /* Collapse borders to clean up layout */
+}
+
+#form_table td {
+    padding: 8px; /* Padding around table cells for spacing */
+    line-height: 1.6; /* Adequate line height for readability */
+}
+
+/* Styling for input fields specifically within the login form */
+.login-form-container input[type="text"],
+.login-form-container input[type="password"] {
+    width: 100%; /* Full width of the cell */
+    padding: 10px; /* Comfortable padding inside the input */
+    margin-top: 5px; /* Space above the input */
+    border: 2px solid #ccc; /* Subtle border color */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Focus state for input fields to increase usability */
+.login-form-container input[type="text"]:focus,
+.login-form-container input[type="password"]:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #005792; /* Theme color for focus state */
+    box-shadow: 0 0 8px rgba(0,89,146,0.3); /* Subtle glow effect */
+}
+
+/* Styling for buttons within the login form */
+.login-form-container .button {
+    padding: 10px 15px; /* Adequate padding for clickability */
+    border: none; /* No border for a cleaner look */
+    background-color: #023e8a; /* Consistent theme color */
+    color: white; /* Text color for readability */
+    text-transform: uppercase; /* Uppercase text for a more styled look */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+/* Hover effect for buttons */
+.login-form-container .button:hover {
+    background-color: #005792; /* Slightly lighter blue on hover */
+}
+
+/* Styling for error messages */
+.error-message {
+    color: red; /* Red color for errors */
+    font-size: 0.9rem; /* Smaller font size for error text */
+    padding: 5px 0; /* Padding around error message */
+}
+
+.user-table-container {
+    flex: 1; 
+    margin-right: 20px; 
+}
+
+.search-container {
+    flex-basis: 300px; 
+}
+
+input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 30%;
+}
+
+

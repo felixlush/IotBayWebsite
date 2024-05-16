@@ -5,6 +5,7 @@
 package iot.isd.model.dao;
 
 import iot.isd.model.LogEntry;
+import iot.isd.model.Product;
 import iot.isd.model.User;
 import java.sql.*;
 import java.time.LocalDate;
@@ -77,13 +78,35 @@ public void listTables() throws SQLException {
 
 //update a user details in the database   
 public void updateUser( String email, String name, String password, String address) throws SQLException {
-    String cmd = "UPDATE IOTUSER Users SET NAME='" + name + "',PASSWORD='" + password + "',ADDRESS='" + address + "'WHERE EMAIL='" + email + "'";
+    String cmd = "UPDATE USERS SET NAME='" + name + "',PASSWORD='" + password + "',ADDRESS='" + address + "'WHERE EMAIL='" + email + "'";
     st.executeUpdate(cmd);
-}       
+}
+
+public List<LogEntry> searchLogsByDate(String date, String email) throws SQLException{
+    String sql = "SELECT * FROM USER_LOGS WHERE USER_EMAIL = ? AND ACCESS_DATE = ?";
+    
+    PreparedStatement pst = conn.prepareStatement(sql);
+    
+    pst.setString(1, email);
+    pst.setString(2, date);
+    
+    ResultSet rs = pst.executeQuery();
+    List<LogEntry> results = new ArrayList<>();
+    
+    while (rs.next()) {
+        String log_email = rs.getString("USER_EMAIL");
+        String logDate = rs.getString("ACCESS_DATE");
+        String loginTime = rs.getString("LOGIN_TIME");
+        String logoutTime = rs.getString("LOGOUT_TIME");
+        results.add(new LogEntry(log_email, logDate, loginTime, logoutTime));
+    }
+
+    return results;
+}
 
 //delete a user from the database   
 public void deleteUser(String email) throws SQLException{       
-   String cmd = "DELETE FROM IOTUSER.Users WHERE EMAIL='" + email + "'";
+   String cmd = "DELETE FROM USERS WHERE EMAIL='" + email + "'";
    st.executeUpdate(cmd);
 }
 
@@ -116,7 +139,7 @@ public List<LogEntry> getUserLogs(String email) throws SQLException {
             String logDate = rs.getString("ACCESS_DATE");
             String loginTime = rs.getString("LOGIN_TIME");
             String logoutTime = rs.getString("LOGOUT_TIME");
-            logs.add(new LogEntry(email, logDate, loginTime, logoutTime));
+            logs.add(new LogEntry(log_email, logDate, loginTime, logoutTime));
         }
     } catch (SQLException e) {
         // Handle exceptions appropriately
@@ -126,6 +149,26 @@ public List<LogEntry> getUserLogs(String email) throws SQLException {
     return logs;
 }
 
+public List<Product> getFeaturedProducts() throws SQLException{
+    ArrayList<Product> featuredProducts = new ArrayList<>();
+    String sql = "SELECT * FROM Products WHERE PRODUCT_CATEGORY = 'featured'";
+    ResultSet rs = st.executeQuery(sql);
+//    pstmt = conn.prepareStatement(sql);
+//    pstmt.setString(1, "featured");
+
+    while (rs.next()) {
+        Product product = new Product(
+            rs.getInt("PRODUCT_ID"),
+            rs.getString("PRODUCT_NAME"),
+            rs.getDouble("PRODUCT_PRICE"),
+            rs.getString("PRODUCT_IMAGE"),
+            rs.getString("PRODUCT_CATEGORY")
+        );
+        featuredProducts.add(product);
+    }
+    System.out.println(featuredProducts.size());
+    return featuredProducts;
+}
 
  
 

@@ -9,6 +9,8 @@ import iot.isd.model.dao.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,23 +33,26 @@ public class UpdateUserServlet extends HttpServlet {
             String name = request.getParameter("name");
             String address = request.getParameter("address");
             DBManager manager = (DBManager) session.getAttribute("manager");
-            User user = new User(name, email, password, address);
+            User user = (User)session.getAttribute("user");
 
             try {
                 if (user != null){
-                    session.setAttribute("user", user);
+                    System.out.println("User is not null");
                     manager.updateUser(email, name, password, address);
-                    session.setAttribute("updated", "Update was successful");
-                    request.getRequestDispatcher("edit.jsp").include(request, response);
+                    User updatedUser = new User(name, email, password, address);
+                    session.setAttribute("user", updatedUser);
+                    session.setAttribute("update", "Update was successful");
+                    request.getRequestDispatcher("editUser.jsp").include(request, response);
                 } else {
                     session.setAttribute("update", "Update not successful!");
-                    request.getRequestDispatcher("edit.jsp").include(request, response);
+                    request.getRequestDispatcher("editUser.jsp").include(request, response);
                 }
             } catch (SQLException ex) {
-//                Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println(ex.getMessage() == null ? "User does not exists" : "welcome");
+                Logger.getLogger(UpdateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+                session.setAttribute("update", "Database error: " + ex.getMessage());
+                response.sendRedirect("editUser.jsp");
             }
-            response.sendRedirect("edit.jsp");
+            response.sendRedirect("editUser.jsp");
 
     }
 

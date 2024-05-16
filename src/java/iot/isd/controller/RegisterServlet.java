@@ -73,7 +73,7 @@ public class RegisterServlet extends HttpServlet {
                     manager.addUser(email, password, name, address);
                     User user = new User(name, email, password, address);
                     session.setAttribute("user", user);
-                    request.getRequestDispatcher("main.jsp").include(request, response);
+                    request.getRequestDispatcher("userAccount.jsp").include(request, response);
                 }
             } catch (SQLException | NullPointerException ex) {
                  System.out.println(ex.getMessage() == null ? ex.getMessage() : ex.getMessage());

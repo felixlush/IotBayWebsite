@@ -22,11 +22,15 @@
             String passErr = (String) session.getAttribute("passErr");
             Validator validator = new Validator();
             validator.clear(session);
+            User user = (User)session.getAttribute("user");
         %>
-        <div class="main-container">
-            <div class="form-card">
+        <div class="main">
+            
+            <%@include file="header.jsp" %>
+            
+            <div class="login-form-container">
                 <h2>Login</h2>
-                <span style="color:red;"class="message"> <%=(existErr != null ? existErr : "")%></span>
+                <span class="message error-message"> <%=(existErr != null ? existErr : "")%></span>
                 <form action="LoginServlet" method="post">
                     <table id="form_table">
                         <tr>
@@ -50,15 +54,18 @@
                         <tr>
                             <td></td>
                             <td>
-                                <a href="CancelServlet" class="button"> Cancel </a>
+                                <input class="button" type="submit" value="Login">
                             </td>
                             <td>
-                                <input class="button" type="submit" value="Login">
+                                <a href="CancelServlet" class="button"> Cancel </a>
                             </td>
                         </tr>
                     </table>
                 </form>
             </div>
+                            
+        <%@include file="footer.jsp" %>  
+        
         </div>  
     </body>
 </html>
