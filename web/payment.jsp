@@ -49,8 +49,11 @@
         <tr>
             <form action="PaymentServlet" method="post">
                 <td>
-                    <input type="radio" name="selectedPayment" value="<%= payment.getCardNumber() %>"onclick="document.getElementById('selectedCardNumber').value=this.value">
-            
+                    <input type="hidden" name="paymentId" value="<%= payment.getCardName()%>">
+                    <input type="hidden" name="paymentId" value="<%= payment.getCardNumber()%>">
+                    <input type="hidden" name="paymentId" value="<%= payment.getPaymentMethod()%>">
+                    <input type="submit" class="custom-logout-button" style="margin-top: 60px;" value="Pay">
+<!--                  <input type="radio" name="selectedPayment" value="<%= payment.getCardNumber() %>"onclick="document.getElementById('selectedCardNumber').value=this.value">-->-->
                 </td> 
                
                 <td><%= payment.getCardName() %></td>

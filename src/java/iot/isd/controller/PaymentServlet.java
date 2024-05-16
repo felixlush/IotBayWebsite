@@ -38,7 +38,7 @@ public class PaymentServlet extends HttpServlet {
         String email = user.email;
 //        String email = (String)session.getAttribute("email");
         String cardName = request.getParameter("cardName");
-        String cardNumber = request.getParameter("selectedCardNumber");
+        String cardNumber = request.getParameter("cardNumber");
         double amount = 1.0; //need to cast in from order $ amount
 //        double amount = Double.valueOf(request.getParameter("amount"));
         String paymentMethod = request.getParameter("paymentMethod");
@@ -49,14 +49,14 @@ public class PaymentServlet extends HttpServlet {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String paymentDate = dateFormat.format(dateNow);
         
-        try {            
-            manager.addPayment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, orderId, email);
+                  
+            //manager.addPayment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, orderId, email);
             Payment payment = new Payment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, orderId, email);
             session.setAttribute("payment", payment);
-            request.getRequestDispatcher("payment.jsp").include(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            request.getRequestDispatcher("paymentConfirmation.jsp").include(request, response);
+//         catch (SQLException ex) {
+//            Logger.getLogger(PaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
+//        }
  
     }
 

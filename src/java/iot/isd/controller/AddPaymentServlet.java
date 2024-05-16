@@ -44,7 +44,11 @@ public class AddPaymentServlet extends HttpServlet {
         double amount = 0;
         String paymentMethod = request.getParameter("paymentMethod");
         DBManager manager = (DBManager) session.getAttribute("manager");
-        String paymentDate = null;
+        
+        
+        Date dateNow = new Date(System.currentTimeMillis());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String paymentDate = dateFormat.format(dateNow);
         
         try {            
             manager.addPayment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, orderId, email);

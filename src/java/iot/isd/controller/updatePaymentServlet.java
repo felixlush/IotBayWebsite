@@ -46,7 +46,7 @@ public class updatePaymentServlet extends HttpServlet {
             try {
                 if (payment != null){
                     session.setAttribute("payment", payment);
-                    manager.updatePayment(cardName, cardNumber, paymentMethod);
+                    manager.updatePayment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, orderId, email);
                     session.setAttribute("updated", "Update was successful");
                     request.getRequestDispatcher("payment.jsp").include(request, response);
 //                } else {
