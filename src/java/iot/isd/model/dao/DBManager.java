@@ -4,10 +4,13 @@
  */
 package iot.isd.model.dao;
 
+import iot.isd.model.Payment;
 import iot.isd.model.User;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /* 
 * DBManager is the primary DAO class to interact with the database. 
@@ -111,10 +114,12 @@ public void logLogin(String email, LocalDate date, LocalTime time, String type) 
     st.executeUpdate(cmd);
 }
 
-public void addPayment(String paymentId, String cardName, String cardNumber, String paymentMethod, Double amount, String paymentDate) throws SQLException {                   //code for add-operation       
-  st.executeUpdate("INSERT INTO ISDUSER.PAYMENTS " + "VALUES ('" + paymentId + "', '" + cardName + "', '" + cardNumber + "', '" + paymentMethod + "', " + amount +", '" + paymentDate + "')");
+public void addPayment(String paymentId, String cardName, String cardNumber, String paymentMethod, Double amount, String paymentDate, String orderId, String email) throws SQLException {                   //code for add-operation       
+  st.executeUpdate("INSERT INTO ISDUSER.PAYMENTS " + "VALUES ('" + paymentId + "', '" + cardName + "', '" + cardNumber + "', '" + paymentMethod + "', " + amount +", '" + paymentDate + "', '" + orderId + "', '" + email +"')");
 
 }
+
+
 
 public void updatePayment(String cardName, String cardNumber, String paymentMethod) throws SQLException {
             String query = "UPDATE USERS SET cardName = ?, cardNumber = ?";
@@ -125,10 +130,35 @@ public void updatePayment(String cardName, String cardNumber, String paymentMeth
             // Execute the update query
             pst.executeUpdate();
         }
+}
+        
+public ArrayList<Payment> getPaymentList (String email) throws SQLException{
+    
+    ArrayList<Payment> paymentList = new ArrayList<>();
+    String query;
+    query = "SELECT * FROM ISDUSER.PAYMENTS WHERE EMAIL = '" + email + "'";
+    
+    PreparedStatement pst = conn.prepareStatement(query);
+    
+    ResultSet rs = pst.executeQuery();
+    
+    while (rs.next()){
+        String paymentId = rs.getString(1);
+        String cardName = rs.getString(2);
+        String cardNumber = rs.getString(3);
+        String paymentMethod = rs.getString(4);
+        Double amount = rs.getDouble(5);
+        String date = rs.getString(6);
+        String orderId = rs.getString(7);
+        String Email = rs.getString(8);
+        paymentList.add(new Payment(paymentId,cardName,cardNumber,paymentMethod,amount,date,orderId,Email));
+    }
+    return paymentList;
+}
     
     
 
-}       
+       
 
  
 
