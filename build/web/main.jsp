@@ -42,6 +42,8 @@
         </table>
         <a href="index.jsp" class="custom-button" style="margin-top: 60px;">Home</a>
         <a href="LogoutController" class="custom-logout-button" style="margin-top: 60px;">Logout</a> 
+        <a href="payment.jsp" class="custom-logout-button" style="margin-top: 60px;">Pay</a> 
+        <a href="updatePayment.jsp" class="custom-logout-button" style="margin-top: 60px;">Pay</a> 
     </div>
     </body>
 </html>

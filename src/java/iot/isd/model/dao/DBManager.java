@@ -111,6 +111,24 @@ public void logLogin(String email, LocalDate date, LocalTime time, String type) 
     st.executeUpdate(cmd);
 }
 
+public void addPayment(String paymentId, String cardName, String cardNumber, String paymentMethod, Double amount, String paymentDate) throws SQLException {                   //code for add-operation       
+  st.executeUpdate("INSERT INTO ISDUSER.PAYMENTS " + "VALUES ('" + paymentId + "', '" + cardName + "', '" + cardNumber + "', '" + paymentMethod + "', " + amount +", '" + paymentDate + "')");
+
+}
+
+public void updatePayment(String cardName, String cardNumber, String paymentMethod) throws SQLException {
+            String query = "UPDATE USERS SET cardName = ?, cardNumber = ?";
+        try (PreparedStatement pst = conn.prepareStatement(query)) {
+            // Set parameter values for the columns to update
+            pst.setString(2, cardName);
+            pst.setString(3, cardNumber);
+            // Execute the update query
+            pst.executeUpdate();
+        }
+    
+    
+
+}       
 
  
 

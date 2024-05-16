@@ -3,6 +3,7 @@
     <servlet>
         <servlet-name>ConnServlet</servlet-name>
         <servlet-class>iot.isd.controller.ConnServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet>
         <servlet-name>LoginController</servlet-name>
@@ -31,6 +32,10 @@
     <servlet>
         <servlet-name>CancelServlet</servlet-name>
         <servlet-class>iot.isd.controller.CancelServlet</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>iot.isd.controller.PaymentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
@@ -63,6 +68,10 @@
     <servlet-mapping>
         <servlet-name>CancelServlet</servlet-name>
         <url-pattern>/CancelServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/PaymentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
