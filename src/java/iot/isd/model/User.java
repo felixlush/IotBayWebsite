@@ -18,8 +18,8 @@ public class User {
     private int cardCVV;
     private String[] searchHistory;
     public boolean loggedin;
-
     public String type;
+    public String activated;
     
     
     //insert a contructor
@@ -36,6 +36,7 @@ public class User {
         this.searchHistory = null;
         this.loggedin = false;
         this.type = type;
+        this.activated = "True";
     }
     
     public User(String name, String email, String address, String type){
@@ -119,6 +120,18 @@ public class User {
     
     public String getType(){
         return type;
+    }
+    
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    public String getActivated(){
+        return activated;
+    }
+    
+    public void setActivated(String activated) {
+        this.activated = activated;
     }
     
     

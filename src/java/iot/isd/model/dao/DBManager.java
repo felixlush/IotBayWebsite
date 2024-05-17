@@ -361,6 +361,10 @@ public List<Product> getTopProducts(String category) throws SQLException {
     return products;
 }
 
+public void updateUser(String email, String name, String password, String address, String activated) throws SQLException {       
+        st.executeUpdate("UPDATE A.Users SET NAME='" + name + "', PASSWORD='" + password + "', PHONE='" + address + "', ACTIVATED='" + activated + "' WHERE EMAIL='" + email + "'"); 
+    }       
+
 
 
 }
