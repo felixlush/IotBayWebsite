@@ -18,13 +18,12 @@ public class User {
     private int cardCVV;
     private String[] searchHistory;
     public boolean loggedin;
-
+    public String[] purchaseHistory;
     public String type;
-    
-    
-    //insert a contructor
+    public String status;
 
-    public User(String name, String email, String password, String address, String type) {
+
+    public User(String name, String email, String password, String address, String type, String status) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -36,6 +35,7 @@ public class User {
         this.searchHistory = null;
         this.loggedin = false;
         this.type = type;
+        this.status = "ACTIVE";
     }
     
     public User(String name, String email, String address, String type){
@@ -43,6 +43,27 @@ public class User {
         this.email = email;
         this.address = address;
         this.type = type;
+        this.purchaseHistory = null;
+        this.type = type;
+        this.status = "ACTIVE";
+    }
+    
+    public User(String name, String email, String address, String type, String status){
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.type = type;
+        this.purchaseHistory = null;
+        this.type = type;
+        this.status = "ACTIVE";
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getName() {
@@ -61,6 +82,14 @@ public class User {
         return address;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
     public void setName(String name) {
         this.name = name;
     }
@@ -116,10 +145,5 @@ public class User {
     public void setSearchHistory(String[] searchHistory) {
         this.searchHistory = searchHistory;
     }
-    
-    public String getType(){
-        return type;
-    }
-    
-    
+        
 }

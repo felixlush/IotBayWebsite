@@ -49,12 +49,17 @@ public User findUser(String email, String password) throws SQLException {
         String DBpassword = rs.getString("PASSWORD");
         String DBname = rs.getString("NAME");
         String DBaddress = rs.getString("ADDRESS");
-        return new User(DBname, DBemail, DBpassword, DBaddress);
+
+//        return new User(DBname, DBemail, DBpassword, DBaddress);
+
+        return new User(DBname, DBemail, DBpassword, DBaddress,"CUSTOMER","ACTIVE");
+
     }         
     return null;   
 }
 
 //Add a user-data into the database   
+
 public void addUser(String email, String password, String name, String address, String type) throws SQLException {                   //code for add-operation       
     String sql = "INSERT INTO USERS (email, password, name, address, TYPE) VALUES ('" 
                   + email + "', '"  
@@ -151,11 +156,81 @@ public List<LogEntry> getUserLogs(String email) throws SQLException {
     return logs;
 }
 
+public void addStaff(String name, String email, String password, String address, String position) throws SQLException {                   //code for add-operation       
+    String sql = "INSERT INTO USERS (NAME, EMAIL, PASSWORD, ADDRESS, POSITION) VALUES ('" 
+                  + name + "', '"  
+                  + email + "', '" 
+                  + password + "', '" 
+                  + address + "', '"
+                  + "Staff" + "')";
+    st.executeUpdate(sql);   
+}
+
+public void updateStaff(String name, String email, String password, String address, String position) throws SQLException {
+    String cmd = "UPDATE USERS SET "
+            + "NAME='" + name + "', "
+            + "EMAIL='" + email + "', "
+            + "PASSWORD='" + password + "', "
+            + "ADDRESS='" + address + "', "
+            + "POSITION='" + position + "' "
+            + "WHERE EMAIL='" + email + "'";
+           
+    st.executeUpdate(cmd);
+}      
+
+public void deleteStaff(String email) throws SQLException{       
+   String cmd = "DELETE FROM Users WHERE EMAIL='" + email + "'";
+   st.executeUpdate(cmd);
+}
+
+public void deactivateStaff(String email) throws SQLException {
+    String cmd = "UPDATE USERS SET STATUS='INACTIVE' WHERE EMAIL='" + email + "'";
+    st.executeUpdate(cmd);
+}
+public void reactivateStaff(String email) throws SQLException {
+    String cmd = "UPDATE USERS SET STATUS='ACTIVE' WHERE EMAIL='" + email + "'";
+    st.executeUpdate(cmd);
+}
+
+public List<User> getStaffList(String searchString) throws SQLException {
+    
+    List<User> staffList = new ArrayList<>();
+    String query;
+    if (searchString == null || searchString.equals("")){
+        //Access database return all USERS where type == STAFF
+      query = "SELECT * FROM USERS WHERE POSITION != 'user'";
+    } else {
+        query = "SELECT * FROM USERS WHERE POSITION IS NOT NULL AND NAME ='"+searchString+"'";
+    }
+        
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try{
+            st = conn.prepareStatement(query);
+            // st.setString(1, email);
+            rs = st.executeQuery();
+            while (rs.next()){
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                String address = rs.getString("address");
+                String position = rs.getString("position");
+                String status = rs.getString("status");
+                staffList.add(new User(name, email, password, address, position, status));
+            }
+          
+        }catch (SQLException e) {
+            // Handle exceptions appropriately
+            e.printStackTrace();
+        }return staffList;
+        
+    } 
+
 public List<Product> getFeaturedProducts(String searchString) throws SQLException{
     ArrayList<Product> featuredProducts = new ArrayList<>();
     
-    if (!searchString.equals("")){
-        String sql = "SELECT * FROM Products WHERE PRODUCT_CATEGORY LIKE '" + searchString + "'";
+    if (searchString.equals("featured")){
+        String sql = "SELECT * FROM Products WHERE PRODUCT_CATEGORY = 'featured'";
         ResultSet rs = st.executeQuery(sql);
     //    pstmt = conn.prepareStatement(sql);
     //    pstmt.setString(1, "featured");
@@ -247,34 +322,75 @@ public void addOrder(String email, String address, int productId, int quantity, 
     pst.executeUpdate();
 }
 
-public List<Order> getUserOrders(String searchString, int productId, String userEmail) throws SQLException{
+
+public List<User> getStaffList() throws SQLException {
+    
+    List<User> staffList = new ArrayList<>();
+    String query;
+        query = "SELECT * FROM USERS WHERE POSITION IS NOT NULL";      
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try{
+            st = conn.prepareStatement(query);
+            // st.setString(1, email);
+            rs = st.executeQuery();
+            while (rs.next()){
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                String address = rs.getString("address");
+                String position = rs.getString("position");
+                String status = rs.getString("status");
+                staffList.add(new User(name, email, password, address, position, status));
+            }
+          
+        }catch (SQLException e) {
+        // Handle exceptions appropriately
+
+        }return staffList;
+        
+} 
+
+//public List<Order> getUserOrders(String searchString, int productId, String userEmail) throws SQLException{
+//    ArrayList<Order> orders = new ArrayList<>();
+//
+//    // Assuming searchString is either empty or a valid date string.
+//    String sql = "SELECT * FROM ORDERS WHERE ORDER_EMAIL = ?";
+//
+//    // Check if the searchString (date) and productId are provided and append to the SQL query accordingly.
+//    if (!searchString.isEmpty()) {
+//        sql += " AND ORDER_DATE = ?";
+//    }
+//    if (productId > 0) { // Assuming 0 is an invalid product ID.
+//        sql += " AND PRODUCT_ID = ?";
+//    }
+//
+//    try (PreparedStatement pst = conn.prepareStatement(sql)) {
+//        int paramIndex = 1;
+//        pst.setString(paramIndex++, userEmail); // Set the user email
+//
+//        if (!searchString.isEmpty()) {
+//            pst.setDate(paramIndex++, java.sql.Date.valueOf(searchString)); // Set the order date, assuming searchString is in 'YYYY-MM-DD' format.
+//        }
+//        if (productId > 0) {
+//            pst.setInt(paramIndex++, productId); // Set the product ID
+//        }
+//
+//        try (ResultSet rs = pst.executeQuery()) {
+//            while (rs.next()) {
+//                Order order = new Order(
+
+
+public List<Order> getUserOrders(String searchString, String userEmail) throws SQLException{
     ArrayList<Order> orders = new ArrayList<>();
 
-    // Assuming searchString is either empty or a valid date string.
-    String sql = "SELECT * FROM ORDERS WHERE ORDER_EMAIL = ?";
-
-    // Check if the searchString (date) and productId are provided and append to the SQL query accordingly.
-    if (!searchString.isEmpty()) {
-        sql += " AND ORDER_DATE = ?";
-    }
-    if (productId > 0) { // Assuming 0 is an invalid product ID.
-        sql += " AND PRODUCT_ID = ?";
-    }
-
-    try (PreparedStatement pst = conn.prepareStatement(sql)) {
-        int paramIndex = 1;
-        pst.setString(paramIndex++, userEmail); // Set the user email
-
-        if (!searchString.isEmpty()) {
-            pst.setDate(paramIndex++, java.sql.Date.valueOf(searchString)); // Set the order date, assuming searchString is in 'YYYY-MM-DD' format.
-        }
-        if (productId > 0) {
-            pst.setInt(paramIndex++, productId); // Set the product ID
-        }
-
-        try (ResultSet rs = pst.executeQuery()) {
-            while (rs.next()) {
-                Order order = new Order(
+    if (searchString.equals("")){
+        String sql = "SELECT * FROM ORDERS WHERE ORDER_EMAIL = ?";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, userEmail);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            Order order = new Order(
                 rs.getInt("ORDER_ID"),
                 rs.getString("ORDER_EMAIL"),
                 rs.getString("ORDER_DATE"),
@@ -285,8 +401,8 @@ public List<Order> getUserOrders(String searchString, int productId, String user
             );
                 orders.add(order);
             }
-        }
     }
+}
 
     return orders;
 }
@@ -338,8 +454,4 @@ public List<Product> getTopProducts(String category) throws SQLException {
         throw ex;
     }
     return products;
-}
-
-
-
 }

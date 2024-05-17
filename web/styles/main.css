@@ -259,6 +259,28 @@ input[type="date"] {
     width: 30%;
 }
 
+button.ignore-css {
+    /* Reset or override any existing CSS styles */
+    /* For example: */
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    cursor: pointer;
+}
+
+.ignore-css {
+    /* Reset or override any existing CSS styles */
+    /* For example: */
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    cursor: pointer;
+}
+
 
 
 

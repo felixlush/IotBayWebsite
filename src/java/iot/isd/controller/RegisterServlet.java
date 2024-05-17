@@ -70,7 +70,7 @@ public class RegisterServlet extends HttpServlet {
                     session.setAttribute("existErr", "User already exists!");
                     request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
-                    manager.addUser(email, password, name, address, "CUSTOMER");
+                    manager.addUser(email, password, name, address, "CUSTOMER", "ACTIVE");
                     User user = new User(name, email, password, address);
                     session.setAttribute("addCondition", "Account added, please login to continue");                    
                     request.getRequestDispatcher("login.jsp").include(request, response);
