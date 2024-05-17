@@ -33,8 +33,13 @@
                 </select>
                 <br/><br/>
                 
-                <tr><td>Cardholder Name:</td><td><input type="text" name="name" value="${payment.getCardName()}" required="true"></td></tr>
-                <tr><td>Card Number:</td><td><input type="text" name="name" value="${payment.getCardNumber()}" required="true"></td></tr>
+                <tr><td>Cardholder Name:</td><td><input type="text" name="cardName" value="${payment.getCardName()}" required="true"></td></tr>
+                <tr><td>Card Number:</td><td><input type="text" name="cardNumber" value="${payment.getCardNumber()}" required="true"></td></tr>
+                <input type="hidden" name="paymentId" value="${payment.getPaymentId()}%>">
+                <input type="hidden" name="paymentMethod" value="${payment.getPaymentMethod()}%>">
+                <input type="hidden" name="paymentDate" value="${payment.getDate()}%>">
+                <input type="hidden" name="orderId" value="${payment.getOrderId()}%>">
+                <input type="hidden" name="email" value="${payment.getEmail()}%>">
                 
             </table>
                 

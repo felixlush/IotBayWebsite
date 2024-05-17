@@ -61,6 +61,7 @@
             }
         }
         %>
+        <a href="main.jsp" class="custom-button" style="margin-top: 60px;">Return</a>
     </table>
 </body>
 </div>

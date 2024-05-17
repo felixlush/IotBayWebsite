@@ -122,7 +122,7 @@ public void addPayment(String paymentId, String cardName, String cardNumber, Str
 
 
 public void updatePayment(String paymentId, String cardName, String cardNumber, String paymentMethod, Double amount, String paymentDate, String orderId, String email) throws SQLException {
-    String cmd = "UPDATE ISDUSER.PAYMENTS SET PAYMENTID='" + paymentId + "',CARDNAME='" + cardName + "',CARDNUMBER='" + cardNumber + "',PAYMENTMETHOD='" + paymentMethod+ "',AMOUNT='" +amount+ "',PAYMENTDATE='" +paymentDate + "',ORDERID='" +orderId+ "',EMAIL='" + "'";
+    String cmd = "UPDATE ISDUSER.PAYMENTS SET PAYMENTID='" + paymentId + "',CARDNAME='" + cardName + "',CARDNUMBER='" + cardNumber + "',PAYMENTMETHOD='" + paymentMethod+ "',AMOUNT='" +amount+ "',PAYMENTDATE='" +paymentDate + "',ORDERID='" +orderId+ "',EMAIL='" + email + "'";
     st.executeUpdate(cmd);
 //            String query = "UPDATE ISDUSER.PAYMENTS SET cardName = ?, cardNumber = ?";
 //        try (PreparedStatement pst = conn.prepareStatement(query)) {
