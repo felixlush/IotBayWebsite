@@ -370,4 +370,55 @@ public List<Order> getUserOrders(String searchString, String userEmail) throws S
     return orders;
 } 
 
+    public List<Product> getTopProducts(String category) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT 3 FROM Products";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) { 
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Product product = new Product(
+                        rs.getInt("PRODUCT_ID"),
+                        rs.getString("PRODUCT_NAME"),
+                        rs.getDouble("PRODUCT_PRICE"),
+                        rs.getInt("PRODUCT_UNITS"),
+                        rs.getString("PRODUCT_IMAGE"),
+                        rs.getString("PRODUCT_CATEGORY")
+                    );
+                    products.add(product);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Database error: " + ex.getMessage());
+            throw ex;
+        }
+        return products;
+    }
+
+    public List<Product> getProductsByCategory(String category) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM Products WHERE PRODUCT_CATEGORY LIKE ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, category + '%');  // Using LIKE for partial matches
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Product product = new Product(
+                        rs.getInt("PRODUCT_ID"),
+                        rs.getString("PRODUCT_NAME"),
+                        rs.getDouble("PRODUCT_PRICE"),
+                        rs.getInt("PRODUCT_UNITS"),
+                        rs.getString("PRODUCT_IMAGE"),
+                        rs.getString("PRODUCT_CATEGORY")
+                    );
+                    products.add(product);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Database error: " + ex.getMessage());
+            throw ex;
+        }
+        return products;
+    }
+
+
+
 }

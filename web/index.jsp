@@ -24,9 +24,11 @@
             <%
                 List<Product> products = (List<Product>) session.getAttribute("products");
 //                System.out.println(products.size());
+                int count = 0;
                 if (products != null)
                     for (Product product : products) {
-            %>
+                    if (count >= 3) break;
+            %>  
                 <div class="product">
                     <img src="<%= product.getImageUrl() %>" alt="<%= product.getName() %>">
                     <h3><%= product.getName() %></h3>
@@ -39,7 +41,7 @@
                         <input type="submit" class="buy-btn" value="Buy Now">
                     </form>
                 </div>
-            <%
+            <%  count++;
                     }
             %>
         </div>
