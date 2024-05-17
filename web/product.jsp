@@ -17,29 +17,36 @@
 
     <div class="main">
         <h2>Products</h2>
+        <!-- Search Form for Product Categories -->
+        <form action="getProductByCategoryServlet" method="get" class="search-form">
+            <label for="category">Enter a category:</label>
+            <input type="text" name="category" id="searchString" placeholder="Type a category (e.g., Electronics)" />
+            <button type="submit">Search</button>
+        </form>
         <div class="product-grid">
-            <%
-                List<Product> products = (List<Product>) session.getAttribute("products");
-                if (products != null)
-                    for (Product product : products) {
+            <% List<Product> products = (List<Product>) session.getAttribute("products");
+               if (products != null) {
+                   for (Product product : products) {
             %>
-                <div class="product">
-                    <img src="<%= product.getImageUrl() %>" alt="<%= product.getName() %>">
-                    <h3><%= product.getName() %></h3>
-                    <p>$<%= product.getPrice() %></p>
-                    <form action="purchaseProductPageServlet" method="post">
-                        <input type="hidden" name="productId" value="<%= product.getID() %>">
-                        <input type="hidden" name="productName" value="<%= product.getName() %>">
-                        <input type="hidden" name="productPrice" value="<%= product.getPrice() %>">
-                        <input type="hidden" name="productImage" value="<%= product.getImageUrl() %>">
-                        <input type="submit" class="buy-btn" value="Buy Now">
-                    </form>
-                </div>
+            <div class="product">
+                <img src="<%= product.getImageUrl() %>" alt="<%= product.getName() %>">
+                <h3><%= product.getName() %></h3>
+                <p>$<%= product.getPrice() %></p>
+<!--                <p>Category: <%= product.getCategory() %></p> -->
+                <!-- form to purchase product -->
+            </div>
             <%
-                    }
+                   }
+               } else {
+            %>
+            <p>No products found.</p>
+            <%
+               }
             %>
         </div>
+
     </div>
+
 
     <%@include file="footer.jsp"%>
 </body>

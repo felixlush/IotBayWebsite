@@ -20,6 +20,7 @@
             String existErr = (String) session.getAttribute("existErr");
             String emailErr = (String) session.getAttribute("emailErr");
             String passErr = (String) session.getAttribute("passErr");
+            String addCondition = (String) session.getAttribute("addCondition");
             Validator validator = new Validator();
             validator.clear(session);
             User user = (User)session.getAttribute("user");
@@ -31,6 +32,7 @@
             <div class="login-form-container">
                 <h2>Login</h2>
                 <span class="message error-message"> <%=(existErr != null ? existErr : "")%></span>
+                <span class="message error-message"> <%=(addCondition != null ? addCondition : "")%></span>
                 <form action="LoginServlet" method="post">
                     <table id="form_table">
                         <tr>

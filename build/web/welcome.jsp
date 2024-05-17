@@ -48,7 +48,7 @@
         </div>
         <%
             if (isRegister){
-                User user = new User(name, email, password, address);
+                User user = new User(name, email, password, address, "CUSTOMER");
                 session.setAttribute("user", user);
             }
         %>

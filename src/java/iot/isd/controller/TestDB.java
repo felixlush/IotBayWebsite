@@ -49,8 +49,8 @@ public class TestDB {
 //            System.out.print("User favorite color: ");
 //
 //            String favcol = in.nextLine();`
-            db.addUser("John@gmail.com", "password", "John Bloggs", "31 Dury Lane");   
-            
+//            db.addUser("John@gmail.com", "password", "John Bloggs", "31 Dury Lane");   
+//            
 //            db.checkConnection();
 //            db.listTables();
 

@@ -76,6 +76,10 @@
         <servlet-name>SearchUserOrderServlet</servlet-name>
         <servlet-class>iot.isd.controller.SearchUserOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getProductByCategoryServlet</servlet-name>
+        <servlet-class>iot.isd.controller.getProductByCategoryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -147,6 +151,10 @@
     <servlet-mapping>
         <servlet-name>SearchUserOrderServlet</servlet-name>
         <url-pattern>/SearchUserOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getProductByCategoryServlet</servlet-name>
+        <url-pattern>/getProductByCategoryServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

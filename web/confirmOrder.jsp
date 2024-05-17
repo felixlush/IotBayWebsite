@@ -21,6 +21,10 @@
                     List<Order> orders = (List<Order>) session.getAttribute("currentOrder");
                     double total = 0;
                     int totalQuantity = 0;
+                    
+                    if (user == null){
+                        user = new User("Anon", "No Email Provided", "No Address Provided");
+                    }
 
                     if (orders != null && !orders.isEmpty()) {
                 %>
@@ -67,6 +71,9 @@
                 <% } %>
                 <button type="submit" class="confirm-button">Confirm Order</button>
             </form>
+                <td>
+                    <a href="CancelOrderServlet" class="button"> Cancel Order </a>
+                </td>
         </div>
     </div>
     <%@ include file="footer.jsp" %>

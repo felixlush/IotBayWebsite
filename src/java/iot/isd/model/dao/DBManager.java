@@ -55,12 +55,13 @@ public User findUser(String email, String password) throws SQLException {
 }
 
 //Add a user-data into the database   
-public void addUser(String email, String password, String name, String address) throws SQLException {                   //code for add-operation       
-    String sql = "INSERT INTO USERS (email, password, name, address) VALUES ('" 
+public void addUser(String email, String password, String name, String address, String type) throws SQLException {                   //code for add-operation       
+    String sql = "INSERT INTO USERS (email, password, name, address, TYPE) VALUES ('" 
                   + email + "', '"  
                   + password + "', '" 
-                  + name + "', '" 
-                  + address + "')";
+                  + name + "', '"
+                    + address + "', '"
+                  + type + "')";
     st.executeUpdate(sql);   
 }
 
@@ -153,8 +154,8 @@ public List<LogEntry> getUserLogs(String email) throws SQLException {
 public List<Product> getFeaturedProducts(String searchString) throws SQLException{
     ArrayList<Product> featuredProducts = new ArrayList<>();
     
-    if (searchString.equals("featured")){
-        String sql = "SELECT * FROM Products WHERE PRODUCT_CATEGORY = 'featured'";
+    if (!searchString.equals("")){
+        String sql = "SELECT * FROM Products WHERE PRODUCT_CATEGORY LIKE '" + searchString + "'";
         ResultSet rs = st.executeQuery(sql);
     //    pstmt = conn.prepareStatement(sql);
     //    pstmt.setString(1, "featured");
@@ -289,5 +290,33 @@ public List<Order> getUserOrders(String searchString, int productId, String user
 
     return orders;
 }
+
+public List<Product> getProductsByCategory(String category) throws SQLException {
+    List<Product> products = new ArrayList<>();
+    String sql = "SELECT * FROM Products WHERE PRODUCT_CATEGORY LIKE ?";
+    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        pstmt.setString(1, category + '%');  // Using LIKE for partial matches
+        try (ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                Product product = new Product(
+                    rs.getInt("PRODUCT_ID"),
+                    rs.getString("PRODUCT_NAME"),
+                    rs.getDouble("PRODUCT_PRICE"),
+                    rs.getInt("PRODUCT_UNITS"),
+                    rs.getString("PRODUCT_IMAGE"),
+                    rs.getString("PRODUCT_CATEGORY")
+                );
+                products.add(product);
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println("Database error: " + ex.getMessage());
+        throw ex;
+    }
+    return products;
+}
+
+
+
 
 }

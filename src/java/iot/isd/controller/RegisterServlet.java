@@ -70,10 +70,10 @@ public class RegisterServlet extends HttpServlet {
                     session.setAttribute("existErr", "User already exists!");
                     request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
-                    manager.addUser(email, password, name, address);
+                    manager.addUser(email, password, name, address, "CUSTOMER");
                     User user = new User(name, email, password, address);
-                    session.setAttribute("user", user);
-                    request.getRequestDispatcher("userAccount.jsp").include(request, response);
+                    session.setAttribute("addCondition", "Account added, please login to continue");                    
+                    request.getRequestDispatcher("login.jsp").include(request, response);
                 }
             } catch (SQLException | NullPointerException ex) {
                  System.out.println(ex.getMessage() == null ? ex.getMessage() : ex.getMessage());

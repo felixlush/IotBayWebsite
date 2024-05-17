@@ -18,12 +18,13 @@ public class User {
     private int cardCVV;
     private String[] searchHistory;
     public boolean loggedin;
-    public String[] purchaseHistory;
+
+    public String type;
     
     
     //insert a contructor
 
-    public User(String name, String email, String password, String address) {
+    public User(String name, String email, String password, String address, String type) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -34,7 +35,14 @@ public class User {
         this.cardExpiryDate = null;
         this.searchHistory = null;
         this.loggedin = false;
-        this.purchaseHistory = null;
+        this.type = type;
+    }
+    
+    public User(String name, String email, String address, String type){
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.type = type;
     }
 
     public String getName() {
@@ -107,10 +115,6 @@ public class User {
 
     public void setSearchHistory(String[] searchHistory) {
         this.searchHistory = searchHistory;
-    }
-    
-    public String[] getPurchaseHistory(){
-        return purchaseHistory;
     }
     
     
