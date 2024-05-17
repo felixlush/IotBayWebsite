@@ -402,8 +402,6 @@ public List<Order> getUserOrders(String searchString, String userEmail) throws S
                 orders.add(order);
             }
     }
-}
-
     return orders;
 }
 
@@ -454,4 +452,5 @@ public List<Product> getTopProducts(String category) throws SQLException {
         throw ex;
     }
     return products;
+}
 }
