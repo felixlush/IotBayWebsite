@@ -72,6 +72,10 @@
         <servlet-name>deleteUserServlet</servlet-name>
         <servlet-class>iot.isd.controller.deleteUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchUserOrderServlet</servlet-name>
+        <servlet-class>iot.isd.controller.SearchUserOrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -139,6 +143,10 @@
     <servlet-mapping>
         <servlet-name>deleteUserServlet</servlet-name>
         <url-pattern>/deleteUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchUserOrderServlet</servlet-name>
+        <url-pattern>/SearchUserOrderServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

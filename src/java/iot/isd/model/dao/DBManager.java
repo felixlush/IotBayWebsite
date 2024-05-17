@@ -246,16 +246,34 @@ public void addOrder(String email, String address, int productId, int quantity, 
     pst.executeUpdate();
 }
 
-public List<Order> getUserOrders(String searchString, String userEmail) throws SQLException{
+public List<Order> getUserOrders(String searchString, int productId, String userEmail) throws SQLException{
     ArrayList<Order> orders = new ArrayList<>();
 
-    if (searchString.equals("")){
-        String sql = "SELECT * FROM ORDERS WHERE ORDER_EMAIL = ?";
-        PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setString(1, userEmail);
-        ResultSet rs = pst.executeQuery();
-        while (rs.next()) {
-            Order order = new Order(
+    // Assuming searchString is either empty or a valid date string.
+    String sql = "SELECT * FROM ORDERS WHERE ORDER_EMAIL = ?";
+
+    // Check if the searchString (date) and productId are provided and append to the SQL query accordingly.
+    if (!searchString.isEmpty()) {
+        sql += " AND ORDER_DATE = ?";
+    }
+    if (productId > 0) { // Assuming 0 is an invalid product ID.
+        sql += " AND PRODUCT_ID = ?";
+    }
+
+    try (PreparedStatement pst = conn.prepareStatement(sql)) {
+        int paramIndex = 1;
+        pst.setString(paramIndex++, userEmail); // Set the user email
+
+        if (!searchString.isEmpty()) {
+            pst.setDate(paramIndex++, java.sql.Date.valueOf(searchString)); // Set the order date, assuming searchString is in 'YYYY-MM-DD' format.
+        }
+        if (productId > 0) {
+            pst.setInt(paramIndex++, productId); // Set the product ID
+        }
+
+        try (ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+                Order order = new Order(
                 rs.getInt("ORDER_ID"),
                 rs.getString("ORDER_EMAIL"),
                 rs.getString("ORDER_DATE"),
@@ -264,12 +282,12 @@ public List<Order> getUserOrders(String searchString, String userEmail) throws S
                 rs.getDouble("PRICE"),
                 rs.getInt("ORDER_QUANTITY")
             );
-            orders.add(order);
+                orders.add(order);
+            }
         }
-//        System.out.println(featuredProducts.size());
     }
 
     return orders;
-} 
+}
 
 }

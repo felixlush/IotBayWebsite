@@ -33,7 +33,7 @@ public class confirmOrderServlet extends HttpServlet {
                 double totalPrice = Double.parseDouble(request.getParameter("totalPrice" + i));
 
                 manager.addOrder(email, address, productId, quantity, totalPrice, orderDate);
-                request.removeAttribute("currentOrder");
+                session.removeAttribute("currentOrder");
             }
             response.sendRedirect("orderConfirmation.jsp"); // Redirect to confirmation page
         } catch (Exception e) {

@@ -76,8 +76,9 @@
             <h2>Past Orders</h2>
             <div class="user-table-container">
                 <div class="search-container">
-                    <form action="orderServlet" method="get">
+                    <form action="SearchUserOrderServlet" method="get">
                         <input type="date" name="searchDate" placeholder="Select a date">
+                        <input type="text" name="productId" placeholder="Search by id">
                         <button type="submit">Search</button>
                     </form>
                 </div>
