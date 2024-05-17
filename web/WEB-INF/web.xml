@@ -81,20 +81,12 @@
         <servlet-class>iot.isd.controller.getProductByCategoryServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreateCustomerServlet</servlet-name>
-        <servlet-class>iot.isd.controller.CreateCustomerServlet</servlet-class>
+        <servlet-name>homePageProducts</servlet-name>
+        <servlet-class>iot.isd.controller.homePageProducts</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CustomerInformationManagementServlet</servlet-name>
-        <servlet-class>iot.isd.controller.CustomerInformationManagementServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteCustomer</servlet-name>
-        <servlet-class>iot.isd.controller.DeleteCustomer</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EditCustomerServlet</servlet-name>
-        <servlet-class>iot.isd.controller.EditCustomerServlet</servlet-class>
+        <servlet-name>indexProductsServlet</servlet-name>
+        <servlet-class>iot.isd.controller.indexProductsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
@@ -173,20 +165,8 @@
         <url-pattern>/getProductByCategoryServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreateCustomerServlet</servlet-name>
-        <url-pattern>/CreateCustomerServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeleteCustomer</servlet-name>
-        <url-pattern>/DeleteCustomer</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EditCustomerServlet</servlet-name>
-        <url-pattern>/EditCustomerServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CustomerInformationManagementServlet</servlet-name>
-        <url-pattern>/CustomerInformationManagementServlet</url-pattern>
+        <servlet-name>indexProductsServlet</servlet-name>
+        <url-pattern>/indexProductsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

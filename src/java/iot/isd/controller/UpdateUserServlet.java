@@ -39,7 +39,7 @@ public class UpdateUserServlet extends HttpServlet {
                 if (user != null){
                     System.out.println("User is not null");
                     manager.updateUser(email, name, password, address);
-                    User updatedUser = new User(name, email, password, address);
+                    User updatedUser = new User(name, email, password, address, "CUSTOMER");
                     session.setAttribute("user", updatedUser);
                     session.setAttribute("update", "Update was successful");
                     request.getRequestDispatcher("editUser.jsp").include(request, response);
