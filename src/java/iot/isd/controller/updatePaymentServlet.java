@@ -11,8 +11,6 @@ import iot.isd.model.dao.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,38 +30,36 @@ public class updatePaymentServlet extends HttpServlet {
 
 
             HttpSession session = request.getSession();
-            Payment payment = (Payment) session.getAttribute("payment");
+//            Payment payment = (Payment) session.getAttribute("payment");
             String cardName = request.getParameter("cardName");
             String cardNumber = request.getParameter("cardNumber");
             String paymentMethod = request.getParameter("paymentMethod");
-//            String paymentId = request.getParameter("paymentId");
-//            Double amount = 0.0;
-//             String paymentDate = request.getParameter("paymentDate");
-//              String orderId = request.getParameter("orderId");
-//            String email = request.getParameter("email");
+            String paymentId = request.getParameter("paymentId");
+            Double amount = 0.0;
+             String paymentDate = request.getParameter("paymentDate");
+              String orderId = request.getParameter("orderId");
+            String email = request.getParameter("email");
             DBManager manager = (DBManager) session.getAttribute("manager");
             
-            //Payment payment = new Payment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, orderId, email );
+            Payment payment = new Payment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, orderId, email );
 
             try {
-//                if (payment != null){
-//                    session.setAttribute("payment", payment);
-                    manager.updatePayment(cardName, cardNumber, paymentMethod);
-//                    session.setAttribute("updated", "Update was successful");
+                if (payment != null){
+                    session.setAttribute("payment", payment);
+                    manager.updatePayment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, orderId, email);
+                    session.setAttribute("updated", "Update was successful");
                     request.getRequestDispatcher("payment.jsp").include(request, response);
 //                } else {
 //                    session.setAttribute("update", "Update not successful!");
 //                    request.getRequestDispatcher("edit.jsp").include(request, response)
-//                }
                 }
-               catch (SQLException ex) {
-   //             Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println(ex.getMessage() == null ? "Payment does not exists" : "welcome");
-//            }
+                }
+                catch (SQLException ex) {
+//                Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage() == null ? "User does not exists" : "welcome");
+            }
             response.sendRedirect("updatePayment.jsp");
-//            }
-//    
+            }
+    
     }
-    }
-}
 

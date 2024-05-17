@@ -121,18 +121,17 @@ public void addPayment(String paymentId, String cardName, String cardNumber, Str
 
 
 
-public void updatePayment(String cardName, String cardNumber, String paymentMethod) throws SQLException {
-//    String cmd = "UPDATE ISDUSER.PAYMENTS SET PAYMENTID='" + paymentId + "',CARDNAME='" + cardName + "',CARDNUMBER='" + cardNumber + "',PAYMENTMETHOD='" + paymentMethod+ "',AMOUNT='" +amount+ "',PAYMENTDATE='" +paymentDate + "',ORDERID='" +orderId+ "',EMAIL='" + email + "'";
-//    st.executeUpdate(cmd);
-            String query = "UPDATE ISDUSER.PAYMENTS SET cardName = ?, cardNumber = ?, paymentMethod = ?";
-        try (PreparedStatement pst = conn.prepareStatement(query)) {
-            // Set parameter values for the columns to update
-            pst.setString(2, cardName);
-            pst.setString(3, cardNumber);
-            pst.setString(4, paymentMethod);
-            // Execute the update query
-            pst.executeUpdate();
-        }
+public void updatePayment(String paymentId, String cardName, String cardNumber, String paymentMethod, Double amount, String paymentDate, String orderId, String email) throws SQLException {
+    String cmd = "UPDATE ISDUSER.PAYMENTS SET PAYMENTID='" + paymentId + "',CARDNAME='" + cardName + "',CARDNUMBER='" + cardNumber + "',PAYMENTMETHOD='" + paymentMethod+ "',AMOUNT='" +amount+ "',PAYMENTDATE='" +paymentDate + "',ORDERID='" +orderId+ "',EMAIL='" + email + "'";
+    st.executeUpdate(cmd);
+//            String query = "UPDATE ISDUSER.PAYMENTS SET cardName = ?, cardNumber = ?";
+//        try (PreparedStatement pst = conn.prepareStatement(query)) {
+//            // Set parameter values for the columns to update
+//            pst.setString(2, cardName);
+//            pst.setString(3, cardNumber);
+//            // Execute the update query
+//            pst.executeUpdate();
+//        }
 }
         
 public ArrayList<Payment> getPaymentList (String email) throws SQLException{
