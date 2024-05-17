@@ -19,9 +19,9 @@
         <% 
             User user = (User)session.getAttribute("user");
             
-            if (user == null) {
-                response.sendRedirect("login.jsp"); 
-            }
+//            if (user == null) {
+//                response.sendRedirect("login.jsp"); 
+//            }
         %>
         <%@ include file="header.jsp" %>
         <jsp:include page="/orderServlet" flush="true" />
