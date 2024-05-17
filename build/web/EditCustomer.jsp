@@ -5,10 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="iot.isd.model.User"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="styles/MyCSS.css">
         <title>Edit Customer</title>
     </head>
     <body>
@@ -17,6 +19,7 @@
             String passErr = (String)session.getAttribute("passErr");
             String editedUser = (String)session.getAttribute("editedUser");
         %>
+        <%@ include file="header.jsp" %>
         <h1>Create New User <%=(editedUser != null ? editedUser : "")%></h1>
         <form action="EditCustomerServlet" method="post">
             <label for="name">Name:</label>
@@ -28,6 +31,7 @@
             <input type="hidden" name="email" value="<%=request.getParameter("email")%>">
             <button type="submit">Edit</button>
         </form>
-        <jsp:include page="/connServlet" flush="true"/>
+        <%@include file="footer.jsp" %>  
+        <jsp:include page="/ConnServlet" flush="true"/>
     </body>
 </html>

@@ -5,10 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="iot.isd.model.User"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="styles/MyCSS.css">
         <title>Create new user</title>
     </head>
     <body>
@@ -17,9 +19,11 @@
             String nameErr = (String)session.getAttribute("nameErr");
             String passErr = (String)session.getAttribute("passErr");
             String createdUser = (String)session.getAttribute("createdUser");
+            User user = new User("a@gmail.com", "a", "a", "a");
         %>
+        <%@ include file="header.jsp" %>
         <h1>Create New User <%=(createdUser != null ? createdUser : "")%></h1>
-        <form action="CreateUserServlet" method="post">
+        <form action="CreateCustomerServlet" method="post">
             <label for="email">Email:</label>
             <input type="text" placeholder="<%=(emailErr != null ? emailErr : "Enter email")%>" id="email" name="email" required><br>
             <label for="name">Name:</label>
@@ -30,6 +34,7 @@
             <input type="text" placeholder="Enter Address" id="address" name="address" required><br>
             <button type="submit">Create</button>
         </form>
-        <jsp:include page="/connServlet" flush="true"/>
+        <%@include file="footer.jsp" %>  
+        <jsp:include page="/ConnServlet" flush="true"/>
     </body>
 </html>

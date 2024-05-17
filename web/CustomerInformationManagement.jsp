@@ -12,11 +12,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="styles/MyCSS.css">
         <title>Customer Information Management</title>
     </head>
     
     <body>
         <%String deletedUser = (String)session.getAttribute("deletedUser");%>
+        <%@ include file="header.jsp" %>
         <h1>Customer Management <%=(deletedUser != null ? deletedUser : "")%></h1>
         <a href="CreateCustomer.jsp"><button class="button">Create Customer</button></a>
         <form action="CustomerInformationManagementServlet" method="post">
@@ -53,6 +55,7 @@
                 <% } %>
             <% } %>
         </table>
-        <jsp:include page="/connServlet" flush="true"/>
+        <%@include file="footer.jsp" %>  
+        <jsp:include page="/ConnServlet" flush="true"/>
     </body>
 </html>
