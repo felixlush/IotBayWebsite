@@ -19,13 +19,13 @@ public class User {
     private String[] searchHistory;
     public boolean loggedin;
     public String[] purchaseHistory;
-    public String position;
+    public String type;
     public String status;
     
     
     //insert a contructor
 
-    public User(String name, String email, String password, String address, String position, String status) {
+    public User(String name, String email, String password, String address, String type, String status) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -37,7 +37,7 @@ public class User {
         this.searchHistory = null;
         this.loggedin = false;
         this.purchaseHistory = null;
-        this.position = position;
+        this.type = type;
         this.status = status;
     }
 
@@ -65,12 +65,12 @@ public class User {
         return address;
     }
 
-    public String getPosition() {
-        return position;
+    public String getType() {
+        return type;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setType(String type) {
+        this.type = type;
     }
     
 

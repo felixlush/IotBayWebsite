@@ -7,6 +7,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="iot.isd.model.LogEntry"%>
+
 <jsp:include page="/StaffListServlet" flush="true" />       
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="iot.isd.model.User"%>
@@ -76,7 +77,7 @@
             <td><%= staff.getEmail() %></td>
             <td><%= staff.getPassword() %></td>
             <td><%= staff.getAddress() %></td>
-            <td><%= staff.getPosition() %></td>
+            <td><%= staff.getType() %></td>
             <td><%= staff.getStatus() %></td>
             <td>
                 <form action="EditStaffServlet" method="post">
@@ -84,7 +85,7 @@
                     <input type="hidden" name="email" value="<%=staff.getEmail()%>">
                     <input type="hidden" name="password" value="<%=staff.getPassword()%>">
                     <input type="hidden" name="address" value="<%=staff.getAddress()%>">
-                    <input type="hidden" name="position" value="<%=staff.getPosition()%>">
+                    <input type="hidden" name="position" value="<%=staff.getType()%>">
                     <button type="submit">Edit</button>
                 </form>
                 <form action="DeleteStaffServlet" method="post">
