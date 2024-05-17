@@ -30,21 +30,7 @@
           
         %>
         
-        <header>
-            <h1>Welcome to IOT Bay!</h1>
-            <nav>
-                <a href="index.jsp">Home</a>
-                <a href="products.html">Products</a>
-                <a href="orders.html">My Orders</a>
-                <% if (user != null) { %>
-                    <a href="LogoutController">Logout</a>
-                    <a href="userAccount.jsp">My Account</a>
-                <% } else { %>
-                    <a href="login.jsp">User Login</a>
-                <% } %>
-                <a href="admin/login.html">Staff Management</a>
-            </nav>
-        </header>
+    <%@include file="header.jsp" %>
         
         <div class="main">
             <h2>Staff List</h2> 
@@ -85,7 +71,7 @@
                     <input type="hidden" name="email" value="<%=staff.getEmail()%>">
                     <input type="hidden" name="password" value="<%=staff.getPassword()%>">
                     <input type="hidden" name="address" value="<%=staff.getAddress()%>">
-                    <input type="hidden" name="position" value="<%=staff.getType()%>">
+                    <input type="hidden" name="type" value="<%=staff.getType()%>">
                     <button type="submit">Edit</button>
                 </form>
                 <form action="DeleteStaffServlet" method="post">

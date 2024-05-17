@@ -25,7 +25,6 @@
                 <a href="editUser.jsp">
                     <button class="edit-button">Edit Profile</button>
                 </a>
-                 <a href="staffList.jsp">Staff List</a>
                 <table class="user-table">
                     <thead>
                         <tr>

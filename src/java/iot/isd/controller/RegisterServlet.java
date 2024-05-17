@@ -71,9 +71,9 @@ public class RegisterServlet extends HttpServlet {
                     request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
                     manager.addUser(email, password, name, address);
-                    User user = new User(name, email, password, address, "user", "ACTIVE");
-                    session.setAttribute("user", user);
-                    request.getRequestDispatcher("userAccount.jsp").include(request, response);
+//                    User user = new User(name, email, password, address, "user", "ACTIVE");
+                    session.setAttribute("creationResponse", "Account created please login.");
+                    request.getRequestDispatcher("login.jsp").include(request, response);
                 }
             } catch (SQLException | NullPointerException ex) {
                  System.out.println(ex.getMessage() == null ? ex.getMessage() : ex.getMessage());

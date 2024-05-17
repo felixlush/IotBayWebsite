@@ -21,20 +21,16 @@ public class StaffListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        String searcb = request.getParameter("searcb");
+        String search = request.getParameter("search");
         DBManager manager = (DBManager)session.getAttribute("manager");
         
         try {
-            List<User> staffList = manager.getStaffList(searcb);
+            List<User> staffList = manager.getStaffList(search);
             System.out.println(staffList.size());
             session.setAttribute("staffList", staffList);            
         } catch (SQLException ex) {
             Logger.getLogger(StaffListServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
-        
-        
-        
-        
+    
     }
 }

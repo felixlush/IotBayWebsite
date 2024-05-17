@@ -28,7 +28,9 @@ public class LogoutController extends HttpServlet {
                 DBManager manager = (DBManager) session.getAttribute("manager");
                 try {
                     LogEntry logEntry = (LogEntry)session.getAttribute("logEntry");
-                    logEntry.setLogoutTime(timeString);
+                    if (logEntry != null){
+                        logEntry.setLogoutTime(timeString);
+                    }
                     // Assume you have a method to log the logout activity
                     System.out.println("Logging logout");
                     manager.logLogin(logEntry);

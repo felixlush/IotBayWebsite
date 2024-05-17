@@ -86,14 +86,14 @@ public class FinaliseStaffUpdatesServlet extends HttpServlet {
         String password = request.getParameter("password");
         //3- capture the posted phone
         String address = request.getParameter("address");
-        String position = request.getParameter("position");
+        String type = request.getParameter("TYPE");
         //5- retrieve the manager instance from session  
         DBManager manager = (DBManager)session.getAttribute("manager");
        
        
         try {      
            
-            manager.updateStaff(name, email, password, address, position);
+            manager.updateStaff(name, email, password, address, type);
             response.sendRedirect("userAccount.jsp");
         } catch (SQLException ex) {          
             Logger.getLogger(FinaliseStaffUpdatesServlet.class.getName()).log(Level.SEVERE, null, ex);      

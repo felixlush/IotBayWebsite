@@ -35,7 +35,7 @@ public class CreateStaffServlet extends HttpServlet {
         String password = request.getParameter("password");
         //3- capture the posted phone
         String address = request.getParameter("address");
-         String position = request.getParameter("position");
+        String type = request.getParameter("TYPE");
         //5- retrieve the manager instance from session  
         DBManager manager = (DBManager)session.getAttribute("manager");
        
@@ -47,7 +47,7 @@ public class CreateStaffServlet extends HttpServlet {
        
         try {      
             //6- find user by email and password
-            manager.addStaff(email, password, name, address, position);
+            manager.addStaff(name, email, password, address, type);
             session.setAttribute("createdUser", "Success: Created new user");
             request.getRequestDispatcher("createStaff.jsp").include(request, response);
             response.sendRedirect("staffList.jsp");

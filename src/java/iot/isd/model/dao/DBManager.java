@@ -150,8 +150,8 @@ public List<LogEntry> getUserLogs(String email) throws SQLException {
     return logs;
 }
 
-public void addStaff(String name, String email, String password, String address, String position) throws SQLException {                   //code for add-operation       
-    String sql = "INSERT INTO USERS (NAME, EMAIL, PASSWORD, ADDRESS, POSITION) VALUES ('" 
+public void addStaff(String name, String email, String password, String address, String type) throws SQLException {                   //code for add-operation       
+    String sql = "INSERT INTO USERS (NAME, EMAIL, PASSWORD, ADDRESS, TYPE) VALUES ('" 
                   + name + "', '"  
                   + email + "', '" 
                   + password + "', '" 
@@ -160,13 +160,13 @@ public void addStaff(String name, String email, String password, String address,
     st.executeUpdate(sql);   
 }
 
-public void updateStaff(String name, String email, String password, String address, String position) throws SQLException {
+public void updateStaff(String name, String email, String password, String address, String type) throws SQLException {
     String cmd = "UPDATE USERS SET "
             + "NAME='" + name + "', "
             + "EMAIL='" + email + "', "
             + "PASSWORD='" + password + "', "
             + "ADDRESS='" + address + "', "
-            + "POSITION='" + position + "' "
+            + "TYPE='" + type + "' "
             + "WHERE EMAIL='" + email + "'";
            
     st.executeUpdate(cmd);
@@ -187,38 +187,31 @@ public void reactivateStaff(String email) throws SQLException {
 }
 
 public List<User> getStaffList(String searchString) throws SQLException {
-    
     List<User> staffList = new ArrayList<>();
     String query;
     if (searchString == null || searchString.equals("")){
-        //Access database return all USERS where type == STAFF
-      query = "SELECT * FROM USERS WHERE POSITION != 'user'";
+        // Access database return all USERS where type == STAFF
+        query = "SELECT * FROM USERS WHERE TYPE = 'STAFF'";
     } else {
-        query = "SELECT * FROM USERS WHERE POSITION IS NOT NULL AND NAME ='"+searchString+"'";
+        // The following line seems intended to search by name within STAFF users
+        query = "SELECT * FROM USERS WHERE TYPE = 'STAFF' AND NAME ='" + searchString + "'";
     }
-        
-        PreparedStatement st = null;
-        ResultSet rs = null;
-        try{
-            st = conn.prepareStatement(query);
-            // st.setString(1, email);
-            rs = st.executeQuery();
-            while (rs.next()){
-                String name = rs.getString("name");
-                String email = rs.getString("email");
-                String password = rs.getString("password");
-                String address = rs.getString("address");
-                String position = rs.getString("position");
-                String status = rs.getString("status");
-                staffList.add(new User(name, email, password, address, position, status));
-            }
-          
-        }catch (SQLException e) {
-            // Handle exceptions appropriately
-            e.printStackTrace();
-        }return staffList;
-        
-    } 
+
+    PreparedStatement st = conn.prepareStatement(query);
+    ResultSet rs = st.executeQuery();
+
+    while (rs.next()) {
+        String name = rs.getString("NAME");
+        String email = rs.getString("EMAIL");
+        String password = rs.getString("PASSWORD");
+        String address = rs.getString("ADDRESS");
+        String type = rs.getString("TYPE");
+        String status = rs.getString("STATUS");
+        staffList.add(new User(name, email, password, address, type, status));
+    }
+    return staffList;
+}
+ 
 
 public List<Product> getFeaturedProducts(String searchString) throws SQLException{
     ArrayList<Product> featuredProducts = new ArrayList<>();
@@ -315,34 +308,6 @@ public void addOrder(String email, String address, int productId, int quantity, 
     // Execute the update
     pst.executeUpdate();
 }
-
-public List<User> getStaffList() throws SQLException {
-    
-    List<User> staffList = new ArrayList<>();
-    String query;
-        query = "SELECT * FROM USERS WHERE POSITION IS NOT NULL";      
-        PreparedStatement st = null;
-        ResultSet rs = null;
-        try{
-            st = conn.prepareStatement(query);
-            // st.setString(1, email);
-            rs = st.executeQuery();
-            while (rs.next()){
-                String name = rs.getString("name");
-                String email = rs.getString("email");
-                String password = rs.getString("password");
-                String address = rs.getString("address");
-                String position = rs.getString("position");
-                String status = rs.getString("status");
-                staffList.add(new User(name, email, password, address, position, status));
-            }
-          
-        }catch (SQLException e) {
-        // Handle exceptions appropriately
-
-        }return staffList;
-        
-    } 
 
 public List<Order> getUserOrders(String searchString, String userEmail) throws SQLException{
     ArrayList<Order> orders = new ArrayList<>();
