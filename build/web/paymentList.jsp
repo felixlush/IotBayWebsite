@@ -16,6 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Payment List</title>
         <link rel="stylesheet" href="styles/main.css">
+        <div class="main-container">
     </head>
     <body>
         <h1>Payment List</h1>
@@ -62,4 +63,5 @@
         %>
     </table>
 </body>
+</div>
 </html>

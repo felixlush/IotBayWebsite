@@ -17,6 +17,12 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="styles/main.css">
     </head>
+    <% 
+            String cardErr = (String) session.getAttribute("cardErr");
+            String nameErr = (String) session.getAttribute("nameErr");
+    %>
+    
+    
     <body>
         
         <h1>Payment Details</h1>
@@ -52,8 +58,8 @@
                     <input type="hidden" name="paymentId" value="<%= payment.getCardName()%>">
                     <input type="hidden" name="paymentId" value="<%= payment.getCardNumber()%>">
                     <input type="hidden" name="paymentId" value="<%= payment.getPaymentMethod()%>">
-                    <input type="submit" class="custom-logout-button" style="margin-top: 60px;" value="Pay">
-<!--                  <input type="radio" name="selectedPayment" value="<%= payment.getCardNumber() %>"onclick="document.getElementById('selectedCardNumber').value=this.value">-->-->
+                    <input type="submit" class="custom-logout-button" style="margin-top: 60px;" value="Pay With This Card">
+<!--                  <input type="radio" name="selectedPayment" value="<%= payment.getCardNumber() %>"onclick="document.getElementById('selectedCardNumber').value=this.value">-->
                 </td> 
                
                 <td><%= payment.getCardName() %></td>
@@ -100,8 +106,8 @@
                 </tr>
 <!--                <br/><br/>-->
                 
-                <tr><td>Cardholder Name:</td><td><input type="text" placeholder="Enter Cardholder Name" name="cardName" required="true"></td></tr>
-                <tr><td>Card Number:</td><td><input type="text" placeholder="Enter Card Number" name="cardNumber" required="true"></td></tr>
+                <tr><td>Cardholder Name:</td><td><input type="text" placeholder="<%=(nameErr != null ? nameErr : "Enter Cardholder Name")%>" name="cardName" required="true"></td></tr>
+                <tr><td>Card Number:</td><td><input type="text" placeholder="<%=(cardErr != null ? cardErr : "Enter Credit Card Number")%>" name="cardNumber" required="true"></td></tr>
 <!--                <tr><td>Payment Amount:</td><td><input type="text" placeholder="Enter Amount" name="amount" required="true"></td></tr>-->
             </table>
                
@@ -114,11 +120,7 @@
             
             </div>
     
-            <form action="PaymentServlet" method="post">
-                <input type="hidden" id="selectedCardNumber" name="selectedCardNumber" value="">
-                <input type="submit" class="custom-logout-button" style="margin-top: 60px;" value="Pay">
-            </form>
-    
+
            
     
 <!--            <a href="PaymentServlet" class="custom-logout-button" style="margin-top: 60px;">Pay</a> -->

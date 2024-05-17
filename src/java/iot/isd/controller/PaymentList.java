@@ -38,6 +38,7 @@ public class PaymentList extends HttpServlet {
         // Get the list of payments for the given email
         ArrayList<Payment> paymentList = null;
         try {
+            
             DBManager manager = (DBManager) session.getAttribute("manager");
             paymentList = manager.getPaymentList(email);
         } catch (SQLException e) {
