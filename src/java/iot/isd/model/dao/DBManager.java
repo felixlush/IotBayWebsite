@@ -383,6 +383,81 @@ public List<Order> getUserOrders(String searchString, String userEmail) throws S
         }
         return products;
     }
+    
+    public List<Product> searchProducts(String search) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        
+        String sql = "SELECT * FROM PRODUCTS WHERE PRODUCT_NAME LIKE ? OR PRODUCT_CATEGORY LIKE ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, '%' + search + '%');
+            pstmt.setString(2, '%' + search + '%');
+            
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Product product = new Product(
+                        rs.getInt("PRODUCT_ID"),
+                        rs.getString("PRODUCT_NAME"),
+                        rs.getDouble("PRODUCT_PRICE"),
+                        rs.getInt("PRODUCT_UNITS"),
+                        rs.getString("PRODUCT_IMAGE"),
+                        rs.getString("PRODUCT_CATEGORY")
+                    );
+                    products.add(product);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Database error: " + ex.getMessage());
+            throw ex;
+        }
+        return products;
+    }
+    public void createProduct(int productId, String productName, String productCategory, double productPrice, int productUnits, String productImage) throws SQLException {
+        
+        String idCheck = "SELECT * FROM PRODUCTS WHERE PRODUCT_ID = ?";
+        String sql = "INSERT INTO PRODUCTS (PRODUCT_NAME, PRODUCT_CATEGORY, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_IMAGE, PRODUCT_ID) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement pstid = conn.prepareStatement(idCheck)) {
+            pstid.setInt(1, productId);
+
+            try (ResultSet rs = pstid.executeQuery()) {
+                if (rs.next()) {
+                    throw new IllegalArgumentException ("Cannot create product - Product ID is not unique");
+                }
+            }
+        }
+        
+        try (PreparedStatement pst = conn.prepareStatement(sql)) {
+            pst.setString(1, productName);
+            pst.setString(2, productCategory);
+            pst.setDouble(3, productPrice);
+            pst.setInt(4, productUnits);
+            pst.setString(5, productImage);
+            pst.setInt(6, productId);
+
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Database error: " + ex.getMessage());
+            throw ex;
+        }
+    }
+    
+    public void updateProduct(int productId, String productName, String productCategory, double productPrice, int productUnits, String productImage) throws SQLException {
+        String sql = "UPDATE PRODUCTS SET PRODUCT_NAME=?, PRODUCT_CATEGORY=?, PRODUCT_PRICE=?, PRODUCT_UNITS=?, PRODUCT_IMAGE=? WHERE PRODUCT_ID=?";
+            try (PreparedStatement pst = conn.prepareStatement(sql)) {
+                pst.setString(1, productName);
+                pst.setString(2, productCategory);
+                pst.setDouble(3, productPrice);
+                pst.setInt(4, productUnits);
+                pst.setString(5, productImage);
+                pst.setInt(6, productId);
+
+                pst.executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println("Database error: " + ex.getMessage());
+                throw ex;
+            }
+    }
+    
 
 
 

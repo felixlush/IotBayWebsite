@@ -24,6 +24,7 @@ public class Product {
         this.price = price;
         this.quantity = quantity;
         this.imageUrl = imageUrl;
+        this.category = category;
         
     }
 
@@ -61,6 +62,12 @@ public class Product {
     }
     public void setCategory(String description) {
         this.category = description;
+    }
+    public int getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
 

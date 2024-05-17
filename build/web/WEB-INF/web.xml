@@ -100,6 +100,26 @@
         <servlet-name>DeactivateStaffServlet</servlet-name>
         <servlet-class>iot.isd.controller.DeactivateStaffServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductSearchServlet</servlet-name>
+        <servlet-class>iot.isd.controller.ProductSearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductDeleteServlet</servlet-name>
+        <servlet-class>iot.isd.controller.ProductDeleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductSelectServlet</servlet-name>
+        <servlet-class>iot.isd.controller.ProductSelectServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductEditServlet</servlet-name>
+        <servlet-class>iot.isd.controller.ProductEditServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductCreateServlet</servlet-name>
+        <servlet-class>iot.isd.controller.ProductCreateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -195,6 +215,26 @@
     <servlet-mapping>
         <servlet-name>DeactivateStaffServlet</servlet-name>
         <url-pattern>/DeactivateStaffServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductSearchServlet</servlet-name>
+        <url-pattern>/ProductSearchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductDeleteServlet</servlet-name>
+        <url-pattern>/ProductDeleteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductSelectServlet</servlet-name>
+        <url-pattern>/ProductSelectServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductEditServlet</servlet-name>
+        <url-pattern>/ProductEditServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductCreateServlet</servlet-name>
+        <url-pattern>/ProductCreateServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

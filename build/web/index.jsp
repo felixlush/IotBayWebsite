@@ -17,7 +17,7 @@
     <jsp:include page="/FeaturedProductsServlet" flush="true" />
     <%@include file="header.jsp"%>
     
-
+    
     <div class="main">
         <h2>Featured Products</h2>
         <div class="product-grid">

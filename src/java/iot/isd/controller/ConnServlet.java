@@ -36,12 +36,13 @@ public class ConnServlet extends HttpServlet {
 
     private Connection conn;
 
-
+    
+       
+    
 
     @Override //Create and instance of DBConnector for the deployment session
 
     public void init() {
-
         try {
 
             db = new DBConnector(); //Create a database conncection when the application starts
