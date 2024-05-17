@@ -22,7 +22,8 @@
             User user = new User("a@gmail.com", "a", "a", "a");
         %>
         <%@ include file="header.jsp" %>
-        <h1>Create New User <%=(createdUser != null ? createdUser : "")%></h1>
+        <div class="login-form-container">
+            <h1>Create New User <%=(createdUser != null ? createdUser : "")%></h1>
         <form action="CreateCustomerServlet" method="post">
             <table id="form_table">
                 <tr>
@@ -47,6 +48,7 @@
                 </tr>
             </table>
         </form>
+        </div>
         <%@include file="footer.jsp" %>  
         <jsp:include page="/ConnServlet" flush="true"/>
     </body>

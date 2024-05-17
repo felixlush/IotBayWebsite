@@ -5,6 +5,10 @@
         <servlet-class>iot.isd.controller.ConnServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CreateCustomerServlet</servlet-name>
+        <servlet-class>iot.isd.controller.CreateCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>iot.isd.controller.LoginController</servlet-class>
     </servlet>
@@ -91,6 +95,10 @@
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateCustomerServlet</servlet-name>
+        <url-pattern>/CreateCustomerServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>

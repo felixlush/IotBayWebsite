@@ -49,7 +49,7 @@ public class CreateCustomerServlet extends HttpServlet {
             session.setAttribute("emailErr", "Error: Email format incorrect");
             //9- redirect user back to the CreateCustomer.jsp     
             request.getRequestDispatcher("CreateCustomer.jsp").include(request, response);
-        } else if (!validator.validatePassword(name)) {                  
+        } else if (!validator.validateName(name)) {                  
             // set incorrect name error to session     
             session.setAttribute("nameErr", "Error: Name format incorrect");
             //12- redirect user back to the CreateCustomer.jsp  
