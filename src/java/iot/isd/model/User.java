@@ -18,6 +18,7 @@ public class User {
     private int cardCVV;
     private String[] searchHistory;
     public boolean loggedin;
+    public String activated;
 
     public String type;
     
@@ -36,6 +37,7 @@ public class User {
         this.searchHistory = null;
         this.loggedin = false;
         this.type = type;
+        this.activated = "True";
     }
     
     public User(String name, String email, String address, String type){
@@ -115,6 +117,22 @@ public class User {
 
     public void setSearchHistory(String[] searchHistory) {
         this.searchHistory = searchHistory;
+    }
+    
+    public String getType() {
+        return name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    public String getActivated() {
+        return activated;
+    }
+
+    public void setActivated(String activated) {
+        this.activated = activated;
     }
     
     

@@ -291,6 +291,27 @@ public List<Order> getUserOrders(String searchString, int productId, String user
     return orders;
 }
 
+public ArrayList<User> listCustomers(String name, String email) throws SQLException {
+        ArrayList<User> listOfUsers = new ArrayList<User>();
+        String list;
+        if (name.equals("") && email.equals("")) {
+            list = "SELECT * FROM A.USERS";
+        } else if (name.equals("")) {
+            list = "SELECT * FROM A.USERS WHERE email ='" + email + "'";
+        } else if (email.equals("")) {
+            list = "SELECT * FROM A.USERS WHERE name='" + name + "'";
+        } else {
+            list = "SELECT * FROM A.USERS WHERE email ='" + email + "' AND name ='" + name + "'";
+        }
+        
+        ResultSet rs = st.executeQuery(list);
+        while (rs.next()) {
+            listOfUsers.add(new User(rs.getString("email"), rs.getString("name"), rs.getString("password"), rs.getString("phone"), rs.getString("activated")));
+        }
+        
+        return listOfUsers;
+    }
+
 public List<Product> getProductsByCategory(String category) throws SQLException {
     List<Product> products = new ArrayList<>();
     String sql = "SELECT * FROM Products WHERE PRODUCT_CATEGORY LIKE ?";

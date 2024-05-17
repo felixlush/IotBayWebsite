@@ -80,6 +80,22 @@
         <servlet-name>getProductByCategoryServlet</servlet-name>
         <servlet-class>iot.isd.controller.getProductByCategoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateCustomerServlet</servlet-name>
+        <servlet-class>iot.isd.controller.CreateCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerInformationManagementServlet</servlet-name>
+        <servlet-class>iot.isd.controller.CustomerInformationManagementServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCustomer</servlet-name>
+        <servlet-class>iot.isd.controller.DeleteCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditCustomerServlet</servlet-name>
+        <servlet-class>iot.isd.controller.EditCustomerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -155,6 +171,22 @@
     <servlet-mapping>
         <servlet-name>getProductByCategoryServlet</servlet-name>
         <url-pattern>/getProductByCategoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateCustomerServlet</servlet-name>
+        <url-pattern>/CreateCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCustomer</servlet-name>
+        <url-pattern>/DeleteCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditCustomerServlet</servlet-name>
+        <url-pattern>/EditCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerInformationManagementServlet</servlet-name>
+        <url-pattern>/CustomerInformationManagementServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
