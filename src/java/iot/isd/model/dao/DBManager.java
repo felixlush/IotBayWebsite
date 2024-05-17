@@ -316,6 +316,29 @@ public List<Product> getProductsByCategory(String category) throws SQLException 
     return products;
 }
 
+public List<Product> getTopProducts(String category) throws SQLException {
+    List<Product> products = new ArrayList<>();
+    String sql = "SELECT 3 FROM Products";
+    try (PreparedStatement pstmt = conn.prepareStatement(sql)) { 
+        try (ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                Product product = new Product(
+                    rs.getInt("PRODUCT_ID"),
+                    rs.getString("PRODUCT_NAME"),
+                    rs.getDouble("PRODUCT_PRICE"),
+                    rs.getInt("PRODUCT_UNITS"),
+                    rs.getString("PRODUCT_IMAGE"),
+                    rs.getString("PRODUCT_CATEGORY")
+                );
+                products.add(product);
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println("Database error: " + ex.getMessage());
+        throw ex;
+    }
+    return products;
+}
 
 
 

@@ -80,6 +80,14 @@
         <servlet-name>getProductByCategoryServlet</servlet-name>
         <servlet-class>iot.isd.controller.getProductByCategoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>homePageProducts</servlet-name>
+        <servlet-class>iot.isd.controller.homePageProducts</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>indexProductsServlet</servlet-name>
+        <servlet-class>iot.isd.controller.indexProductsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -155,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>getProductByCategoryServlet</servlet-name>
         <url-pattern>/getProductByCategoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>indexProductsServlet</servlet-name>
+        <url-pattern>/indexProductsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -21,14 +21,20 @@
                     <a href="index.jsp">Home</a>
                     <a href="product.jsp">Products</a>
                     <a href="order.jsp">My Orders</a>
-                    <% if (user != null) { %>
-                        <a href="LogoutController">Logout</a>
-                        <a href="userAccount.jsp">My Account</a>
-                    <% } else { %>
+                    <% if (user != null) { 
+                        if (user.getType().equals("CUSTOMER")) { %>
+                            <a href="LogoutController">Logout</a>
+                            <a href="userAccount.jsp">My Account</a>
+                        <% } else { %>
+                            <a href="staffList.jsp">Staff Admin</a> 
+                            <a href="LogoutController">Logout</a> 
+                    <%          }
+                        } else { %>
                         <a href="login.jsp">User Login</a>
                         <a href="register.jsp">Register</a>
                     <% } %>
                 </nav>
+                
             </header>
         </body>
 </html>

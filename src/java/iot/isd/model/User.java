@@ -117,5 +117,9 @@ public class User {
         this.searchHistory = searchHistory;
     }
     
+    public String getType(){
+        return type;
+    }
+    
     
 }
