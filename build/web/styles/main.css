@@ -231,11 +231,26 @@ nav a:hover{
     transition: background-color 0.3s; /* Smooth transition for hover */
 }
 
-.centerElement {
+.button {
+    padding: 10px 15px; /* Adequate padding for clickability */
+    border: none; /* No border for a cleaner look */
+    background-color: #023e8a; /* Consistent theme color */
+    color: white; /* Text color for readability */
+    text-transform: uppercase; /* Uppercase text for a more styled look */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+.centerButton {
     display: block;
     margin: auto;
 }
 
+.centerElement {
+    margin-left:auto;
+    margin-right:auto;
+}
 /* Hover effect for buttons */
 .login-form-container .button:hover {
     background-color: #005792; /* Slightly lighter blue on hover */

@@ -9,7 +9,6 @@
             <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/web/styles/main.css</file>
             <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/src/java/iot/isd/model/User.java</file>
             <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/src/java/iot/isd/controller/CreateCustomerServlet.java</file>
-            <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/web/styles/MyCSS.css</file>
             <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/web/editUser.jsp</file>
             <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/web/CustomerInformationManagement.jsp</file>
             <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/web/main.jsp</file>
@@ -20,6 +19,7 @@
             <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/src/java/iot/isd/model/dao/DBManager.java</file>
             <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/src/java/iot/isd/model/Product.java</file>
             <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/web/EditCustomer.jsp</file>
+            <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/src/java/iot/isd/controller/Validator.java</file>
             <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/src/java/iot/isd/controller/DeleteCustomer.java</file>
             <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/web/logout.jsp</file>
             <file>file:/C:/Users/henry/Documents/GitHub/IotBayWebsite/src/java/iot/isd/controller/SearchUserLogsServlet.java</file>
