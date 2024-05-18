@@ -35,9 +35,10 @@ public class AddPaymentServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("user");
         Validator validator = new Validator();
+        
         String orderId = null;
         //String paymentId = Payment.getPaymentId();
-        String email = user.email;
+//        String email = user.email;
 //        String email = (String)session.getAttribute("email");
         String cardName = request.getParameter("cardName");
         String cardNumber = request.getParameter("cardNumber");
@@ -53,17 +54,17 @@ public class AddPaymentServlet extends HttpServlet {
         if (!validator.validateCardNumber(cardNumber)) {
             System.out.println("Card number Error");
             session.setAttribute("cardErr", "Error: Credit card format incorrect");
-            request.getRequestDispatcher("payment.jsp").include(request, response);
+            request.getRequestDispatcher("addPayment.jsp").include(request, response);
         } else if (!validator.validateName(cardName)) {      
             System.out.println("Card name Error");            
             session.setAttribute("nameErr", "Error: Name format incorrect");       
-            request.getRequestDispatcher("payment.jsp").include(request, response);
+            request.getRequestDispatcher("addPayment.jsp").include(request, response);
         } else {        
         try {            
-            manager.addPayment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, orderId, email);
+            manager.addPayment(cardName, cardNumber, paymentMethod, amount);
             //Payment payment = new Payment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, orderId, email);
             //session.setAttribute("payment", payment);
-            request.getRequestDispatcher("payment.jsp").include(request, response);
+            request.getRequestDispatcher("confirmPayment.jsp").include(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(PaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

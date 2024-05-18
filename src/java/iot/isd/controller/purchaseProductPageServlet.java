@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
  */
 public class purchaseProductPageServlet extends HttpServlet {
 
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     // Assuming using GET or change to doPost if using POST form method
     HttpSession session = request.getSession();

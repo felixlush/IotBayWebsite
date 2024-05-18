@@ -11,7 +11,8 @@ import javax.servlet.http.HttpSession;
  
    private final String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)";      
    private final String namePattern = "([A-Z][a-z]+[\\s])+[A-Z][a-z]*";       
-   private final String passwordPattern = "[a-z0-9]{4,}";       
+   private final String passwordPattern = "[a-z0-9]{4,}";   
+   private final String creditCardPattern = "^\\d{16}$";
               
    public Validator(){    }       
 
@@ -52,11 +53,17 @@ import javax.servlet.http.HttpSession;
         return validate(passwordPattern,password); 
 
     }
+    public boolean validateCardNumber(String cardNumber){                       
+
+        return validate(creditCardPattern,cardNumber);   
+
+    }
     
     public void clear(HttpSession session){
         session.setAttribute("emailErr", "Enter email");
         session.setAttribute("passErr", "Enter password");
         session.setAttribute("existErr", "");
         session.setAttribute("nameErr", "Enter name");
+        session.setAttribute("cardErr", "Enter Credit Card Number");
     }
 }

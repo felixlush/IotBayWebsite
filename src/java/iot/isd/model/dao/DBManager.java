@@ -6,6 +6,7 @@ package iot.isd.model.dao;
 
 import iot.isd.model.LogEntry;
 import iot.isd.model.Order;
+import iot.isd.model.Payment;
 import iot.isd.model.Product;
 import iot.isd.model.User;
 import java.sql.*;
@@ -335,6 +336,7 @@ public List<Order> getUserOrders(String searchString, String userEmail) throws S
     return orders;
 } 
 
+
     public List<Product> getTopProducts(String category) throws SQLException {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT 3 FROM Products";
@@ -458,43 +460,48 @@ public List<Order> getUserOrders(String searchString, String userEmail) throws S
             }
     }
     
-    public void addPayment(String cardName, String cardNumber, String paymentMethod) throws SQLException {
+    public void addPayment(String cardName, String cardNumber, String paymentMethod, double paymentAmount) throws SQLException {
 
     // SQL INSERT statement
-    String sql = "INSERT INTO ORDERS (CARD_NAME, CARD_NUMBER, PAYMENT_METHOD) VALUES (?, ?, ?)";
+    String sql = "INSERT INTO ORDERS (CARD_NAME, CARD_NUMBER, PAYMENT_METHOD, PAYMENT_AMOUNT) VALUES (?, ?, ?, ?)";
 
     // Using PreparedStatement to avoid SQL Injection
     PreparedStatement pst = conn.prepareStatement(sql);
     pst.setString(1, cardName);
     pst.setString(2, cardNumber);
-    pst.setString(3, cardNumber);
+    pst.setString(3, paymentMethod);
+    pst.setDouble(4, paymentAmount);
 
     // Execute the update
     pst.executeUpdate();
 }
     
-public List<Order> getUserOrders(String searchString, String userEmail) throws SQLException{
-    ArrayList<Order> orders = new ArrayList<>();
 
+public ArrayList<Payment> getPaymentList (String searchString,String email) throws SQLException{
+    
+    ArrayList<Payment> paymentList = new ArrayList<>();
     if (searchString.equals("")){
-        String sql = "SELECT * FROM ORDERS WHERE ORDER_EMAIL = ?";
-        PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setString(1, userEmail);
-        ResultSet rs = pst.executeQuery();
-        while (rs.next()) {
-            Order order = new Order(
-                rs.getInt("ORDER_ID"),
-                rs.getString("ORDER_EMAIL"),
-                rs.getString("ORDER_DATE"),
-                rs.getString("ADDRESS"),    
-                rs.getInt("PRODUCT_ID"),
-                rs.getDouble("PRICE"),
-                rs.getInt("ORDER_QUANTITY")
-            );
-            orders.add(order);
-        }
-//        System.out.println(featuredProducts.size());
+    String query = "SELECT * FROM PAYMENTS WHERE EMAIL = '" + email + "'";
+    PreparedStatement pst = conn.prepareStatement(query);
+    
+    ResultSet rs = pst.executeQuery();
+    
+    while (rs.next()){    
+        Payment payment = new Payment(
+            rs.getInt(1),
+            rs.getString(2),
+            rs.getString(3),
+            rs.getString(4),
+            rs.getDouble(5),
+            rs.getString(6),
+            rs.getString(7),
+            rs.getString(8)
+        );
+        paymentList.add(payment);
     }
 
+}
+    return paymentList;
+}
 
 }
