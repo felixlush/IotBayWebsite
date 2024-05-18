@@ -45,8 +45,8 @@
                 <div class="product">
                     <img src="<%= product.getImageUrl() %>" alt="<%= product.getName() %>">
                     <h3><%= product.getName() %></h3>
-                    <p>$<%= product.getCategory() %></p>
                     <p>$<%= product.getPrice() %></p>
+                    <p>Category: <%= product.getCategory() %></p>
                     <form action="purchaseProductPageServlet" method="post">
                         <input type="hidden" name="productId" value="<%= product.getID() %>">
                         <input type="hidden" name="productName" value="<%= product.getName() %>">
@@ -58,14 +58,16 @@
                     if (isStaff) {
                     %>
                     <h3>Staff Controls</h3>
-                    <form action="ProductDeleteServlet" method="post">
-                        <input type="hidden" name="productId" value="<%= product.getID() %>">
-                        <input type="submit" value="Delete product">
-                    </form>
-                    <form action="ProductSelectServlet" method="post">
-                        <input type="hidden" name="productId" value="<%= product.getID() %>">
-                        <input type="submit" value="Edit product">
-                    </form>
+                    <div class="button-box">
+                        <form action="ProductDeleteServlet" method="post">
+                            <input type="hidden" name="productId" value="<%= product.getID() %>">
+                            <input type="submit" class="delete-btn" value="Delete product">
+                        </form>
+                        <form action="ProductSelectServlet" method="post">
+                            <input type="hidden" name="productId" value="<%= product.getID() %>">
+                            <input type="submit" class="edit-btn" value="Edit product">
+                        </form>
+                    </div>
                     <%
                     }
                     %>

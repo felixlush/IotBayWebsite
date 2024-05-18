@@ -18,44 +18,57 @@
                 
 
     <div class="main">
-        <h2>Edit Product</h2>
-            <table>
-                <tr>
-                    <th>
-                        <h3>ID</h3>
-                    </th>
-                    <th>
-                        <h3>Name</h3>
-                    </th>
-                    <th>
-                        <h3>Category</h3>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <p><%=product.getID()%></p>
-                    </td>
-                    <td>
-                        <p><%=product.getName()%></p>
-                    </td>
-                    <td>
-                        <p><%=product.getCategory()%></p>
-                    </td>
-                </tr>
-            </table>
-       
+        <div class="product-table-container">
+            <div class="header-container">
+                <h2>Edit Product</h2>
+                <img src="<%=product.getImageUrl()%>" alt="Product Image" class="product-image">
+            </div>
             <form action="ProductEditServlet" method="post">
-                <input type="text" placeholder="ID" disabled>
-                <input type="text" name="productName" placeHolder="Name">
-                <input type="text" name="productType" placeHolder="Category">
-                <input type="text" name="productPrice" placeHolder="Price">
-                <input type="text" name="productQuantity" placeHolder="Quantity">
-                <input type="text" name="productImage" placeHolder="Image URL">
-                <input type="hidden" name="productId" value="<%=product.getID()%>">
+                <table class="product-table">
+                    <tr>
+                        <th>ID</th>
+                        <td>
+                            <input type="text" value="<%=product.getID()%>" disabled>
+                            <input type="hidden" name="productId" value="<%=product.getID()%>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>
+                            <input type="text" name="productName" value="<%=product.getName()%>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Category</th>
+                        <td>
+                            <input type="text" name="productCategory" value="<%=product.getCategory()%>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td>
+                            <input type="text" name="productPrice" value="<%=product.getPrice()%>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Quantity</th>
+                        <td>
+                            <input type="text" name="productQuantity" value="<%=product.getQuantity()%>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Image URL</th>
+                        <td>
+                            <input type="text" name="productImage" value="<%=product.getImageUrl()%>">
+                        </td>
+                    </tr>
+                </table>
                 <input type="submit" value="Update Product">
             </form>
-        
+        </div>
     </div>
+
+
 
     <%@include file="footer.jsp"%>
 </body>
