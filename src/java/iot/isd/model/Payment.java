@@ -13,7 +13,7 @@ import java.util.Random;
  * @author mcmic
  */
 public class Payment {
-    private String paymentId;
+    private int paymentId;
     private String cardName;
     private String paymentMethod;
     private String cardNumber;
@@ -23,7 +23,7 @@ public class Payment {
     private String orderId;
     
     
-    public Payment(String paymentId, String cardName, String cardNumber, String paymentMethod, double amount, String paymentDate, String orderId, String email){
+    public Payment(int paymentId, String cardName, String cardNumber, String paymentMethod, double amount, String paymentDate, String orderId, String email){
         this.paymentId = paymentId;
         this.cardName = cardName;
         this.paymentMethod = paymentMethod;
@@ -34,13 +34,14 @@ public class Payment {
         this.orderId = orderId;
     }
     
-    public static String getPaymentId() {
-       int i = new Random().nextInt(1000);
-       String s = String.valueOf(i);  
-        return s;
+    public int getPaymentId() {
+//       int i = new Random().nextInt(1000);
+//       String s = String.valueOf(i);  
+//        return s;
+          return paymentId;
     }
 
-    public void setPaymentId(String paymentId) {
+    public void setPaymentId(int paymentId) {
         this.paymentId = paymentId;
         
     }

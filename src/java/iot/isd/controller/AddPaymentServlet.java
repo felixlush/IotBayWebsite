@@ -36,7 +36,7 @@ public class AddPaymentServlet extends HttpServlet {
         User user = (User)session.getAttribute("user");
         Validator validator = new Validator();
         String orderId = null;
-        String paymentId = Payment.getPaymentId();
+        //String paymentId = Payment.getPaymentId();
         String email = user.email;
 //        String email = (String)session.getAttribute("email");
         String cardName = request.getParameter("cardName");

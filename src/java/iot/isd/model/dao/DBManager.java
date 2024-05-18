@@ -458,7 +458,43 @@ public List<Order> getUserOrders(String searchString, String userEmail) throws S
             }
     }
     
+    public void addPayment(String cardName, String cardNumber, String paymentMethod) throws SQLException {
 
+    // SQL INSERT statement
+    String sql = "INSERT INTO ORDERS (CARD_NAME, CARD_NUMBER, PAYMENT_METHOD) VALUES (?, ?, ?)";
+
+    // Using PreparedStatement to avoid SQL Injection
+    PreparedStatement pst = conn.prepareStatement(sql);
+    pst.setString(1, cardName);
+    pst.setString(2, cardNumber);
+    pst.setString(3, cardNumber);
+
+    // Execute the update
+    pst.executeUpdate();
+}
+    
+public List<Order> getUserOrders(String searchString, String userEmail) throws SQLException{
+    ArrayList<Order> orders = new ArrayList<>();
+
+    if (searchString.equals("")){
+        String sql = "SELECT * FROM ORDERS WHERE ORDER_EMAIL = ?";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, userEmail);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            Order order = new Order(
+                rs.getInt("ORDER_ID"),
+                rs.getString("ORDER_EMAIL"),
+                rs.getString("ORDER_DATE"),
+                rs.getString("ADDRESS"),    
+                rs.getInt("PRODUCT_ID"),
+                rs.getDouble("PRICE"),
+                rs.getInt("ORDER_QUANTITY")
+            );
+            orders.add(order);
+        }
+//        System.out.println(featuredProducts.size());
+    }
 
 
 }
