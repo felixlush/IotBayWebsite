@@ -267,6 +267,14 @@ nav a:hover{
     padding: 5px 0; /* Padding around error message */
 }
 
+.error-messageTwo {
+    color: red; /* Red color for errors */
+}
+
+.success-message {
+    color: #4CBB17; /* Red color for errors */
+}
+
 .user-table-container {
     flex: 1; 
     margin-right: 20px; 

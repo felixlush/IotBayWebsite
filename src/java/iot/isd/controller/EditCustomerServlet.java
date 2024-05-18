@@ -40,6 +40,8 @@ public class EditCustomerServlet extends HttpServlet {
         // retrieve the manager instance from session  
         DBManager manager = (DBManager)session.getAttribute("manager"); 
         
+        validator.clear(session);
+        
         if (name==null) {
             request.getRequestDispatcher("EditCustomer.jsp").include(request, response);
         }

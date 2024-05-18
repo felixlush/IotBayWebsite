@@ -21,7 +21,7 @@
         %>
         <%@ include file="header.jsp" %>
         <div class="login-form-container">
-            <h1>Edit User <%=(editedUser != null ? editedUser : "")%></h1>
+            <h1>Edit User <span class="success-message"><%=(editedUser != null ? editedUser : "")%></span></h1>
             <form action="EditCustomerServlet" method="post">
                 <table if="form-table">
                     <tr>

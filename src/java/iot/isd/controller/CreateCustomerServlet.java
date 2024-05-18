@@ -38,6 +38,7 @@ public class CreateCustomerServlet extends HttpServlet {
         String address = request.getParameter("address");
         // retrieve the manager
         DBManager manager = (DBManager)session.getAttribute("manager"); 
+        
         validator.clear(session);
         
         // Test if manager is null
@@ -60,7 +61,7 @@ public class CreateCustomerServlet extends HttpServlet {
         try {       
             //6- find user by email and password
             if (manager.findUser(email) != null) {
-                session.setAttribute("createdUser", "(Not Successful: email already exists in the database)");
+                session.setAttribute("existErr", "(Not Successful: email already exists in the database)");
                 request.getRequestDispatcher("CreateCustomer.jsp").include(request, response);
             }
             

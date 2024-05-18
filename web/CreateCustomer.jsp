@@ -19,11 +19,12 @@
             String nameErr = (String)session.getAttribute("nameErr");
             String passErr = (String)session.getAttribute("passErr");
             String createdUser = (String)session.getAttribute("createdUser");
+            String existErr = (String)session.getAttribute("existErr");
             User user = (User)session.getAttribute("user");
         %>
         <%@ include file="header.jsp" %>
         <div class="login-form-container">
-            <h1>Create New User <%=(createdUser != null ? createdUser : "")%></h1>
+            <h1>Create New User <span class="success-message"><%=(createdUser != null ? createdUser : "")%></span><span class="error-messageTwo"><%=(existErr != null ? existErr : "")%></span></h1>
             <form action="CreateCustomerServlet" method="post">
                 <table id="form_table">
                     <tr>

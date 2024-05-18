@@ -318,13 +318,13 @@ public ArrayList<User> listCustomers(String name, String email) throws SQLExcept
         ArrayList<User> listOfUsers = new ArrayList<User>();
         String list;
         if (name.equals("") && email.equals("")) {
-            list = "SELECT * FROM A.USERS";
+            list = "SELECT * FROM A.USERS WHERE type= '" + "Customer" + "'";
         } else if (name.equals("")) {
-            list = "SELECT * FROM A.USERS WHERE email ='" + email + "'";
+            list = "SELECT * FROM A.USERS WHERE email ='" + email + "' AND type='" + "Customer" + "'";
         } else if (email.equals("")) {
-            list = "SELECT * FROM A.USERS WHERE name='" + name + "'";
+            list = "SELECT * FROM A.USERS WHERE name='" + name + "' AND type='" + "Customer" + "'";
         } else {
-            list = "SELECT * FROM A.USERS WHERE email ='" + email + "' AND name ='" + name + "'";
+            list = "SELECT * FROM A.USERS WHERE email ='" + email + "' AND name ='" + name + "' AND type='" + "Customer" + "'";
         }
         
         ResultSet rs = st.executeQuery(list);

@@ -23,7 +23,7 @@
         %>
         <%@ include file="header.jsp" %>
         <div class="login-form-container">
-            <h1>Customer Management <%=(deletedUser != null ? deletedUser : "")%></h1>
+            <h1>Customer Management <span class="success-message"><%=(deletedUser != null ? deletedUser : "")%></span></h1>
             <a href="CreateCustomer.jsp"><button class="buttonCentered">Create Customer</button></a><br><br><br>
             <form action="CustomerInformationManagementServlet" method="post">
                 <table id="form-table" style="margin-left:auto;margin-right:auto;">
