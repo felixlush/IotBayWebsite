@@ -23,8 +23,8 @@
         %>
         <%@ include file="header.jsp" %>
         <div class="login-form-container">
-            <h1 class="centerElement">Customer Management <%=(deletedUser != null ? deletedUser : "")%></h1>
-            <a href="CreateCustomer.jsp"><button class="button centerButton">Create Customer</button></a><br><br><br>
+            <h1>Customer Management <%=(deletedUser != null ? deletedUser : "")%></h1>
+            <a href="CreateCustomer.jsp"><button class="buttonCentered">Create Customer</button></a><br><br><br>
             <form action="CustomerInformationManagementServlet" method="post">
                 <table id="form-table" style="margin-left:auto;margin-right:auto;">
                     <tr>
@@ -37,13 +37,13 @@
                     </tr>
                 </table>
                 <br>
-                <button class="button centerButton" type="submit">List Customers</button>
+                <button class="buttonCentered" type="submit">List Customers</button>
                 <p>Press the button above to refresh the results after adding, editing or deleting.</p>
             </form>
         </div>
         <% ArrayList<User> listOfUsers = (ArrayList<User>)session.getAttribute("listOfUsers");%>
 
-        
+        <div class="user-table-container">
         <table class="user-table">
             <tr>
                 <th>Email</th>
@@ -62,8 +62,8 @@
                     <td><%=currentUser.getPassword()%></td>
                     <td><%=currentUser.getAddress()%></td>
                     <td><%=currentUser.getStatus()%></td>
-                    <td><form action="EditCustomerServlet" method="post"><input type="hidden" name="email" value="<%=currentUser.getEmail()%>"><button class="button centerButton" type="submit">Edit</button></form></td>
-                    <td><form action="DeleteCustomer" method="post"><input type="hidden" name="email" value="<%=currentUser.getEmail()%>"><button class="button centerButton" type="submit">Delete</button></form></td>
+                    <td><form action="EditCustomerServlet" method="post"><input type="hidden" name="email" value="<%=currentUser.getEmail()%>"><button class="button" type="submit">Edit</button></form></td>
+                    <td><form action="DeleteCustomer" method="post"><input type="hidden" name="email" value="<%=currentUser.getEmail()%>"><button class="button" type="submit">Delete</button></form></td>
                 </tr>
                 <% } %>
             <% } else { %>
@@ -72,6 +72,7 @@
                 </tr>
             <% } %>
         </table>
+        </div>
         <br><br>
         <%@include file="footer.jsp" %>  
         <jsp:include page="/ConnServlet" flush="true"/>

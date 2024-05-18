@@ -57,8 +57,6 @@ public class User implements Serializable {
         this.type = type;
         this.status = "True";
     }
-    
-    
 
     public String getName() {
         return name;
@@ -147,6 +145,4 @@ public class User implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    
 }

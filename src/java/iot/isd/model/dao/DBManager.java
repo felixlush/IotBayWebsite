@@ -329,7 +329,7 @@ public ArrayList<User> listCustomers(String name, String email) throws SQLExcept
         
         ResultSet rs = st.executeQuery(list);
         while (rs.next()) {
-            listOfUsers.add(new User(rs.getString("Name"), rs.getString("Email"), rs.getString("Password"), rs.getString("Address"), rs.getString("Type")));
+            listOfUsers.add(new User(rs.getString("Name"), rs.getString("Email"), rs.getString("Password"), rs.getString("Address"), rs.getString("Type"), rs.getString("Status")));
         }
         
         return listOfUsers;
@@ -386,7 +386,7 @@ public List<Product> getTopProducts(String category) throws SQLException {
 
 public void updateUser(String email, String name, String password, String address, String status) throws SQLException {       
         st.executeUpdate("UPDATE A.Users SET NAME='" + name + "', PASSWORD='" + password + "', ADDRESS='" + address + "', STATUS='" + status + "' WHERE EMAIL='" + email + "'"); 
-    }     
+}     
 
 
 

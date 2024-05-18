@@ -45,6 +45,7 @@
                     <tr>
                         <td></td>
                         <td><button class="button" type="submit">Create</button></td>
+                        <td><a href="CustomerInformationManagement.jsp" class="button">Cancel</a>
                     </tr>
                 </table>
             </form>

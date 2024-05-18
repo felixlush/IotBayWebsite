@@ -17,23 +17,44 @@
         <% 
             String passErr = (String)session.getAttribute("passErr");
             String editedUser = (String)session.getAttribute("editedUser");
+            User user = (User)session.getAttribute("user");
         %>
-        <h1>Edit User <%=(editedUser != null ? editedUser : "")%></h1>
-        <form action="EditCustomerServlet" method="post">
-            <label for="name">Name:</label>
-            <input type="text" placeholder="Enter name" id="name" name="name" required><br>
-            <label for="password">Password:</label>
-            <input type="password" placeholder="<%=(passErr != null ? passErr : "Enter password")%>" id="password" name="password" required><br>
-            <label for="phone">Address</label>
-            <input type="text" placeholder="EnterAddress" id="address" name="address" required><br>
-            <Label for="acrtivated">Activated:</label>
-            <select name="status" id="status">
-                <option value="True">True</option>
-                <option value="False">False</option>
-            </select> <br><br>
-            <input type="hidden" name="email" value="<%=request.getParameter("email")%>">
-            <button type="submit">Edit</button>
-        </form>
+        <%@ include file="header.jsp" %>
+        <div class="login-form-container">
+            <h1>Edit User <%=(editedUser != null ? editedUser : "")%></h1>
+            <form action="EditCustomerServlet" method="post">
+                <table if="form-table">
+                    <tr>
+                        <td>Name:</td>
+                        <td><input type="text" placeholder="Enter name" id="name" name="name" required></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="password" placeholder="<%=(passErr != null ? passErr : "Enter password")%>" id="password" name="password" required></td>
+                    </tr>
+                    <tr>
+                        <td>Address:</td>
+                        <td><input type="text" placeholder="Enter Address" id="address" name="address" required></td>
+                    </tr>
+                    <tr>
+                        <td><br>Activated:</td>
+                        <td>
+                            <br>
+                            <select name="status" id="status">
+                                <option value="True">True</option>
+                                <option value="False">False</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><br><input type="hidden" name="email" value="<%=request.getParameter("email")%>"></td>
+                        <td><br><button class="button" type="submit">Edit</button></td>
+                        <td><br><a href="CustomerInformationManagement.jsp" class="button">Cancel</a>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <%@include file="footer.jsp" %> 
         <jsp:include page="/ConnServlet" flush="true"/>
     </body>
 </html>

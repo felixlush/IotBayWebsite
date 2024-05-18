@@ -131,6 +131,16 @@ nav a:hover{
     border-radius: 5px;
 }
 
+.edit-buttoTwo {
+    position: absolute;
+    padding: 8px 16px;
+    background-color: #005792;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 .edit-button:hover {
     background-color: #023e8a;
 }
@@ -231,7 +241,7 @@ nav a:hover{
     transition: background-color 0.3s; /* Smooth transition for hover */
 }
 
-.button {
+.login-form-container .buttonCentered {
     padding: 10px 15px; /* Adequate padding for clickability */
     border: none; /* No border for a cleaner look */
     background-color: #023e8a; /* Consistent theme color */
@@ -240,17 +250,11 @@ nav a:hover{
     border-radius: 4px; /* Rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
     transition: background-color 0.3s; /* Smooth transition for hover */
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.centerButton {
-    display: block;
-    margin: auto;
-}
-
-.centerElement {
-    margin-left:auto;
-    margin-right:auto;
-}
 /* Hover effect for buttons */
 .login-form-container .button:hover {
     background-color: #005792; /* Slightly lighter blue on hover */
@@ -277,6 +281,20 @@ input[type="date"] {
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 30%;
+}
+
+.user-table-container .button {
+    padding: 10px 15px; /* Adequate padding for clickability */
+    border: none; /* No border for a cleaner look */
+    background-color: #023e8a; /* Consistent theme color */
+    color: white; /* Text color for readability */
+    text-transform: uppercase; /* Uppercase text for a more styled look */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
