@@ -38,6 +38,7 @@ public class CreateCustomerServlet extends HttpServlet {
         String address = request.getParameter("address");
         // retrieve the manager
         DBManager manager = (DBManager)session.getAttribute("manager"); 
+        validator.clear(session);
         
         // Test if manager is null
         if (manager == null) {
@@ -49,11 +50,6 @@ public class CreateCustomerServlet extends HttpServlet {
             session.setAttribute("emailErr", "Error: Email format incorrect");
             //9- redirect user back to the CreateCustomer.jsp     
             request.getRequestDispatcher("CreateCustomer.jsp").include(request, response);
-        } else if (!validator.validateName(name)) {                  
-            // set incorrect name error to session     
-            session.setAttribute("nameErr", "Error: Name format incorrect");
-            //12- redirect user back to the CreateCustomer.jsp  
-            request.getRequestDispatcher("CreateCustomer.jsp").include(request, response);
         } else if (!validator.validatePassword(password)) {                  
             // set incorrect password error to session    
             session.setAttribute("passErr", "Error: Password format incorrect");
@@ -63,8 +59,13 @@ public class CreateCustomerServlet extends HttpServlet {
         
         try {       
             //6- find user by email and password
-            manager.addUser(name, email, password, address, "Customer");
-            session.setAttribute("createdUser", "Success: Created new customer");
+            if (manager.findUser(email) != null) {
+                session.setAttribute("createdUser", "(Not Successful: email already exists in the database)");
+                request.getRequestDispatcher("CreateCustomer.jsp").include(request, response);
+            }
+            
+            manager.addUser(email, password, name, address, "Customer");
+            session.setAttribute("createdUser", "(Success: Created new customer)");
             request.getRequestDispatcher("CreateCustomer.jsp").include(request, response);
         } catch (SQLException ex) {           
             Logger.getLogger(CreateCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);       

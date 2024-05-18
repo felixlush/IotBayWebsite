@@ -56,7 +56,9 @@ import javax.servlet.http.HttpSession;
     public void clear(HttpSession session){
         session.setAttribute("emailErr", "Enter email");
         session.setAttribute("passErr", "Enter password");
-        session.setAttribute("existErr", "");
+        session.setAttribute("existErr", null);
         session.setAttribute("nameErr", "Enter name");
+        session.setAttribute("createdUser", null);
+        session.setAttribute("deletedUser", null);
     }
 }

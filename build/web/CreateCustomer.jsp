@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="styles/main.css">
-        <title>Create new user</title>
+        <title>Create new customer</title>
     </head>
     <body>
         <% 
@@ -19,35 +19,35 @@
             String nameErr = (String)session.getAttribute("nameErr");
             String passErr = (String)session.getAttribute("passErr");
             String createdUser = (String)session.getAttribute("createdUser");
-            User user = new User("a@gmail.com", "a", "a", "a");
+            User user = (User)session.getAttribute("user");
         %>
         <%@ include file="header.jsp" %>
         <div class="login-form-container">
             <h1>Create New User <%=(createdUser != null ? createdUser : "")%></h1>
-        <form action="CreateCustomerServlet" method="post">
-            <table id="form_table">
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="text" placeholder="<%=(emailErr != null ? emailErr : "Enter email")%>" id="email" name="email" required></td>
-                </tr>
-                <tr>
-                    <td>Name:</td>
-                    <td><input type="text" placeholder="<%=(nameErr != null ? nameErr : "Enter name")%>" id="name" name="name" required></td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" placeholder="<%=(passErr != null ? passErr : "Enter password")%>" id="password" name="password" required></td>
-                </tr>
-                <tr>
-                    <td>Address</td>
-                    <td><input type="text" placeholder="Enter Address" id="address" name="address" required><td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><button type="submit">Create</button></td>
-                </tr>
-            </table>
-        </form>
+            <form action="CreateCustomerServlet" method="post">
+                <table id="form_table">
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="text" placeholder="<%=(emailErr != null ? emailErr : "Enter email")%>" id="email" name="email" required></td>
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td><input type="text" placeholder="<%=(nameErr != null ? nameErr : "Enter name")%>" id="name" name="name" required></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="password" placeholder="<%=(passErr != null ? passErr : "Enter password")%>" id="password" name="password" required></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td><input type="text" placeholder="Enter Address" id="address" name="address" required><td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button class="button" type="submit">Create</button></td>
+                    </tr>
+                </table>
+            </form>
         </div>
         <%@include file="footer.jsp" %>  
         <jsp:include page="/ConnServlet" flush="true"/>

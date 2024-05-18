@@ -3,23 +3,25 @@
  */
 package iot.isd.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author thebigmoney
  */
-public class User {
+public class User implements Serializable {
     private String name;
     public String email;
     public String password;
     private String address;
+    public String type;
+    public String status;
     private int cardNum;
     private String cardName;
     private String cardExpiryDate;
     private int cardCVV;
     private String[] searchHistory;
     public boolean loggedin;
-    public String type;
-    public String activated;
     
     
     //insert a contructor
@@ -29,14 +31,23 @@ public class User {
         this.email = email;
         this.password = password;
         this.address = address;
+        this.type = type;
+        this.status = "True";
         this.cardNum = 0;
         this.cardName = null;
         this.cardCVV = 0;
         this.cardExpiryDate = null;
         this.searchHistory = null;
         this.loggedin = false;
+    }
+    
+    public User(String name, String email, String password, String address, String type, String status) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
         this.type = type;
-        this.activated = "True";
+        this.status = status;
     }
     
     public User(String name, String email, String address, String type){
@@ -44,7 +55,10 @@ public class User {
         this.email = email;
         this.address = address;
         this.type = type;
+        this.status = "True";
     }
+    
+    
 
     public String getName() {
         return name;
@@ -126,12 +140,12 @@ public class User {
         this.type = type;
     }
     
-    public String getActivated(){
-        return activated;
+    public String getStatus(){
+        return status;
     }
     
-    public void setActivated(String activated) {
-        this.activated = activated;
+    public void setStatus(String status) {
+        this.status = status;
     }
     
     

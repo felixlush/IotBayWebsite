@@ -12,22 +12,34 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="styles/MyCSS.css">
+        <link rel="stylesheet" href="styles/main.css">
         <title>Customer Information Management</title>
     </head>
     
     <body>
-        <%String deletedUser = (String)session.getAttribute("deletedUser");%>
+        <%
+            String deletedUser = (String)session.getAttribute("deletedUser");
+            User user = (User)session.getAttribute("user");
+        %>
         <%@ include file="header.jsp" %>
-        <h1>Customer Management <%=(deletedUser != null ? deletedUser : "")%></h1>
-        <a href="CreateCustomer.jsp"><button class="button">Create Customer</button></a>
-        <form action="CustomerInformationManagementServlet" method="post">
-            <label for="name">Name:</label>
-            <input type="text" placeholder="Enter name" id="name" name="name"><br>
-            <label for="name">Email:</label>
-            <input type="text" placeholder="Enter email" id="email" name="email"><br>
-            <button type="submit">List Customers</button>
-        </form>
+        <div class="login-form-container">
+            <h1>Customer Management <%=(deletedUser != null ? deletedUser : "")%></h1>
+            <a href="CreateCustomer.jsp"><button class="button centerElement">Create Customer</button></a><br><br><br>
+            <form action="CustomerInformationManagementServlet" method="post">
+                <table id="form-table">
+                    <tr>
+                        <td>Name:</td>
+                        <td><input type="text" placeholder="Enter name" id="name" name="name"><br></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="text" placeholder="Enter email" id="email" name="email"><br></td>
+                    </tr>
+                </table>
+                <br>
+                <button class="button centerElement" type="submit">List Customers</button>
+            </form>
+        </div>
         <% ArrayList<User> listOfUsers = (ArrayList<User>)session.getAttribute("listOfUsers");%>
 
         
@@ -42,15 +54,15 @@
                 <th>Delete</th>
             </tr>
             <% if (listOfUsers != null) { %>
-                <% for (User user : listOfUsers) { %>
+                <% for (User currentUser : listOfUsers) { %>
                 <tr>
-                    <td><%=user.getEmail()%></td>
-                    <td><%=user.getName()%></td>
-                    <td><%=user.getPassword()%></td>
-                    <td><%=user.getAddress()%></td>
-                    <td><%=user.getActivated()%></td>
-                    <td><form action="EditCustomerServlet" method="post"><input type="hidden" name="email" value="<%=user.getEmail()%>"><button type="submit">Edit</button></form></td>
-                    <td><form action="DeleteCustomer" method="post"><input type="hidden" name="email" value="<%=user.getEmail()%>"><button type="submit">Delete</button></form></td>
+                    <td><%=currentUser.getEmail()%></td>
+                    <td><%=currentUser.getName()%></td>
+                    <td><%=currentUser.getPassword()%></td>
+                    <td><%=currentUser.getAddress()%></td>
+                    <td><%=currentUser.getStatus()%></td>
+                    <td><form action="EditCustomerServlet" method="post"><input type="hidden" name="email" value="<%=currentUser.getEmail()%>"><button type="submit">Edit</button></form></td>
+                    <td><form action="DeleteCustomer" method="post"><input type="hidden" name="email" value="<%=currentUser.getEmail()%>"><button type="submit">Delete</button></form></td>
                 </tr>
                 <% } %>
             <% } %>

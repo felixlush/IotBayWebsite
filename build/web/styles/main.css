@@ -231,6 +231,11 @@ nav a:hover{
     transition: background-color 0.3s; /* Smooth transition for hover */
 }
 
+.centerElement {
+    display: block;
+    margin: auto;
+}
+
 /* Hover effect for buttons */
 .login-form-container .button:hover {
     background-color: #005792; /* Slightly lighter blue on hover */

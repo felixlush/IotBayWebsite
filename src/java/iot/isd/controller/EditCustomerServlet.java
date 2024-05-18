@@ -35,6 +35,8 @@ public class EditCustomerServlet extends HttpServlet {
         String password = request.getParameter("password");
         // capture the posted phone
         String address = request.getParameter("address");
+        
+        String status = request.getParameter("status");
         // retrieve the manager instance from session  
         DBManager manager = (DBManager)session.getAttribute("manager"); 
         
@@ -42,13 +44,7 @@ public class EditCustomerServlet extends HttpServlet {
             request.getRequestDispatcher("EditCustomer.jsp").include(request, response);
         }
         
-        
-        if (!validator.validatePassword(name)) {                  
-            //11-set incorrect name error to the session     
-            session.setAttribute("nameErr", "Error: Name format incorrect");
-            //12- redirect user back to the CreateCustomer.jsp  
-            request.getRequestDispatcher("EditCustomer.jsp").include(request, response);
-        } else if (!validator.validatePassword(password)) {                  
+        if (!validator.validatePassword(password)) {                  
             //11-set incorrect password error to the session     
             session.setAttribute("passErr", "Error: Password format incorrect");
             //12- redirect user back to the CreateCustomer.jsp  
@@ -57,8 +53,8 @@ public class EditCustomerServlet extends HttpServlet {
         
         try {       
             //6- find user by email and password
-            manager.updateUser(email, name, password, address);
-            session.setAttribute("editedUser", "Success: Edited user");
+            manager.updateUser(email, name, password, address, status);
+            session.setAttribute("editedUser", "(Success: Edited user)");
             request.getRequestDispatcher("EditCustomer.jsp").include(request, response);
         } catch (SQLException ex) {           
             Logger.getLogger(EditCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);       

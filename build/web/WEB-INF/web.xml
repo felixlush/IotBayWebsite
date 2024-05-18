@@ -9,6 +9,10 @@
         <servlet-class>iot.isd.controller.CreateCustomerServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CustomerInformationManagementServlet</servlet-name>
+        <servlet-class>iot.isd.controller.CustomerInformationManagementServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>iot.isd.controller.LoginController</servlet-class>
     </servlet>
@@ -19,6 +23,10 @@
     <servlet>
         <servlet-name>EditServlet</servlet-name>
         <servlet-class>iot.isd.controller.EditServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCustomer</servlet-name>
+        <servlet-class>iot.isd.controller.DeleteCustomer</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateUserServlet</servlet-name>
@@ -65,6 +73,10 @@
         <servlet-class>iot.isd.controller.AddToOrderServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>EditCustomerServlet</servlet-name>
+        <servlet-class>iot.isd.controller.EditCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UpdateOrdersServlet</servlet-name>
         <servlet-class>iot.isd.controller.UpdateOrdersServlet</servlet-class>
     </servlet>
@@ -97,8 +109,20 @@
         <url-pattern>/ConnServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>CustomerInformationManagementServlet</servlet-name>
+        <url-pattern>/CustomerInformationManagementServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CreateCustomerServlet</servlet-name>
         <url-pattern>/CreateCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditCustomerServlet</servlet-name>
+        <url-pattern>/EditCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCustomer</servlet-name>
+        <url-pattern>/DeleteCustomer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>

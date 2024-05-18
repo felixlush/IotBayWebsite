@@ -54,13 +54,36 @@ public User findUser(String email, String password) throws SQLException {
     return null;   
 }
 
+public User findUser(String email) throws SQLException {   
+//    System.out.println("Finding User");
+    String sql = "SELECT * FROM USERS WHERE email = ?";
+
+    // Create a PreparedStatement
+    PreparedStatement pst = conn.prepareStatement(sql);
+
+    // Set the parameters for the PreparedStatement
+    pst.setString(1, email);
+
+    // Execute this query using the PreparedStatement
+    ResultSet rs = pst.executeQuery();
+
+    if (rs.next()){
+        String userEmail = rs.getString("EMAIL");
+        String password = rs.getString("PASSWORD");
+        String name = rs.getString("NAME");
+        String address = rs.getString("ADDRESS");
+        return new User(name, userEmail, password, address, "Customer");
+    }         
+    return null;   
+}
+
 //Add a user-data into the database   
 public void addUser(String email, String password, String name, String address, String type) throws SQLException {                   //code for add-operation       
-    String sql = "INSERT INTO USERS (email, password, name, address, TYPE) VALUES ('" 
+    String sql = "INSERT INTO USERS (email, password, name, address, type) VALUES ('" 
                   + email + "', '"  
                   + password + "', '" 
                   + name + "', '"
-                    + address + "', '"
+                  + address + "', '"
                   + type + "')";
     st.executeUpdate(sql);   
 }
@@ -306,7 +329,7 @@ public ArrayList<User> listCustomers(String name, String email) throws SQLExcept
         
         ResultSet rs = st.executeQuery(list);
         while (rs.next()) {
-            listOfUsers.add(new User(rs.getString("email"), rs.getString("name"), rs.getString("password"), rs.getString("phone"), rs.getString("activated")));
+            listOfUsers.add(new User(rs.getString("Name"), rs.getString("Email"), rs.getString("Password"), rs.getString("Address"), rs.getString("Type")));
         }
         
         return listOfUsers;
@@ -361,9 +384,9 @@ public List<Product> getTopProducts(String category) throws SQLException {
     return products;
 }
 
-public void updateUser(String email, String name, String password, String address, String activated) throws SQLException {       
-        st.executeUpdate("UPDATE A.Users SET NAME='" + name + "', PASSWORD='" + password + "', PHONE='" + address + "', ACTIVATED='" + activated + "' WHERE EMAIL='" + email + "'"); 
-    }       
+public void updateUser(String email, String name, String password, String address, String status) throws SQLException {       
+        st.executeUpdate("UPDATE A.Users SET NAME='" + name + "', PASSWORD='" + password + "', ADDRESS='" + address + "', STATUS='" + status + "' WHERE EMAIL='" + email + "'"); 
+    }     
 
 
 

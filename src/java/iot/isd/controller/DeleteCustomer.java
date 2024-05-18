@@ -33,7 +33,7 @@ public class DeleteCustomer extends HttpServlet {
         try {       
             //6- find user by email and password
             manager.deleteUser(email);
-            session.setAttribute("deletedUser", "Success: Deleted user");
+            session.setAttribute("deletedUser", "(Success: Deleted user)");
             request.getRequestDispatcher("CustomerInformationManagement.jsp").include(request, response);
         } catch (SQLException ex) {           
             Logger.getLogger(DeleteCustomer.class.getName()).log(Level.SEVERE, null, ex);       

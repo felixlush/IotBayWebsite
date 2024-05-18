@@ -27,6 +27,8 @@ public class CustomerInformationManagementServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {       
         //1- retrieve the current session
         HttpSession session = request.getSession();
+        
+        Validator validator = new Validator();
         //2- retrieve the manager instance from session  
         //3- capture the posted password
         String name = (String)request.getParameter("name");
@@ -34,6 +36,8 @@ public class CustomerInformationManagementServlet extends HttpServlet {
         //3- capture the posted phone
         String email = (String)request.getParameter("email");
         DBManager manager = (DBManager)session.getAttribute("manager"); 
+        
+        validator.clear(session);
 
         try {
             ArrayList<User> listOfUsers = manager.listCustomers(name, email);
