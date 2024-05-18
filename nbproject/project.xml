@@ -5,11 +5,7 @@
         <data xmlns="http://www.netbeans.org/ns/web-project/3">
             <name>IoTBayWebsite</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
-            <web-module-libraries>
-                <library dirs="200">
-                    <file>${libs.javaee-endorsed-api-7.0_2.classpath}</file>
-                </library>
-            </web-module-libraries>
+            <web-module-libraries/>
             <web-module-additional-libraries/>
             <source-roots>
                 <root id="src.dir"/>
