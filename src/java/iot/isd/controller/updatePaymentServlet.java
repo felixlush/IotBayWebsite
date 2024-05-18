@@ -34,7 +34,8 @@ public class updatePaymentServlet extends HttpServlet {
             String cardName = request.getParameter("cardName");
             String cardNumber = request.getParameter("cardNumber");
             String paymentMethod = request.getParameter("paymentMethod");
-            String paymentId = request.getParameter("paymentId");
+//            String paymentId = request.getParameter("paymentId");
+                int paymentId = 1;
             Double amount = 0.0;
              String paymentDate = request.getParameter("paymentDate");
               String orderId = request.getParameter("orderId");

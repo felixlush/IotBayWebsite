@@ -77,13 +77,13 @@ public void listTables() throws SQLException {
 
 //update a user details in the database   
 public void updateUser( String email, String name, String password, String address) throws SQLException {
-    String cmd = "UPDATE IOTUSER Users SET NAME='" + name + "',PASSWORD='" + password + "',ADDRESS='" + address + "'WHERE EMAIL='" + email + "'";
+    String cmd = "UPDATE ISDUSER Users SET NAME='" + name + "',PASSWORD='" + password + "',ADDRESS='" + address + "'WHERE EMAIL='" + email + "'";
     st.executeUpdate(cmd);
 }       
 
 //delete a user from the database   
 public void deleteUser(String email) throws SQLException{       
-   String cmd = "DELETE FROM IOTUSER.Users WHERE EMAIL='" + email + "'";
+   String cmd = "DELETE FROM ISDUSER.Users WHERE EMAIL='" + email + "'";
    st.executeUpdate(cmd);
 }
 
@@ -114,14 +114,14 @@ public void logLogin(String email, LocalDate date, LocalTime time, String type) 
     st.executeUpdate(cmd);
 }
 
-public void addPayment(String paymentId, String cardName, String cardNumber, String paymentMethod, Double amount, String paymentDate, String orderId, String email) throws SQLException {                   //code for add-operation       
+public void addPayment(int paymentId, String cardName, String cardNumber, String paymentMethod, double amount, String paymentDate, String orderId, String email) throws SQLException {                   //code for add-operation       
   st.executeUpdate("INSERT INTO ISDUSER.PAYMENTS " + "VALUES ('" + paymentId + "', '" + cardName + "', '" + cardNumber + "', '" + paymentMethod + "', " + amount +", '" + paymentDate + "', '" + orderId + "', '" + email +"')");
 
 }
 
 
 
-public void updatePayment(String paymentId, String cardName, String cardNumber, String paymentMethod, Double amount, String paymentDate, String orderId, String email) throws SQLException {
+public void updatePayment(int paymentId, String cardName, String cardNumber, String paymentMethod, double amount, String paymentDate, String orderId, String email) throws SQLException {
     String cmd = "UPDATE ISDUSER.PAYMENTS SET PAYMENTID='" + paymentId + "',CARDNAME='" + cardName + "',CARDNUMBER='" + cardNumber + "',PAYMENTMETHOD='" + paymentMethod+ "',AMOUNT='" +amount+ "',PAYMENTDATE='" +paymentDate + "',ORDERID='" +orderId+ "',EMAIL='" + email + "'";
     st.executeUpdate(cmd);
 //            String query = "UPDATE ISDUSER.PAYMENTS SET cardName = ?, cardNumber = ?";
@@ -161,13 +161,13 @@ public ArrayList<Payment> getPaymentList (String email) throws SQLException{
 
 
 public void deletePayment(String cardNumber) throws SQLException{       
-   String cmd = "DELETE FROM ISDUSER.PAYMENTS WHERE CARDNUMBER='" + cardNumber + "'";
+   String cmd = "DELETE FROM ISDUSER.PAYMENTS WHERE CARD_NUMBER='" + cardNumber + "'";
    st.executeUpdate(cmd);
 }
     
 
     public Payment findPayment(String cardNumber, String cardName) throws SQLException {       
-   String fetch = "select * from ISDUSER.PAYMENTS where CARDNUMBER = '" + cardNumber + "' and CARDNAME='" + cardName + "'";
+   String fetch = "select * from ISDUSER.PAYMENTS where CARD_NUMBER = '" + cardNumber + "' and CARD_NAME='" + cardName + "'";
    ResultSet rs = st.executeQuery(fetch);
    
    while (rs.next()) {
