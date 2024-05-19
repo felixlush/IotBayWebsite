@@ -460,10 +460,10 @@ public List<Order> getUserOrders(String searchString, String userEmail) throws S
             }
     }
     
-    public void addPayment(String cardName, String cardNumber, String paymentMethod, double paymentAmount) throws SQLException {
+    public void addPayment(String cardName, String cardNumber, String paymentMethod, double paymentAmount, int orderId, String email, String paymentDate) throws SQLException {
 
     // SQL INSERT statement
-    String sql = "INSERT INTO ORDERS (CARD_NAME, CARD_NUMBER, PAYMENT_METHOD, PAYMENT_AMOUNT) VALUES (?, ?, ?, ?)";
+    String sql = "INSERT INTO PAYMENTS (CARD_NAME, CARD_NUMBER, PAYMENT_METHOD, PAYMENT_AMOUNT, ORDER_ID, EMAIL, PAYMENT_DATE) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     // Using PreparedStatement to avoid SQL Injection
     PreparedStatement pst = conn.prepareStatement(sql);
@@ -471,6 +471,9 @@ public List<Order> getUserOrders(String searchString, String userEmail) throws S
     pst.setString(2, cardNumber);
     pst.setString(3, paymentMethod);
     pst.setDouble(4, paymentAmount);
+    pst.setInt(5, orderId);
+    pst.setString(6, email);
+    pst.setString(7, paymentDate);
 
     // Execute the update
     pst.executeUpdate();

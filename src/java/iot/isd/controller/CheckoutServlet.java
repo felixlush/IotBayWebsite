@@ -37,13 +37,14 @@ public class CheckoutServlet extends HttpServlet {
     HttpSession session = request.getSession();
     int orderId = Integer.parseInt(request.getParameter("orderId"));
     double price = Double.parseDouble(request.getParameter("price"));
+    String email = request.getParameter("email");
     
 
     DBManager manager = (DBManager) session.getAttribute("manager");
     
         request.setAttribute("orderId", orderId);
             request.setAttribute("price", price);
-    
+            request.setAttribute("email", email);
     
             request.getRequestDispatcher("addPayment.jsp").forward(request, response);
 

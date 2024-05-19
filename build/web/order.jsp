@@ -65,6 +65,7 @@
                             <input type="hidden" name="productId" value="<%= order.getProductId() %>" />
                             <input type="hidden" name="orderId" value="<%= order.getOrderId() %>" />
                              <input type="hidden" name="price" value="<%= order.getPrice() %>" />
+                             <input type="hidden" name="email" value="<%= order.getEmail() %>" />
                              
                              <input type="submit" value="Checkout"/>
                              </td>

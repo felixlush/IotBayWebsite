@@ -35,14 +35,11 @@ public class AddPaymentServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("user");
         Validator validator = new Validator();
-        
-        String orderId = null;
-        //String paymentId = Payment.getPaymentId();
-//        String email = user.email;
-//        String email = (String)session.getAttribute("email");
-        String cardName = request.getParameter("cardName");
+        String email = request.getParameter("email");
+        int orderId = Integer.parseInt(request.getParameter("orderId"));
         String cardNumber = request.getParameter("cardNumber");
-        double amount = 0;
+        String cardName = request.getParameter("cardName");
+        double price = Double.parseDouble(request.getParameter("price"));
         String paymentMethod = request.getParameter("paymentMethod");
         DBManager manager = (DBManager) session.getAttribute("manager");
         validator.clear(session);
@@ -61,7 +58,7 @@ public class AddPaymentServlet extends HttpServlet {
             request.getRequestDispatcher("addPayment.jsp").include(request, response);
         } else {        
         try {            
-            manager.addPayment(cardName, cardNumber, paymentMethod, amount);
+            manager.addPayment(cardName, cardNumber, paymentMethod, price, orderId, email, paymentDate);
             //Payment payment = new Payment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, orderId, email);
             //session.setAttribute("payment", payment);
             request.getRequestDispatcher("confirmPayment.jsp").include(request, response);
