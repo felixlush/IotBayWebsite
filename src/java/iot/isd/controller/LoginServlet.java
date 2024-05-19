@@ -2,8 +2,10 @@ package iot.isd.controller;
 
 import iot.isd.model.LogEntry;
 import iot.isd.model.User;
+import iot.isd.model.dao.DBConnector;
 import iot.isd.model.dao.DBManager;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.SQLException;
@@ -42,7 +44,21 @@ public class LoginServlet extends HttpServlet {
         validator.clear(session);
 
         if (manager == null) {
-            throw new IllegalStateException("DBManager not set in session");
+            try {
+                // Assuming DBConnector is a class that manages your database connection
+                DBConnector db = new DBConnector();
+                Connection conn = db.openConnection();  // open a new connection
+                if (conn != null) {
+                    manager = new DBManager(conn);
+                    session.setAttribute("manager", manager);  // set the new manager in the session
+                } else {
+                    throw new IllegalStateException("Could not open a connection to the database");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, "Database connection error", ex);
+                response.sendRedirect("errorPage.jsp"); // Redirect to an error page or similar
+                return;
+            }
         }
 
         if (email == null || email.isEmpty()) {

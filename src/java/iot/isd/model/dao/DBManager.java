@@ -56,15 +56,22 @@ public User findUser(String email, String password) throws SQLException {
 }
 
 //Add a user-data into the database   
-public void addUser(String email, String password, String name, String address) throws SQLException {                   //code for add-operation       
-    String sql = "INSERT INTO USERS (email, password, name, address) VALUES ('" 
-                  + email + "', '"  
-                  + password + "', '" 
-                  + name + "', '" 
-                  + address + "')";
-    st.executeUpdate(sql);   
-}
+public void addUser(String email, String password, String name, String address, String type, String status) throws SQLException {                       
+    String sql = "INSERT INTO USERS (email, password, name, address, TYPE, STATUS) VALUES (?, ?, ?, ?, ?, ?)";
 
+    try (PreparedStatement pst = conn.prepareStatement(sql)) {
+        pst.setString(1, email);
+        pst.setString(2, password);
+        pst.setString(3, name);
+        pst.setString(4, address);
+        pst.setString(5, type);
+        pst.setString(6, status);
+        
+        pst.executeUpdate();
+    } catch (SQLException ex) {
+        throw new SQLException("Error adding user to the database", ex);
+    }
+}
 public void checkConnection(){
     System.out.print(this.conn);
 }

@@ -26,23 +26,26 @@
             <div class="login-form-container">
                 <h1>Sign Up</h1>
                 <p><span class="message error-message"><%=(existErr != null ? existErr : "")%></span></p>
+                <p><span class="message error-message"><%=(emailErr != null ? emailErr : "")%></span></p>
+                <p><span class="message error-message"><%=(passErr != null ? passErr : "")%></span></p>
+                <p><span class="message error-message"><%=(nameErr != null ? nameErr : "")%></span></p>
                 <form action="RegisterServlet" method="post">
                     <table id="form_table">
                         <tr>
                             <td>Email Address:</td>
-                            <td><input type="text" placeholder="<%=(emailErr != null ? emailErr : "Enter email")%>" name="email" required></td> 
+                            <td><input type="text" placeholder="Enter email" name="email" required></td> 
                         </tr>
                         <tr>
                             <td>Full Name:</td>
-                            <td><input type="text" placeholder="<%=(nameErr != null ? nameErr : "Enter name")%>" name="name" required></td>
+                            <td><input type="text" placeholder="Enter name" name="name" required></td>
                         </tr>
                         <tr>
                             <td>Password: </td>
-                            <td><input type="password" placeholder="<%=(passErr != null ? passErr : "Enter password")%>" name="password" required></td>
+                            <td><input type="password" placeholder="Enter password" name="password" required></td>
                         </tr>
                         <tr>
                             <td>Address:</td>
-                            <td><input type="text" placeholder="<%=(passErr != null ? passErr : "Enter address")%>" name="address" required></td>
+                            <td><input type="text" placeholder="Enter address" name="address" required></td>
                         </tr>
                         <tr>
                             <td></td>

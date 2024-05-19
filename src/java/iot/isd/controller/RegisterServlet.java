@@ -24,6 +24,8 @@ import iot.isd.model.User;
 
 import iot.isd.model.dao.DBManager;
 import iot.isd.model.User;
+import iot.isd.model.dao.DBConnector;
+import java.sql.Connection;
 
 
 
@@ -44,7 +46,21 @@ public class RegisterServlet extends HttpServlet {
         System.out.println("Starting database");
 
         if (manager == null) {
-            throw new IllegalStateException("DBManager not set in session");
+            try {
+                // Assuming DBConnector is a class that manages your database connection
+                DBConnector db = new DBConnector();
+                Connection conn = db.openConnection();  // open a new connection
+                if (conn != null) {
+                    manager = new DBManager(conn);
+                    session.setAttribute("manager", manager);  // set the new manager in the session
+                } else {
+                    throw new IllegalStateException("Could not open a connection to the database");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, "Database connection error", ex);
+                response.sendRedirect("errorPage.jsp"); // Redirect to an error page or similar
+                return;
+            }
         }
         
         if (email == null) {
@@ -70,9 +86,12 @@ public class RegisterServlet extends HttpServlet {
                     session.setAttribute("existErr", "User already exists!");
                     request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
-                    manager.addUser(email, password, name, address);
+                    manager.addUser(email, password, name, address, "CUSTOMER", "ACTIVE");
 //                    User user = new User(name, email, password, address, "user", "ACTIVE");
                     session.setAttribute("creationResponse", "Account created please login.");
+                    session.removeAttribute("emailErr");
+                    session.removeAttribute("passErr");
+                    session.removeAttribute("nameErr");
                     request.getRequestDispatcher("login.jsp").include(request, response);
                 }
             } catch (SQLException | NullPointerException ex) {
