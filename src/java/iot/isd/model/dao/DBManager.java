@@ -6,6 +6,7 @@ package iot.isd.model.dao;
 
 import iot.isd.model.LogEntry;
 import iot.isd.model.Order;
+import iot.isd.model.Payment;
 import iot.isd.model.Product;
 import iot.isd.model.User;
 import java.sql.*;
@@ -343,6 +344,7 @@ public List<Order> getUserOrders(String searchString, String userEmail) throws S
     return orders;
 } 
 
+
     public List<Product> getTopProducts(String category) throws SQLException {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT 3 FROM Products";
@@ -466,6 +468,65 @@ public List<Order> getUserOrders(String searchString, String userEmail) throws S
             }
     }
     
+    public int addPayment(String cardName, String cardNumber, String paymentMethod, double paymentAmount, String email, String paymentDate) throws SQLException {
+
+    // SQL INSERT statement
+    String sql = "INSERT INTO PAYMENTS (CARD_NAME, CARD_NUMBER, PAYMENT_METHOD, PAYMENT_AMOUNT, EMAIL, PAYMENT_DATE) VALUES (?, ?, ?, ?, ?, ?)";
+    // Using PreparedStatement to avoid SQL Injection
+    PreparedStatement pst = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+    pst.setString(1, cardName);
+    pst.setString(2, cardNumber);
+    pst.setString(3, paymentMethod);
+    pst.setDouble(4, paymentAmount);
+    pst.setString(5, email);
+    pst.setString(6, paymentDate);
+
+    // Execute the update
+    pst.executeUpdate();
+    
+    ResultSet generatedKeys = pst.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            return generatedKeys.getInt(1); // Assuming the generated key is an integer
+        } else {
+            throw new SQLException("Failed to retrieve the generated key.");
+        }
+}
+
+    
+
+public ArrayList<Payment> getPaymentList (String email) throws SQLException{
+    
+    ArrayList<Payment> paymentList = new ArrayList<>();
+//    if (searchString.equals("")){
+    String query = "SELECT * FROM PAYMENTS WHERE EMAIL = '" + email + "'";
+    PreparedStatement pst = conn.prepareStatement(query);
+    
+    ResultSet rs = pst.executeQuery();
+    
+    while (rs.next()){    
+        Payment payment = new Payment(
+                
+                rs.getInt("PAYMENT_ID"),
+                rs.getString("CARD_NAME"),
+                rs.getString("CARD_NUMBER"),
+                rs.getString("PAYMENT_METHOD"),
+                rs.getDouble("PAYMENT_AMOUNT"),
+                rs.getString("PAYMENT_DATE"),
+                rs.getString("EMAIL")
+                
+                    );
+       
+        paymentList.add(payment);
+    }
+
+
+    return paymentList;
+}
+public void deletePayment(String cardNumber) throws SQLException{       
+   String cmd = "DELETE FROM ISDUSER.PAYMENTS WHERE CARD_NUMBER='" + cardNumber + "'";
+   st.executeUpdate(cmd);
+}
+
 
 
 

@@ -120,6 +120,22 @@
         <servlet-name>ProductCreateServlet</servlet-name>
         <servlet-class>iot.isd.controller.ProductCreateServlet</servlet-class>
     </servlet>
+        <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>iot.isd.controller.CheckoutServlet</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>AddPaymentServlet</servlet-name>
+        <servlet-class>iot.isd.controller.AddPaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaymentList</servlet-name>
+        <servlet-class>iot.isd.controller.PaymentList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletePayment</servlet-name>
+        <servlet-class>iot.isd.controller.DeletePayment</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -235,6 +251,22 @@
     <servlet-mapping>
         <servlet-name>ProductCreateServlet</servlet-name>
         <url-pattern>/ProductCreateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <url-pattern>/CheckoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPaymentServlet</servlet-name>
+        <url-pattern>/AddPaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentList</servlet-name>
+        <url-pattern>/PaymentList</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>DeletePayment</servlet-name>
+        <url-pattern>/DeletePayment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -15,10 +15,10 @@ public class Order {
     private String address;
     private String productName;
     private int productId;
-    private Double price;
+    private double price;
     private int quantity;
 
-    public Order(int orderId, String email, String date, String address, int productId, Double price, int quantity) {
+    public Order(int orderId, String email, String date, String address, int productId, double price, int quantity) {
         this.orderId = orderId;
         this.email = email;
         this.date = date;
@@ -28,7 +28,7 @@ public class Order {
         this.quantity = quantity;
     }
     
-    public Order(String email, String date, String address, int productId, String productName, Double price, int quantity) {
+    public Order(String email, String date, String address, int productId, String productName, double price, int quantity) {
         this.orderId = orderId;
         this.email = email;
         this.date = date;
@@ -79,11 +79,11 @@ public class Order {
         this.productId = productId;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

@@ -28,10 +28,7 @@
         <div class="main">
             <h2>Current Order</h2>
             <div class="user-table-container">
-                <a href="confirmOrder.jsp">
-                    <button class="edit-button">Checkout</button>
-                </a>
-        <form action="UpdateOrdersServlet" method="post">
+
             <table class="user-table">
                 <thead>
                     <tr>
@@ -52,9 +49,28 @@
                         <td><%= order.getProductName() %></td>
                         <td>$<%= order.getPrice() %></td>
                         <td>
+                            <form action="UpdateOrdersServlet" method="post">
                             <input type="hidden" name="productId" value="<%= order.getProductId() %>" />
                             <input type="number" name="quantity" min="1" value="<%= order.getQuantity() %>" />
-                        </td>
+                             <input type="hidden" name="price" value="<%= order.getPrice() %>" />
+                            </td>
+                            <td>
+                              <input type="submit" value="Update All Orders"/>  
+                            </td>
+                            </form>
+                             
+                            <form action="CheckoutServlet" method="post">
+                            <td>
+                             
+                            <input type="hidden" name="productId" value="<%= order.getProductId() %>" />
+                            <input type="hidden" name="orderId" value="<%= order.getOrderId() %>" />
+                             <input type="hidden" name="price" value="<%= order.getPrice() %>" />
+                             <input type="hidden" name="email" value="<%= order.getEmail() %>" />
+                             
+                             <input type="submit" value="Checkout"/>
+                             </td>
+                             </form>
+                        
                     </tr>
                     <%
                             }
@@ -68,8 +84,7 @@
                     %>
                 </tbody>                    
             </table>
-            <input type="submit" value="Update All Orders" />
-        </form>
+        
 
             </div>
             
