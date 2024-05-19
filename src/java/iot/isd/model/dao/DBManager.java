@@ -55,6 +55,31 @@ public User findUser(String email, String password) throws SQLException {
     return null;   
 }
 
+public User findUser(String email) throws SQLException {   
+//    System.out.println("Finding User");
+    String sql = "SELECT * FROM USERS WHERE email = ?";
+
+    // Create a PreparedStatement
+    PreparedStatement pst = conn.prepareStatement(sql);
+
+    // Set the parameters for the PreparedStatement
+    pst.setString(1, email);
+
+    // Execute this query using the PreparedStatement
+    ResultSet rs = pst.executeQuery();
+
+    if (rs.next()){
+        String userEmail = rs.getString("EMAIL");
+        String password = rs.getString("PASSWORD");
+        String name = rs.getString("NAME");
+        String address = rs.getString("ADDRESS");
+        String type = rs.getString("TYPE");
+        String status = rs.getString("STATUS");
+        return new User(name, userEmail, password, address, type, status);
+    }         
+    return null;   
+}
+
 //Add a user-data into the database   
 public void addUser(String email, String password, String name, String address, String type, String status) throws SQLException {                       
     String sql = "INSERT INTO USERS (email, password, name, address, TYPE, STATUS) VALUES (?, ?, ?, ?, ?, ?)";
@@ -89,6 +114,31 @@ public void listTables() throws SQLException {
 public void updateUser( String email, String name, String password, String address) throws SQLException {
     String cmd = "UPDATE USERS SET NAME='" + name + "',PASSWORD='" + password + "',ADDRESS='" + address + "'WHERE EMAIL='" + email + "'";
     st.executeUpdate(cmd);
+}
+
+public void updateUser(String email, String name, String password, String address, String status) throws SQLException {       
+        st.executeUpdate("UPDATE A.Users SET NAME='" + name + "', PASSWORD='" + password + "', ADDRESS='" + address + "', STATUS='" + status + "' WHERE EMAIL='" + email + "'"); 
+}     
+
+public ArrayList<User> listCustomers(String name, String email) throws SQLException {
+        ArrayList<User> listOfUsers = new ArrayList<User>();
+        String list;
+        if (name.equals("") && email.equals("")) {
+            list = "SELECT * FROM A.USERS WHERE type= '" + "CUSTOMER" + "'";
+        } else if (name.equals("")) {
+            list = "SELECT * FROM A.USERS WHERE email ='" + email + "' AND type='" + "CUSTOMER" + "'";
+        } else if (email.equals("")) {
+            list = "SELECT * FROM A.USERS WHERE name='" + name + "' AND type='" + "CUSTOMER" + "'";
+        } else {
+            list = "SELECT * FROM A.USERS WHERE email ='" + email + "' AND name ='" + name + "' AND type='" + "CUSTOMER" + "'";
+        }
+        
+        ResultSet rs = st.executeQuery(list);
+        while (rs.next()) {
+            listOfUsers.add(new User(rs.getString("Name"), rs.getString("Email"), rs.getString("Password"), rs.getString("Address"), rs.getString("Type"), rs.getString("Status")));
+        }
+        
+        return listOfUsers;
 }
 
 public List<LogEntry> searchLogsByDate(String date, String email) throws SQLException{
