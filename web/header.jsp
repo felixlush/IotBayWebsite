@@ -26,7 +26,8 @@
                             <a href="LogoutController">Logout</a>
                             <a href="userAccount.jsp">My Account</a>
                         <% } else { %>
-                            <a href="staffList.jsp">Staff Admin</a> 
+                            <a href="staffList.jsp">Staff Admin</a>
+                            <a href="userAccount.jsp">My Account</a>
                             <a href="LogoutController">Logout</a>
                     <%          }
                         } else { %>
