@@ -497,47 +497,29 @@ public ArrayList<Payment> getPaymentList (String email) throws SQLException{
     
     while (rs.next()){    
         Payment payment = new Payment(
-            rs.getInt(1),
-            rs.getString(2),
-            rs.getString(3),
-            rs.getString(4),
-            rs.getDouble(5),
-            rs.getString(6),
-            rs.getString(7)
-        );
+                
+                rs.getInt("PAYMENT_ID"),
+                rs.getString("CARD_NAME"),
+                rs.getString("CARD_NUMBER"),
+                rs.getString("PAYMENT_METHOD"),
+                rs.getDouble("PAYMENT_AMOUNT"),
+                rs.getString("PAYMENT_DATE"),
+                rs.getString("EMAIL")
+                
+                    );
+       
         paymentList.add(payment);
     }
 
 
     return paymentList;
 }
-
-public Payment getProduct(String ID) throws SQLException{
-    
-    String sql = "SELECT * FROM PRODUCTS WHERE PRODUCT_ID = ?";
-
-    // Create a PreparedStatement
-    PreparedStatement pst = conn.prepareStatement(sql);
-
-    // Set the parameters for the PreparedStatement
-    pst.setString(1, ID);
-
-    // Execute this query using the PreparedStatement
-    ResultSet rs = pst.executeQuery();
-    
-    if (rs.next()){
-        System.out.println("Found Product");
-        int id = rs.getInt("PRODUCT_ID");
-        String name = rs.getString("PRODUCT_NAME");
-        double price = rs.getDouble("PRODUCT_PRICE");
-        int units = rs.getInt("PRODUCT_UNITS");
-        String category = rs.getString("PRODUCT_CATEGORY");
-        String image = rs.getString("PRODUCT_IMAGE");
-        return new Product(id, name, price, units, image, category);
-    } 
-    return null;
-    
+public void deletePayment(String cardNumber) throws SQLException{       
+   String cmd = "DELETE FROM ISDUSER.PAYMENTS WHERE CARD_NUMBER='" + cardNumber + "'";
+   st.executeUpdate(cmd);
 }
+
+
 
 
 }

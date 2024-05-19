@@ -28,6 +28,7 @@
     
     <body>
         
+        
         <h1>Payment Details</h1>
         <div class="user-table-container">
             <h2>Saved Payment Details</h2> 
@@ -49,19 +50,20 @@
         %>
           
         <tr>
-            <form action="PaymentServlet" method="post">
+            
                 <td>
-                    <input type="hidden" name="paymentId" value="<%= newPayment.getCardName()%>">
-                    <input type="hidden" name="paymentId" value="<%= newPayment.getCardNumber()%>">
-                    <input type="hidden" name="paymentId" value="<%= newPayment.getPaymentMethod()%>">
+                    <form action="PaymentServlet" method="post">
+                    <input type="hidden" name="cardName" value="<%= newPayment.getCardName()%>">
+                    <input type="hidden" name="cardNumber" value="<%= newPayment.getCardNumber()%>">
+                    <input type="hidden" name="paymentMethod" value="<%= newPayment.getPaymentMethod()%>">
                     <input type="submit" class="custom-logout-button" style="margin-top: 60px;" value="Pay With This Card">
-                 
+                 </form>
                 </td> 
                
                 <td><%= newPayment.getCardName() %></td>
                 <td><%= newPayment.getCardNumber() %></td>
                 <td><%= newPayment.getPaymentMethod() %></td>
-            </form>
+            
             
             <td>
             <form action="EditPaymentServlet" method="post">
@@ -85,64 +87,18 @@
           } else {
         %>
         <tr>No current payment information available</tr>
-        
+        <a href="/addPayment" class="button"> Cancel </a>
         </table>
         <%                    
           }
         %>
-        
-    <h1>Payment List</h1>
-    <table class="user-table">
-        <tr>
-            <th>Payment ID</th>
-            <th>Card Name</th>
-            <th>Card Number</th>
-            <th>Payment Method</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>User</th>
-        </tr>
-        <%
-            //User user = (User)session.getAttribute("user");
-            String email = user.email;
-            
-            
-            ArrayList<Payment> paymentList = null;
-            try {
-               DBManager manager = (DBManager) session.getAttribute("manager");
-                paymentList = manager.getPaymentList(email);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            
-            for (Payment payment : paymentList) {
-                if (payment.getDate() != null) {
-        %>
-            <tr>
-                <td><%= payment.getPaymentId() %></td>
-                <td><%= payment.getCardName() %></td>
-                <td><%= payment.getCardNumber() %></td>
-                <td><%= payment.getPaymentMethod() %></td>
-                <td><%= payment.getAmount() %></td>
-                <td><%= payment.getDate() %></td>
-                <td><%= payment.getEmail() %></td>
-            </tr>
-        <%
-            }
-        }
-        %>
-        <a href="order.jsp" class="custom-button" style="margin-top: 60px;">Return</a>
-    </table>
+        <form action="PaymentList" method="get">
+            <input type="hidden" name="email" value="<%= newPayment.getEmail()%>">
+                <input class="button" type="submit" value="See Payment History">
+            </form>
 
-            
-            </div>
-    
-
-           
-    
-<!--            <a href="PaymentServlet" class="custom-logout-button" style="margin-top: 60px;">Pay</a> -->
                 
                 
-        
+       
     </body>
 </html>

@@ -34,7 +34,7 @@ public class PaymentServlet extends HttpServlet {
         User user = (User)session.getAttribute("user");
         //Validator validator = new Validator();
         String orderId = null;
-        int paymentId = Payment.getPaymentId();
+        int paymentId = 0;
         String email = user.email;
 //        String email = (String)session.getAttribute("email");
         String cardName = request.getParameter("cardName");
@@ -51,7 +51,7 @@ public class PaymentServlet extends HttpServlet {
         
                   
             //manager.addPayment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, orderId, email);
-            Payment payment = new Payment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, orderId, email);
+            Payment payment = new Payment(paymentId, cardName, cardNumber, paymentMethod, amount, paymentDate, email);
             session.setAttribute("payment", payment);
             request.getRequestDispatcher("paymentConfirmation.jsp").include(request, response);
 //         catch (SQLException ex) {

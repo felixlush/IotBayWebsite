@@ -32,11 +32,12 @@ public class PaymentList extends HttpServlet {
         
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("user");
+        String email = request.getParameter("email");
         // Retrieve the email parameter from the request
-        String email = user.email;
+        
         
         // Get the list of payments for the given email
-        ArrayList<Payment> paymentList = null;
+        ArrayList<Payment> paymentList = new ArrayList<>();
         try {
             
             DBManager manager = (DBManager) session.getAttribute("manager");

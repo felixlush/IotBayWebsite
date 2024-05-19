@@ -5,6 +5,7 @@
  */
 package iot.isd.controller;
 
+import iot.isd.model.Payment;
 import iot.isd.model.dao.DBManager;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,11 +33,14 @@ public class DeletePayment extends HttpServlet {
            DBManager manager = (DBManager) session.getAttribute("manager");
            String cardNumber = request.getParameter("cardNumber");
            
+           Payment newPayment = (Payment)session.getAttribute("newPayment");
+           
            try{
                manager.deletePayment(cardNumber);
+               session.removeAttribute("newPayment");
                request.getRequestDispatcher("payment.jsp").include(request, response);
            }catch (SQLException ex) {
-            Logger.getLogger(PaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DeletePayment.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

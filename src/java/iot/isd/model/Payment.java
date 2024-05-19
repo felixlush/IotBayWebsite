@@ -33,16 +33,16 @@ public class Payment {
         this.email = email;
       
     }
-    public Payment(String cardName, String cardNumber, String paymentMethod, double amount, String paymentDate, String email){
-       
-        this.cardName = cardName;
-        this.paymentMethod = paymentMethod;
-        this.cardNumber = cardNumber;
-        this.amount = amount;
-        this.paymentDate = paymentDate;
-        this.email = email;
+//    public Payment(String cardName, String cardNumber, String paymentMethod, double amount, String paymentDate, String email){
+//       
+//        this.cardName = cardName;
+//        this.paymentMethod = paymentMethod;
+//        this.cardNumber = cardNumber;
+//        this.amount = amount;
+//        this.paymentDate = paymentDate;
+//        this.email = email;
       
-    }
+   // }
     
     public int getPaymentId() {
 //       int i = new Random().nextInt(1000);

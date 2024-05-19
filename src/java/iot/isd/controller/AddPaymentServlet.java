@@ -88,7 +88,7 @@ public class AddPaymentServlet extends HttpServlet {
             
             request.getRequestDispatcher("payment.jsp").include(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(PaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddPaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
  

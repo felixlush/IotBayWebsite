@@ -9,6 +9,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="iot.isd.model.Payment"%>
 <%@ page import="java.sql.SQLException" %>
+<%@page import="iot.isd.controller.PaymentList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,21 +32,25 @@
             <th>Order ID</th>
             <th>User</th>
         </tr>
+
+        
         <%
-            User user = (User)session.getAttribute("user");
-            String email = user.email;
-            
-            
-            ArrayList<Payment> paymentList = null;
-            try {
-               DBManager manager = (DBManager) session.getAttribute("manager");
-                paymentList = manager.getPaymentList(email);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            
+            //Payment newPayment = (Payment)session.getAttribute("newPayment");
+            //User user = (User)session.getAttribute("user");
+            //String email = newPayment.getEmail();
+           
+            //ArrayList<Payment> paymentList = null;
+           
+            ArrayList<Payment> paymentList = (ArrayList<Payment>) session.getAttribute("paymentList");
+//            try {
+//               DBManager manager = (DBManager) session.getAttribute("manager");
+//               // paymentList = manager.getPaymentList(email);
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+            if (paymentList != null & !paymentList.isEmpty()){
             for (Payment payment : paymentList) {
-                if (payment.getDate() != null) {
+//                if (payment.getDate() != null) {
         %>
             <tr>
                 <td><%= payment.getPaymentId() %></td>
@@ -58,9 +63,14 @@
             </tr>
         <%
             }
-        }
+        }  else { 
+        
         %>
-        <a href="main.jsp" class="custom-button" style="margin-top: 60px;">Return</a>
+        <td>No payments found</td>
+         <%
+            }        
+        %>
+        <a href="payment.jsp" class="custom-button" style="margin-top: 60px;">Return</a>
     </table>
 </body>
 </div>
