@@ -118,20 +118,20 @@ public void updateUser( String email, String name, String password, String addre
 }
 
 public void updateUser(String email, String name, String password, String address, String status) throws SQLException {       
-        st.executeUpdate("UPDATE A.Users SET NAME='" + name + "', PASSWORD='" + password + "', ADDRESS='" + address + "', STATUS='" + status + "' WHERE EMAIL='" + email + "'"); 
+        st.executeUpdate("UPDATE USERS SET NAME='" + name + "', PASSWORD='" + password + "', ADDRESS='" + address + "', STATUS='" + status + "' WHERE EMAIL='" + email + "'"); 
 }     
 
 public ArrayList<User> listCustomers(String name, String email) throws SQLException {
         ArrayList<User> listOfUsers = new ArrayList<User>();
         String list;
         if (name.equals("") && email.equals("")) {
-            list = "SELECT * FROM A.USERS WHERE type= '" + "CUSTOMER" + "'";
+            list = "SELECT * FROM USERS WHERE type= '" + "CUSTOMER" + "'";
         } else if (name.equals("")) {
-            list = "SELECT * FROM A.USERS WHERE email ='" + email + "' AND type='" + "CUSTOMER" + "'";
+            list = "SELECT * FROM USERS WHERE email ='" + email + "' AND type='" + "CUSTOMER" + "'";
         } else if (email.equals("")) {
-            list = "SELECT * FROM A.USERS WHERE name='" + name + "' AND type='" + "CUSTOMER" + "'";
+            list = "SELECT * FROM USERS WHERE name='" + name + "' AND type='" + "CUSTOMER" + "'";
         } else {
-            list = "SELECT * FROM A.USERS WHERE email ='" + email + "' AND name ='" + name + "' AND type='" + "CUSTOMER" + "'";
+            list = "SELECT * FROM USERS WHERE email ='" + email + "' AND name ='" + name + "' AND type='" + "CUSTOMER" + "'";
         }
         
         ResultSet rs = st.executeQuery(list);

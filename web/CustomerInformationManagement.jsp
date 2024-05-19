@@ -22,58 +22,60 @@
             User user = (User)session.getAttribute("user");
         %>
         <%@ include file="header.jsp" %>
-        <div class="login-form-container">
-            <h1>Customer Management <span class="success-message"><%=(deletedUser != null ? deletedUser : "")%></span></h1>
-            <a href="CreateCustomer.jsp"><button class="buttonCentered">Create Customer</button></a><br><br><br>
-            <form action="CustomerInformationManagementServlet" method="post">
-                <table id="form-table" style="margin-left:auto;margin-right:auto;">
-                    <tr>
-                        <td>Name:</td>
-                        <td><input type="text" placeholder="Enter name" id="name" name="name"><br></td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td><input type="text" placeholder="Enter email" id="email" name="email"><br></td>
-                    </tr>
-                </table>
-                <br>
-                <button class="buttonCentered" type="submit">List Customers</button>
-                <p>Press the button above to refresh the results after adding, editing or deleting.</p>
-            </form>
-        </div>
-        <% ArrayList<User> listOfUsers = (ArrayList<User>)session.getAttribute("listOfUsers");%>
+        <div class="main">
+            <div class="login-form-container">
+                <h1>Customer Management <span class="success-message"><%=(deletedUser != null ? deletedUser : "")%></span></h1>
+                <a href="CreateCustomer.jsp"><button class="buttonCentered">Create Customer</button></a><br><br><br>
+                <form action="CustomerInformationManagementServlet" method="post">
+                    <table id="form-table" style="margin-left:auto;margin-right:auto;">
+                        <tr>
+                            <td>Name:</td>
+                            <td><input type="text" placeholder="Enter name" id="name" name="name"><br></td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td><input type="text" placeholder="Enter email" id="email" name="email"><br></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <button class="buttonCentered" type="submit">List Customers</button>
+                    <p>Press the button above to refresh the results after adding, editing or deleting.</p>
+                </form>
+            </div>
+            <% ArrayList<User> listOfUsers = (ArrayList<User>)session.getAttribute("listOfUsers");%>
 
-        <div class="user-table-container">
-        <table class="user-table">
-            <tr>
-                <th>Email</th>
-                <th>Name</th>
-                <th>Password</th>
-                <th>phone</th>
-                <th>Status</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <% if (listOfUsers != null) { %>
-                <% for (User currentUser : listOfUsers) { %>
+            <div class="user-table-container">
+            <table class="user-table">
                 <tr>
-                    <td><%=currentUser.getEmail()%></td>
-                    <td><%=currentUser.getName()%></td>
-                    <td><%=currentUser.getPassword()%></td>
-                    <td><%=currentUser.getAddress()%></td>
-                    <td><%=currentUser.getStatus()%></td>
-                    <td><form action="EditCustomerServlet" method="post"><input type="hidden" name="email" value="<%=currentUser.getEmail()%>"><button class="button" type="submit">Edit</button></form></td>
-                    <td><form action="DeleteCustomer" method="post"><input type="hidden" name="email" value="<%=currentUser.getEmail()%>"><button class="button" type="submit">Delete</button></form></td>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Password</th>
+                    <th>phone</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
+                <% if (listOfUsers != null) { %>
+                    <% for (User currentUser : listOfUsers) { %>
+                    <tr>
+                        <td><%=currentUser.getEmail()%></td>
+                        <td><%=currentUser.getName()%></td>
+                        <td><%=currentUser.getPassword()%></td>
+                        <td><%=currentUser.getAddress()%></td>
+                        <td><%=currentUser.getStatus()%></td>
+                        <td><form action="EditCustomerServlet" method="post"><input type="hidden" name="email" value="<%=currentUser.getEmail()%>"><button class="button" type="submit">Edit</button></form></td>
+                        <td><form action="DeleteCustomer" method="post"><input type="hidden" name="email" value="<%=currentUser.getEmail()%>"><button class="button" type="submit">Delete</button></form></td>
+                    </tr>
+                    <% } %>
+                <% } else { %>
+                    <tr>
+                        <td>Press the button above to fetch results.</td>
+                    </tr>
                 <% } %>
-            <% } else { %>
-                <tr>
-                    <td>Press the button above to fetch results.</td>
-                </tr>
-            <% } %>
-        </table>
+            </table>
+            </div>
+            <br><br>
         </div>
-        <br><br>
         <%@include file="footer.jsp" %>  
         <jsp:include page="/ConnServlet" flush="true"/>
     </body>
