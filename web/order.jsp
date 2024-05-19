@@ -36,6 +36,8 @@
                         <th>Product Name</th>
                         <th>Total Price</th>
                         <th>Quantity</th>
+                        <th>Update</th>
+                        <th>Checkout</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,11 +53,12 @@
                         <td>
                             <form action="UpdateOrdersServlet" method="post">
                             <input type="hidden" name="productId" value="<%= order.getProductId() %>" />
+                            <input type="hidden" name="productName" value="<%= order.getProductName() %>"
                             <input type="number" name="quantity" min="1" value="<%= order.getQuantity() %>" />
                              <input type="hidden" name="price" value="<%= order.getPrice() %>" />
                             </td>
                             <td>
-                              <input type="submit" value="Update All Orders"/>  
+                              <input type="submit" value="Update"/>  
                             </td>
                             </form>
                              

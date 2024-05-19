@@ -523,7 +523,7 @@ public ArrayList<Payment> getPaymentList (String email) throws SQLException{
     return paymentList;
 }
 public void deletePayment(String cardNumber) throws SQLException{       
-   String cmd = "DELETE FROM ISDUSER.PAYMENTS WHERE CARD_NUMBER='" + cardNumber + "'";
+   String cmd = "DELETE FROM PAYMENTS WHERE CARD_NUMBER='" + cardNumber + "'";
    st.executeUpdate(cmd);
 }
 

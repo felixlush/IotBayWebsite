@@ -74,7 +74,7 @@ public class AddPaymentServlet extends HttpServlet {
             Payment newPayment = new Payment(paymentId, cardName, cardNumber, paymentMethod, price, paymentDate, email);
 //            paymentIdString.equals(valueOf)
 
-                System.out.println("Payment added with ID: " + paymentId);
+            System.out.println("Payment added with ID: " + paymentId);
 //            if (currentPayment == null){
 //            currentPayment = new ArrayList<>();
 //        }
