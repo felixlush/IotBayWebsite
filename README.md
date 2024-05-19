@@ -1,5 +1,5 @@
 <h1>Project Title: IOT Bay E-commerce Platform</h1>
-<p>Description</p>
+<h2>Description</h2>
 <p>IOT Bay is a web-based e-commerce platform designed to manage and sell IoT (Internet of Things) devices and smart home products. The platform enables users to register, login, browse products, and place orders. It provides administrative functions for managing products, orders, and users. The platform utilizes Java servlets for backend logic, JDBC for database interactions, and JSP for dynamic web content.</p>
 
 <h2>Features</h2>
@@ -44,7 +44,7 @@ Navigate to http://localhost:8080/IotBayWebsite to access the application.
 Register as a new user or login using existing credentials.
 
 <h2>Functionality:</h2>
-Once you have executed the SQL command to full the databases you will be able to access the staff admin features on the sight by using the following details to login:
+Once you have executed the SQL command to fill the databases you will be able to access the staff admin features on the sight by using the following details to login:
 
 email: admin@gmail.com
 password: password
