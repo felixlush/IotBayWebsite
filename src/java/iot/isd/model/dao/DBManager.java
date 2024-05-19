@@ -49,7 +49,8 @@ public User findUser(String email, String password) throws SQLException {
         String DBpassword = rs.getString("PASSWORD");
         String DBname = rs.getString("NAME");
         String DBaddress = rs.getString("ADDRESS");
-        return new User(DBname, DBemail, DBpassword, DBaddress,"user","ACTIVE");
+        String DBtype = rs.getString("TYPE");
+        return new User(DBname, DBemail, DBpassword, DBaddress,DBtype,"ACTIVE");
     }         
     return null;   
 }
