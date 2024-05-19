@@ -27,10 +27,10 @@
                 
 
     <div class="main">
-        <h2>Products</h2>
-        <div>
+        <div class="searchForm-container">
+            <h2>Products</h2>
             <form action="ProductSearchServlet" method="get">
-                <input type="text" name="search" placeholder="Search products">
+                <input type="text" name="search" placeholder="Search products by category">
                 <input type="submit" value="Search">
             </form>
         </div>

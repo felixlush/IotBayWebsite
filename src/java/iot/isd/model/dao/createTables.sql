@@ -7,52 +7,40 @@
  * Created: 19/05/2024
  */
 
-CREATE TABLE PRODUCTS (PRODUCT_ID INTEGER NOT NULL, PRODUCT_NAME VARCHAR(255), PRODUCT_PRICE DECIMAL(5), PRODUCT_UNITS INTEGER, PRODUCT_CATEGORY VARCHAR(255), PRODUCT_IMAGE LONG VARCHAR, PRIMARY KEY (PRODUCT_ID));
+CREATE TABLE PRODUCTS (
+    PRODUCT_ID INTEGER NOT NULL, 
+    PRODUCT_NAME VARCHAR(255), 
+    PRODUCT_PRICE DECIMAL(10, 2), 
+    PRODUCT_UNITS INTEGER, 
+    PRODUCT_CATEGORY VARCHAR(255), 
+    PRODUCT_IMAGE LONG VARCHAR, 
+    PRIMARY KEY (PRODUCT_ID)
+);
 
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1004, 'LG Smart Washing Machine', 1200, 8, NULL, 'https://www.jbhifi.com.au/cdn/shop/files/586169-Product-0-I-637873417377800277_37f6618d-8e97-49dc-917a-2d281173d3f3.jpg?v=1713250050');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1005, 'Google Nest Hub Max', 229, 15, 'smart home', 'https://www.jbhifi.com.au/cdn/shop/products/409514-Product-0-I.jpg?v=1660522072');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1006, 'Amazon Echo Dot 4th Gen', 49, 30, 'smart home', 'https://www.jbhifi.com.au/cdn/shop/products/485159-Product-0-I-637366313871295350_c00d8e49-4c21-49e0-a194-6cd562194e66_grande.jpg');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1007, 'Philips Hue Smart Bulb', 19, 50, NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMBVHNpZCHErPx-dlO5soZbgwCV1frXml6V_RCcWE21A&s');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1008, 'Sony Smart TV 55', 900, 9, NULL, 'https://www.sony.com.au/image/ccbe548efa94995a9c034d96a4a6acbb?fmt=pjpeg&wid=330&bgcolor=FFFFFF&bgc=FFFFFF');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1009, 'Apple HomePod Mini', 99, 25, NULL, 'https://www.jbhifi.com.au/cdn/shop/products/539284-Product-0-I-637750771359446114.jpg?v=1639440860');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1010, 'Fitbit Charge 4', 149, 20, NULL, 'https://omnichannelimages.global.ssl.fastly.net/prod/dsv/os/OS-2080FTBADUSSFB417BKBK-SO_001_1.JPG');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1011, 'Ring Video Doorbell 3', 199, 18, NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5RDR1XtVrrSpPRK86V9yuXaAs43OLf2KNy2Rp614G9w&s');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1012, 'Nest Learning Thermostat', 249, 12, NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS31CPFGR7PFSa7eE-qLVUhxrKqiqkjXFLlDGJ2loYKNA&s');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1013, 'Dyson Pure Cool Link', 499, 10, NULL, 'https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/leap-petite-global/dynamic-media/ec/tp00/Primary-Pure-Cool-Link-Tower-primary.png?fmt=png-alpha&scl=1&fmt=png-alpha');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1014, 'iRobot Roomba 960', 499, 7, NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReVUGqY_2ziB4jXqeJxtOKIEbwU0A3hF3R8dn7tJhn_g&s');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1015, 'Samsung Galaxy Watch 4', 349, 14, NULL, 'https://www.jbhifi.com.au/cdn/shop/products/531805-Product-0-I-637647131901276778_3601e207-c60d-46b1-9b4a-c307761485bc.jpg?v=1691461977');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1016, 'Xiaomi Mi Smart Band 6', 35, 40, NULL, 'https://s.catch.com.au/images/product/0059/59274/618b25aab4af0908735865.jpg');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1017, 'Arlo Pro 4 Spotlight Camera', 199, 15, NULL, 'https://cdn.productreview.com.au/resize/listing-picture/d1c3db93-5617-4038-a2d2-1b205e2eb255?height=630&v=2&width=1200');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1018, 'Bose QuietComfort Earbuds', 279, 20, NULL, 'https://www.jbhifi.com.au/cdn/shop/products/608384-Product-0-I-637980455582467790_a24da224-410a-4f6d-a01f-6fbdd98a2875.jpg?v=1698351918');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1019, 'LIFX Smart LED Strip', 89, 22, NULL, 'https://www.lifx.com.au/cdn/shop/products/00_LIFX_Lightstrip_2m_AU_58ee52ca-1305-4252-87be-3bb2c04ec3dc.jpg?v=1620792678');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1020, 'Eufy Smart Scale P1', 45, 30, NULL, 'https://m.media-amazon.com/images/I/61XwQl36opL._AC_UF894,1000_QL80_.jpg');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1021, 'August Smart Lock Pro', 229, 12, NULL, 'https://m.media-amazon.com/images/I/51Lm7sw46GL._AC_UF894,1000_QL80_.jpg');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1022, 'Anker Nebula Capsule II Smart Mini Projector', 580, 5, 'electronics', 'https://example.com/anker-nebula.jpg');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1001, 'Electric Doorbell', 105, 50, 'featured', 'https://m.media-amazon.com/images/I/51T-S9efoUL._AC_UF894,1000_QL80_.jpg');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1002, 'Tp-Link Home Modem', 100, 25, 'featured', 'https://www.betta.com.au/media/catalog/product/A/R/ARCHER_VR300_1602561944.JPG?optimize=medium&fit=bounds&height=700&width=700&canvas=700:700');
-INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) 
-	VALUES (1003, 'Samsung Smart Fridge', 2500, 12, 'featured', 'https://www.jbhifi.com.au/cdn/shop/files/523201-Product-0-I-637741143759267611_2b31e2d5-6eeb-46ff-9892-3afdd6fa07ff.jpg?v=1712808504');
+-- Insert products with specified categories
+INSERT INTO IOTUSER.PRODUCTS (PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_UNITS, PRODUCT_CATEGORY, PRODUCT_IMAGE) VALUES
+(1004, 'LG Smart Washing Machine', 1200, 8, 'home appliance', 'https://www.jbhifi.com.au/cdn/shop/files/586169-Product-0-I-637873417377800277_37f6618d-8e97-49dc-917a-2d281173d3f3.jpg?v=1713250050'),
+(1005, 'Google Nest Hub Max', 229, 15, 'smart home', 'https://www.jbhifi.com.au/cdn/shop/products/409514-Product-0-I.jpg?v=1660522072'),
+(1006, 'Amazon Echo Dot 4th Gen', 49, 30, 'smart home', 'https://www.jbhifi.com.au/cdn/shop/products/485159-Product-0-I-637366313871295350_c00d8e49-4c21-49e0-a194-6cd562194e66_grande.jpg'),
+(1007, 'Philips Hue Smart Bulb', 19, 50, 'lighting', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMBVHNpZCHErPx-dlO5soZbgwCV1frXml6V_RCcWE21A&s'),
+(1008, 'Sony Smart TV 55', 900, 9, 'electronics', 'https://www.sony.com.au/image/ccbe548efa94995a9c034d96a4a6acbb?fmt=pjpeg&wid=330&bgcolor=FFFFFF&bgc=FFFFFF'),
+(1009, 'Apple HomePod Mini', 99, 25, 'smart home', 'https://www.jbhifi.com.au/cdn/shop/products/539284-Product-0-I-637750771359446114.jpg?v=1639440860'),
+(1010, 'Fitbit Charge 4', 149, 20, 'wearables', 'https://omnichannelimages.global.ssl.fastly.net/prod/dsv/os/OS-2080FTBADUSSFB417BKBK-SO_001_1.JPG'),
+(1011, 'Ring Video Doorbell 3', 199, 18, 'home security', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5RDR1XtVrrSpPRK86V9yuXaAs43OLf2KNy2Rp614G9w&s'),
+(1012, 'Nest Learning Thermostat', 249, 12, 'smart home', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS31CPFGR7PFSa7eE-qLVUhxrKqiqkjXFLlDGJ2loYKNA&s'),
+(1013, 'Dyson Pure Cool Link', 499, 10, 'air quality', 'https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/leap-petite-global/dynamic-media/ec/tp00/Primary-Pure-Cool-Link-Tower-primary.png?fmt=png-alpha&scl=1&fmt=png-alpha'),
+(1014, 'iRobot Roomba 960', 499, 7, 'home appliance', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReVUGqY_2ziB4jXqeJxtOKIEbwU0A3hF3R8dn7tJhn_g&s'),
+(1015, 'Samsung Galaxy Watch 4', 349, 14, 'wearables', 'https://www.jbhifi.com.au/cdn/shop/products/531805-Product-0-I-637647131901276778_3601e207-c60d-46b1-9b4a-c307761485bc.jpg?v=1691461977'),
+(1016, 'Xiaomi Mi Smart Band 6', 35, 40, 'wearables', 'https://s.catch.com.au/images/product/0059/59274/618b25aab4af0908735865.jpg'),
+(1017, 'Arlo Pro 4 Spotlight Camera', 199, 15, 'home security', 'https://cdn.productreview.com.au/resize/listing-picture/d1c3db93-5617-4038-a2d2-1b205e2eb255?height=630&v=2&width=1200'),
+(1018, 'Bose QuietComfort Earbuds', 279, 20, 'audio', 'https://www.jbhifi.com.au/cdn/shop/products/608384-Product-0-I-637980455582467790_a24da224-410a-4f6d-a01f-6fbdd98a2875.jpg?v=1698351918'),
+(1019, 'LIFX Smart LED Strip', 89, 22, 'lighting', 'https://www.lifx.com.au/cdn/shop/products/00_LIFX_Lightstrip_2m_AU_58ee52ca-1305-4252-87be-3bb2c04ec3dc.jpg?v=1620792678'),
+(1020, 'Eufy Smart Scale P1', 45, 30, 'health & wellness', 'https://m.media-amazon.com/images/I/61XwQl36opL._AC_UF894,1000_QL80_.jpg'),
+(1021, 'August Smart Lock Pro', 229, 12, 'home security', 'https://m.media-amazon.com/images/I/51Lm7sw46GL._AC_UF894,1000_QL80_.jpg'),
+(1022, 'Anker Nebula Capsule II Smart Mini Projector', 580, 5, 'electronics', 'https://example.com/anker-nebula.jpg'),
+(1001, 'Electric Doorbell', 105, 50, 'home appliance', 'https://m.media-amazon.com/images/I/51T-S9efoUL._AC_UF894,1000_QL80_.jpg'),
+(1002, 'Tp-Link Home Modem', 100, 25, 'electronics', 'https://www.betta.com.au/media/catalog/product/A/R/ARCHER_VR300_1602561944.JPG?optimize=medium&fit=bounds&height=700&width=700&canvas=700:700'),
+(1003, 'Samsung Smart Fridge', 2500, 12, 'home appliance', 'https://www.jbhifi.com.au/cdn/shop/files/523201-Product-0-I-637741143759267611_2b31e2d5-6eeb-46ff-9892-3afdd6fa07ff.jpg?v=1712808504');
 
 
 
@@ -137,7 +125,15 @@ INSERT INTO IOTUSER.USERS (EMAIL, "NAME", PASSWORD, ADDRESS, "TYPE", STATUS)
 
 
 
-CREATE TABLE USER_LOGS (ID INTEGER DEFAULT AUTOINCREMENT: start 1 increment 1  NOT NULL GENERATED ALWAYS AS IDENTITY, USER_EMAIL VARCHAR(255) NOT NULL, ACCESS_DATE VARCHAR(255), LOGIN_TIME VARCHAR(255), LOGOUT_TIME VARCHAR(255), PRIMARY KEY (ID));
+CREATE TABLE USER_LOGS (
+    ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    USER_EMAIL VARCHAR(255) NOT NULL,
+    ACCESS_DATE VARCHAR(255),
+    LOGIN_TIME VARCHAR(255),
+    LOGOUT_TIME VARCHAR(255),
+    PRIMARY KEY (ID)
+);
+
 
 
 INSERT INTO IOTUSER.USER_LOGS (USER_EMAIL, ACCESS_DATE, LOGIN_TIME, LOGOUT_TIME) 
@@ -308,7 +304,17 @@ INSERT INTO IOTUSER.USER_LOGS (USER_EMAIL, ACCESS_DATE, LOGIN_TIME, LOGOUT_TIME)
 
 
 
-CREATE TABLE ORDERS (ORDER_ID INTEGER DEFAULT AUTOINCREMENT: start 1 increment 1  NOT NULL GENERATED ALWAYS AS IDENTITY, ORDER_EMAIL VARCHAR(255) NOT NULL, ORDER_DATE DATE NOT NULL, ADDRESS VARCHAR(255) NOT NULL, PRODUCT_ID INTEGER NOT NULL, PRICE DECIMAL(10, 2) NOT NULL, ORDER_QUANTITY INTEGER NOT NULL, PAID BOOLEAN NOT NULL, PRIMARY KEY (ORDER_ID));
+CREATE TABLE ORDERS (
+    ORDER_ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    ORDER_EMAIL VARCHAR(255) NOT NULL,
+    ORDER_DATE DATE NOT NULL,
+    ADDRESS VARCHAR(255) NOT NULL,
+    PRODUCT_ID INTEGER NOT NULL,
+    PRICE DECIMAL(10, 2) NOT NULL,
+    ORDER_QUANTITY INTEGER NOT NULL,
+    PAID BOOLEAN NOT NULL,
+    PRIMARY KEY (ORDER_ID)
+);
 
 INSERT INTO IOTUSER.ORDERS (ORDER_EMAIL, ORDER_DATE, ADDRESS, PRODUCT_ID, PRICE, ORDER_QUANTITY, PAID) 
 	VALUES ('felix.lush@gmail.com', '2024-05-17', '31a Marrickville Rd ', 1005, 229.00, 1, true);
