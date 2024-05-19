@@ -44,7 +44,7 @@ Register as a new user or login using existing credentials.
 <h2>Functionality:</h2>
 Once you have executed the SQL command to fill the databases you will be able to access the staff admin features on the sight by using the following details to login:
 
-email: admin@gmail.com
-password: password
+<p>email: admin@gmail.com</p>
+<p>password: password</p>
 
 This will allow you to edit, delete and add products on the product page. It will also allow you to access the staff list which is the list of all staff users. From here you can search, create, edit and delete staff users
