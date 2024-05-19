@@ -65,5 +65,8 @@ import javax.servlet.http.HttpSession;
         session.setAttribute("existErr", "");
         session.setAttribute("nameErr", "Enter name");
         session.setAttribute("cardErr", "Enter Credit Card Number");
+        session.setAttribute("createdUser", null);
+        session.setAttribute("deletedUser", null);
+        session.setAttribute("editedUser", null);
     }
 }
