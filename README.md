@@ -21,14 +21,12 @@
 <h2>Installation</h2>
 
 <h3>Clone the Repository:</h3>
-bash
-Copy code
-git clone https://github.com/felixlush/IotBayWebsite
-cd iot-bay
-Setup Database:
+<p>git clone https://github.com/felixlush/IotBayWebsite</p>
+<p>cd IotBayWebsite</p>
+<h3>Setup Database:</h3>
 
-Ensure Apache Derby is installed and running on your system.
-Use the provided SQL script to create a dummy database in Source Packages/iot.isd.model.dao/createTables.sql
+<p>Ensure Apache Derby is installed and running on your system.</p>
+<p>Use the provided SQL script to create a dummy database in Source Packages/iot.isd.model.dao/createTables.sql</p>
 
 <h3>Configure GlassFish Server:</h3>
 
