@@ -20,10 +20,10 @@ public class Payment {
     private double amount;
     private String paymentDate;
     private String email;
-    private String orderId;
     
     
-    public Payment(int paymentId, String cardName, String cardNumber, String paymentMethod, double amount, String paymentDate, String orderId, String email){
+    
+    public Payment(int paymentId, String cardName, String cardNumber, String paymentMethod, double amount, String paymentDate, String email){
         this.paymentId = paymentId;
         this.cardName = cardName;
         this.paymentMethod = paymentMethod;
@@ -31,7 +31,17 @@ public class Payment {
         this.amount = amount;
         this.paymentDate = paymentDate;
         this.email = email;
-        this.orderId = orderId;
+      
+    }
+    public Payment(String cardName, String cardNumber, String paymentMethod, double amount, String paymentDate, String email){
+       
+        this.cardName = cardName;
+        this.paymentMethod = paymentMethod;
+        this.cardNumber = cardNumber;
+        this.amount = amount;
+        this.paymentDate = paymentDate;
+        this.email = email;
+      
     }
     
     public int getPaymentId() {
@@ -45,13 +55,7 @@ public class Payment {
         this.paymentId = paymentId;
         
     }
-    public String getOrderId() {
-        return orderId;
-    }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
     public String getPaymentMethod() {
         return paymentMethod;
     }

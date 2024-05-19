@@ -460,10 +460,10 @@ public List<Order> getUserOrders(String searchString, String userEmail) throws S
             }
     }
     
-    public void addPayment(String cardName, String cardNumber, String paymentMethod, double paymentAmount, int orderId, String email, String paymentDate) throws SQLException {
+    public void addPayment(String cardName, String cardNumber, String paymentMethod, double paymentAmount, String email, String paymentDate) throws SQLException {
 
     // SQL INSERT statement
-    String sql = "INSERT INTO PAYMENTS (CARD_NAME, CARD_NUMBER, PAYMENT_METHOD, PAYMENT_AMOUNT, ORDER_ID, EMAIL, PAYMENT_DATE) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO PAYMENTS (CARD_NAME, CARD_NUMBER, PAYMENT_METHOD, PAYMENT_AMOUNT, EMAIL, PAYMENT_DATE) VALUES (?, ?, ?, ?, ?, ?)";
 
     // Using PreparedStatement to avoid SQL Injection
     PreparedStatement pst = conn.prepareStatement(sql);
@@ -471,19 +471,18 @@ public List<Order> getUserOrders(String searchString, String userEmail) throws S
     pst.setString(2, cardNumber);
     pst.setString(3, paymentMethod);
     pst.setDouble(4, paymentAmount);
-    pst.setInt(5, orderId);
-    pst.setString(6, email);
-    pst.setString(7, paymentDate);
+    pst.setString(5, email);
+    pst.setString(6, paymentDate);
 
     // Execute the update
     pst.executeUpdate();
 }
     
 
-public ArrayList<Payment> getPaymentList (String searchString,String email) throws SQLException{
+public ArrayList<Payment> getPaymentList (String email) throws SQLException{
     
     ArrayList<Payment> paymentList = new ArrayList<>();
-    if (searchString.equals("")){
+//    if (searchString.equals("")){
     String query = "SELECT * FROM PAYMENTS WHERE EMAIL = '" + email + "'";
     PreparedStatement pst = conn.prepareStatement(query);
     
@@ -497,14 +496,14 @@ public ArrayList<Payment> getPaymentList (String searchString,String email) thro
             rs.getString(4),
             rs.getDouble(5),
             rs.getString(6),
-            rs.getString(7),
-            rs.getString(8)
+            rs.getString(7)
         );
         paymentList.add(payment);
     }
 
-}
+
     return paymentList;
 }
+
 
 }

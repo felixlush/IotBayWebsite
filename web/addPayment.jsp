@@ -31,7 +31,7 @@
         <div class="user-table-container">
             <form action="AddPaymentServlet" method="post">
                 <input type="hidden" name="price" value="${price}" />
-                 <input type="hidden" name="orderId" value="${orderId}" />
+                 <input type="hidden" name="paymentId" value="${paymentId}" />
                  <input type="hidden" name="email" value="${email}" />
             <table class="user-table">
                 <tr>

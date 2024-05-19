@@ -3,6 +3,7 @@
     Created on : 16/05/2024, 3:51:42 PM
     Author     : mcmic
 --%>
+<%@page import="java.util.List"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="iot.isd.model.dao.DBManager"%>
 <%@page import="java.util.ArrayList"%>
@@ -26,15 +27,79 @@
     <body>
         
         <h1>Payment Details</h1>
-        <div class="main-container">
+        <div class="user-table-container">
             <h2>Saved Payment Details</h2> 
 <!--            <form action="editPayment.jsp" method="post">-->
-        <table border="0">
+        <table class="user-table">
         <tr>
             <th>Select</th>
             <th>Cardholder Name</th>
             <th>Card Number</th>
             <th>Payment Method</th>
+        </tr>
+        <%
+            
+            Payment newPayment = (Payment)session.getAttribute("newPayment");
+//            List<Payment> currentPayment = (List<Payment>)session.getAttribute("currentPayment");
+//                if (currentPayment != null && !currentPayment.isEmpty()){
+//                    for (Payment payment : currentPayment) {
+            if (newPayment != null){
+        %>
+          
+        <tr>
+            <form action="PaymentServlet" method="post">
+                <td>
+                    <input type="hidden" name="paymentId" value="<%= newPayment.getCardName()%>">
+                    <input type="hidden" name="paymentId" value="<%= newPayment.getCardNumber()%>">
+                    <input type="hidden" name="paymentId" value="<%= newPayment.getPaymentMethod()%>">
+                    <input type="submit" class="custom-logout-button" style="margin-top: 60px;" value="Pay With This Card">
+                 
+                </td> 
+               
+                <td><%= newPayment.getCardName() %></td>
+                <td><%= newPayment.getCardNumber() %></td>
+                <td><%= newPayment.getPaymentMethod() %></td>
+            </form>
+            
+            <td>
+            <form action="EditPaymentServlet" method="post">
+                <input type="hidden" name="paymentId" value="<%= newPayment.getPaymentId()%>">
+                <input type="hidden" name="cardNumber" value="<%= newPayment.getCardNumber()%>">
+                <input type="hidden" name="cardName" value="<%= newPayment.getCardName()%>">
+                <input type="hidden" name="paymentMethod" value="<%= newPayment.getPaymentMethod()%>">
+                <input type="submit" value="Edit">
+            </form>
+            </td>
+            <td>
+            <form action="DeletePayment" method="post">
+                <input type="hidden" name="cardNumber" value="<%= newPayment.getCardNumber()%>">
+                <input type="submit" value="Delete">
+            </form>
+            </td>
+            </tr>
+            
+        <%
+            
+          } else {
+        %>
+        <tr>No current payment information available</tr>
+        
+        </table>
+        <%                    
+          }
+        %>
+        
+    <h1>Payment List</h1>
+    <table class="user-table">
+        <tr>
+            <th>Payment ID</th>
+            <th>Card Name</th>
+            <th>Card Number</th>
+            <th>Payment Method</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Order ID</th>
+            <th>User</th>
         </tr>
         <%
             User user = (User)session.getAttribute("user");
@@ -48,75 +113,26 @@
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            int index = 0;
+            
             for (Payment payment : paymentList) {
+                if (payment.getDate() != null) {
         %>
-          
-        <tr>
-            <form action="PaymentServlet" method="post">
-                <td>
-                    <input type="hidden" name="paymentId" value="<%= payment.getCardName()%>">
-                    <input type="hidden" name="paymentId" value="<%= payment.getCardNumber()%>">
-                    <input type="hidden" name="paymentId" value="<%= payment.getPaymentMethod()%>">
-                    <input type="submit" class="custom-logout-button" style="margin-top: 60px;" value="Pay With This Card">
-<!--                  <input type="radio" name="selectedPayment" value="<%= payment.getCardNumber() %>"onclick="document.getElementById('selectedCardNumber').value=this.value">-->
-                </td> 
-               
+            <tr>
+                <td><%= payment.getPaymentId() %></td>
                 <td><%= payment.getCardName() %></td>
                 <td><%= payment.getCardNumber() %></td>
                 <td><%= payment.getPaymentMethod() %></td>
-            </form>
-            
-            <td>
-            <form action="EditPaymentServlet" method="post">
-                <input type="hidden" name="paymentId" value="<%= payment.getPaymentId()%>">
-                <input type="hidden" name="cardNumber" value="<%= payment.getCardNumber()%>">
-                <input type="hidden" name="cardName" value="<%= payment.getCardName()%>">
-                <input type="hidden" name="paymentMethod" value="<%= payment.getPaymentMethod()%>">
-                <input type="submit" value="Edit">
-            </form>
-            </td>
-            <td>
-            <form action="DeletePayment" method="post">
-                <input type="hidden" name="cardNumber" value="<%= payment.getCardNumber()%>">
-                <input type="submit" value="Delete">
-            </form>
-            </td>
+                <td><%= payment.getAmount() %></td>
+                <td><%= payment.getDate() %></td>
+                <td><%= payment.getEmail() %></td>
             </tr>
-            
         <%
-            index++;
-                    
-          }
+            }
+        }
         %>
+        <a href="order.jsp" class="custom-button" style="margin-top: 60px;">Return</a>
     </table>
 
-        
-   <div class="form-card">
-        <h2>Create New Payment Details</h2> 
-        <form action="AddPaymentServlet" method="post">
-            <table>
-                <tr>
-                <td>Select Payment Method:</td>
-                <td><select name ="paymentMethod">
-                    <option>Mastercard</option>
-                    <option>Visa</option>
-                    <option>Amex</option>
-                </select> </td>
-                </tr>
-<!--                <br/><br/>-->
-                
-                <tr><td>Cardholder Name:</td><td><input type="text" placeholder="<%=(nameErr != null ? nameErr : "Enter Cardholder Name")%>" name="cardName" required="true"></td></tr>
-                <tr><td>Card Number:</td><td><input type="text" placeholder="<%=(cardErr != null ? cardErr : "Enter Credit Card Number")%>" name="cardNumber" required="true"></td></tr>
-<!--                <tr><td>Payment Amount:</td><td><input type="text" placeholder="Enter Amount" name="amount" required="true"></td></tr>-->
-            </table>
-               
-           
-                <a href="main.jsp">Cancel</a>
-                <input type="submit" value="Add Payment Method">
-                
-                </form>
-           </div>
             
             </div>
     

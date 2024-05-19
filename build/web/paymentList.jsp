@@ -54,7 +54,6 @@
                 <td><%= payment.getPaymentMethod() %></td>
                 <td><%= payment.getAmount() %></td>
                 <td><%= payment.getDate() %></td>
-                <td><%= payment.getOrderId() %></td>
                 <td><%= payment.getEmail() %></td>
             </tr>
         <%
