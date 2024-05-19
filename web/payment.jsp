@@ -21,6 +21,8 @@
     <% 
             String cardErr = (String) session.getAttribute("cardErr");
             String nameErr = (String) session.getAttribute("nameErr");
+            //Payment newPayment = (Payment)session.getAttribute("newPayment");
+            User user = (User)session.getAttribute("user");
     %>
     
     
@@ -98,11 +100,10 @@
             <th>Payment Method</th>
             <th>Amount</th>
             <th>Date</th>
-            <th>Order ID</th>
             <th>User</th>
         </tr>
         <%
-            User user = (User)session.getAttribute("user");
+            //User user = (User)session.getAttribute("user");
             String email = user.email;
             
             

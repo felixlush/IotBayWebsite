@@ -66,19 +66,25 @@ public class AddPaymentServlet extends HttpServlet {
             
         try { 
             
-            List<Payment> currentPayment = (List<Payment>)session.getAttribute("currentPayment");
+            //List<Payment> currentPayment = (List<Payment>)session.getAttribute("currentPayment");
             
-            manager.addPayment(cardName, cardNumber, paymentMethod, price, email, paymentDate);
+            int paymentId = manager.addPayment(cardName, cardNumber, paymentMethod, price, email, paymentDate);
             //Payment payment = (Payment)session.getAttribute("payment");
             //int paymentId = payment.getPaymentId();
-            Payment newPayment = new Payment(cardName, cardNumber, paymentMethod, price, paymentDate, email);
-            
+            Payment newPayment = new Payment(paymentId, cardName, cardNumber, paymentMethod, price, paymentDate, email);
+//            paymentIdString.equals(valueOf)
+
+                System.out.println("Payment added with ID: " + paymentId);
 //            if (currentPayment == null){
 //            currentPayment = new ArrayList<>();
 //        }
 //        currentPayment.add(newPayment);
         session.setAttribute("newPayment", newPayment);
-            
+        
+        if (newPayment == null){
+                throw new RuntimeException("New Payment Is null");
+            }
+                   
             
             request.getRequestDispatcher("payment.jsp").include(request, response);
         } catch (SQLException ex) {

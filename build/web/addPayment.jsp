@@ -4,6 +4,7 @@
     Author     : mcmic
 --%>
 
+<%@page import="iot.isd.model.Payment"%>
 <%@page import="iot.isd.model.Order"%>
 <%@page import="iot.isd.model.Product"%>
 <%@page import="iot.isd.model.User"%>
@@ -24,7 +25,7 @@
         <% 
             String cardErr = (String) session.getAttribute("cardErr");
             String nameErr = (String) session.getAttribute("nameErr");
-            
+           
            
     %>
         <h1>Add your payment information</h1>
