@@ -4,11 +4,11 @@
 
 <h2>Features</h2>
 <p>User Registration and Login: Secure registration and login functionality for customers and staff.
-Product Management: Ability for admins to add, update, and delete products.
-Order Management: Users can browse products, add them to their cart, and place orders.
-User Logs: Tracking user login sessions and activities.
-Responsive Design: Web pages that are responsive and adaptable to different devices.
-</p>
+<p>Product Management: Ability for admins to add, update, and delete products.</p>
+<p>Order Management: Users can browse products, add them to their cart, and place orders.</p>
+<p>User Logs: Tracking user login sessions and activities.</p>
+<p>Responsive Design: Web pages that are responsive and adaptable to different devices.</p>
+
 
 <h2>Prerequisites</h2>
 <p>
